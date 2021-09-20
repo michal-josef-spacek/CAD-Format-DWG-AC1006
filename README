@@ -1,0 +1,34 @@
+NAME
+    CAD::Format::DWG::AC1006 - Read AutoCAD 10 DWG file.
+
+SYNOPSIS
+     use CAD::Format::DWG::AC1006;
+
+     my $dwg = CAD::Format::DWG::AC1006->new;
+     my $dwg = CAD::Format::DWG::AC1006::from_file($dwg_file);
+     my $header_hr = $dwg->header;
+     my $entities_hr = $dwg->entities;
+
+DESCRIPTION
+    In distribution is kaitai structure definition file dwg_ac1006.ksy which
+    described AutoCAD DWG format version AC1006.
+
+DEPENDENCIES
+    IO::KaitaiStruct.
+
+REPOSITORY
+    <https://github.com/michal-josef-spacek/CAD-Format-DWG-AC1006.git>
+
+AUTHOR
+    Michal Josef Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    © 2021 Michal Josef Špaček
+
+    BSD 2-Clause License
+
+VERSION
+    0.01
+
