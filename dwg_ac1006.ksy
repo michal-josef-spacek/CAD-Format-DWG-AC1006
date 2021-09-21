@@ -101,41 +101,31 @@ types:
       - id: block_table_item_size
         type: s2
       - id: number_of_table_blocks
-        type: s2
-      - id: unknown4e
-        size: 2
+        type: s4
       - id: block_table_begin
         type: u4
       - id: layer_table_item_size
         type: s2
       - id: number_of_table_layers
-        type: s2
-      - id: unknown4g
-        size: 2
+        type: s4
       - id: layer_table_begin
         type: u4
       - id: style_table_item_size
         type: s2
       - id: number_of_table_styles
-        type: s2
-      - id: unknown4i
-        size: 2
+        type: s4
       - id: style_table_begin
         type: u4
       - id: linetype_table_item_size
         type: s2
       - id: number_of_table_linetypes
-        type: s2
-      - id: unknown4k
-        size: 2
+        type: s4
       - id: linetype_table_begin
         type: u4
       - id: view_table_item_size
         type: s2
       - id: number_of_table_views
-        type: s2
-      - id: unknown4m
-        size: 2
+        type: s4
       - id: view_table_begin
         type: u4
       - id: insertion_base_x
