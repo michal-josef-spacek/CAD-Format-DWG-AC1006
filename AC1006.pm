@@ -2358,6 +2358,10 @@ sub _read {
     $self->{dim_alternate_measurement_postfix} = Encode::decode("ASCII", $self->{_io}->read_bytes(16));
     $self->{dim_alternate_units_multiplier} = $self->{_io}->read_f8le();
     $self->{dim_linear_measurements_scale_factor} = $self->{_io}->read_f8le();
+    $self->{unknown35} = $self->{_io}->read_bytes(8);
+    $self->{chamfera} = $self->{_io}->read_f8le();
+    $self->{chamferb} = $self->{_io}->read_f8le();
+    $self->{unknown36} = $self->{_io}->read_bytes(293);
 }
 
 sub create_date {
@@ -3262,6 +3266,26 @@ sub dim_alternate_units_multiplier {
 sub dim_linear_measurements_scale_factor {
     my ($self) = @_;
     return $self->{dim_linear_measurements_scale_factor};
+}
+
+sub unknown35 {
+    my ($self) = @_;
+    return $self->{unknown35};
+}
+
+sub chamfera {
+    my ($self) = @_;
+    return $self->{chamfera};
+}
+
+sub chamferb {
+    my ($self) = @_;
+    return $self->{chamferb};
+}
+
+sub unknown36 {
+    my ($self) = @_;
+    return $self->{unknown36};
 }
 
 ########################################################################

@@ -563,6 +563,16 @@ types:
       - id: dim_linear_measurements_scale_factor
         type: f8
         doc: 0x03cd-0x03d4, $DIMLFAC
+      - id: unknown35
+        size: 8
+      - id: chamfera
+        type: f8
+        doc: $CHAMFERA/40
+      - id: chamferb
+        type: f8
+        doc: $CHAMFERB/40
+      - id: unknown36
+        size: 293
     instances:
       create_date:
         value: create_date_days + (create_date_ms / 86400000.0)
