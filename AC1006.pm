@@ -39,7 +39,6 @@ our $ENTITIES_SEQEND = 17;
 our $ENTITIES_POLYLINE = 18;
 our $ENTITIES_POLYLINE2 = 19;
 our $ENTITIES_VERTEX = 20;
-our $ENTITIES_LINE3D = 21;
 our $ENTITIES_FACE3D = 22;
 our $ENTITIES_DIM = 23;
 
@@ -159,84 +158,6 @@ sub entity_size {
 sub xxx {
     my ($self) = @_;
     return $self->{xxx};
-}
-
-########################################################################
-package CAD::Format::DWG::AC1006::EntityLine3d;
-
-our @ISA = 'IO::KaitaiStruct::Struct';
-
-sub from_file {
-    my ($class, $filename) = @_;
-    my $fd;
-
-    open($fd, '<', $filename) or return undef;
-    binmode($fd);
-    return new($class, IO::KaitaiStruct::Stream->new($fd));
-}
-
-sub new {
-    my ($class, $_io, $_parent, $_root) = @_;
-    my $self = IO::KaitaiStruct::Struct->new($_io);
-
-    bless $self, $class;
-    $self->{_parent} = $_parent;
-    $self->{_root} = $_root || $self;;
-
-    $self->_read();
-
-    return $self;
-}
-
-sub _read {
-    my ($self) = @_;
-
-    $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    $self->{x1} = $self->{_io}->read_f8le();
-    $self->{y1} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->flag2_8()) {
-        $self->{z1} = $self->{_io}->read_f8le();
-    }
-    $self->{x2} = $self->{_io}->read_f8le();
-    $self->{y2} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->flag2_7()) {
-        $self->{z2} = $self->{_io}->read_f8le();
-    }
-}
-
-sub entity_common {
-    my ($self) = @_;
-    return $self->{entity_common};
-}
-
-sub x1 {
-    my ($self) = @_;
-    return $self->{x1};
-}
-
-sub y1 {
-    my ($self) = @_;
-    return $self->{y1};
-}
-
-sub z1 {
-    my ($self) = @_;
-    return $self->{z1};
-}
-
-sub x2 {
-    my ($self) = @_;
-    return $self->{x2};
-}
-
-sub y2 {
-    my ($self) = @_;
-    return $self->{y2};
-}
-
-sub z2 {
-    my ($self) = @_;
-    return $self->{z2};
 }
 
 ########################################################################
@@ -2051,9 +1972,6 @@ sub _read {
     }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityLine->new($self->{_io}, $self, $self->{_root});
-    }
-    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE3D) {
-        $self->{data} = CAD::Format::DWG::AC1006::EntityLine3d->new($self->{_io}, $self, $self->{_root});
     }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_TEXT) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityText->new($self->{_io}, $self, $self->{_root});
