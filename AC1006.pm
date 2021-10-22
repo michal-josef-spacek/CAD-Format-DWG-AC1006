@@ -639,9 +639,6 @@ sub _read {
     if ($self->entity_mode()->entity_linetype_flag()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
-        $self->{entity_elevation} = $self->{_io}->read_f8le();
-    }
     if ($self->entity_mode()->entity_thickness_flag()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
@@ -755,11 +752,6 @@ sub entity_color {
 sub entity_linetype_index {
     my ($self) = @_;
     return $self->{entity_linetype_index};
-}
-
-sub entity_elevation {
-    my ($self) = @_;
-    return $self->{entity_elevation};
 }
 
 sub entity_thickness {
@@ -3488,7 +3480,7 @@ sub _read {
     $self->{entity_mode3} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_mode4} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_thickness_flag} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_elevation_flag} = $self->{_io}->read_bits_int_be(1);
+    $self->{entity_2d_flag} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_linetype_flag} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_color_flag} = $self->{_io}->read_bits_int_be(1);
 }
@@ -3518,9 +3510,9 @@ sub entity_thickness_flag {
     return $self->{entity_thickness_flag};
 }
 
-sub entity_elevation_flag {
+sub entity_2d_flag {
     my ($self) = @_;
-    return $self->{entity_elevation_flag};
+    return $self->{entity_2d_flag};
 }
 
 sub entity_linetype_flag {
@@ -3566,8 +3558,14 @@ sub _read {
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
     $self->{x1} = $self->{_io}->read_f8le();
     $self->{y1} = $self->{_io}->read_f8le();
+    if ($self->entity_common()->entity_mode()->entity_2d_flag() == 0) {
+        $self->{z1} = $self->{_io}->read_f8le();
+    }
     $self->{x2} = $self->{_io}->read_f8le();
     $self->{y2} = $self->{_io}->read_f8le();
+    if ($self->entity_common()->entity_mode()->entity_2d_flag() == 0) {
+        $self->{z2} = $self->{_io}->read_f8le();
+    }
 }
 
 sub entity_common {
@@ -3585,6 +3583,11 @@ sub y1 {
     return $self->{y1};
 }
 
+sub z1 {
+    my ($self) = @_;
+    return $self->{z1};
+}
+
 sub x2 {
     my ($self) = @_;
     return $self->{x2};
@@ -3593,6 +3596,11 @@ sub x2 {
 sub y2 {
     my ($self) = @_;
     return $self->{y2};
+}
+
+sub z2 {
+    my ($self) = @_;
+    return $self->{z2};
 }
 
 ########################################################################

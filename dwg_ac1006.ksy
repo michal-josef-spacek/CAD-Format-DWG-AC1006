@@ -619,7 +619,7 @@ types:
         type: b1
       - id: entity_thickness_flag
         type: b1
-      - id: entity_elevation_flag
+      - id: entity_2d_flag
         type: b1
       - id: entity_linetype_flag
         type: b1
@@ -673,9 +673,6 @@ types:
       - id: entity_linetype_index
         type: s1
         if: entity_mode.entity_linetype_flag
-      - id: entity_elevation
-        type: f8
-        if: entity_mode.entity_elevation_flag
       - id: entity_thickness
         type: f8
         if: entity_mode.entity_thickness_flag
@@ -898,12 +895,20 @@ types:
       - id: y1
         type: f8
         doc: LINE/20
+      - id: z1
+        type: f8
+        if: entity_common.entity_mode.entity_2d_flag == false
+        doc: LINE/30
       - id: x2
         type: f8
         doc: LINE/11
       - id: y2
         type: f8
         doc: LINE/21
+      - id: z2
+        type: f8
+        if: entity_common.entity_mode.entity_2d_flag == false
+        doc: LINE/31
   entity_tmp:
     seq:
       - id: entity_mode
