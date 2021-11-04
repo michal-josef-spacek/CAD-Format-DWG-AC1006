@@ -3,7 +3,8 @@ TODO
 1. Import attrib z predchozi verze.
 2. Update style to 2.10.
 3. Move convert.sh to Makefile.PL
-4.
+4. Update layer_flag from 2.10
+5.
 
 Applied
 =======
