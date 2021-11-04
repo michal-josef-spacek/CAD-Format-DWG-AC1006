@@ -2,7 +2,8 @@ TODO
 ====
 1. Import attrib z predchozi verze.
 2. Update style to 2.10.
-3.
+3. Move convert.sh to Makefile.PL
+4.
 
 Applied
 =======
