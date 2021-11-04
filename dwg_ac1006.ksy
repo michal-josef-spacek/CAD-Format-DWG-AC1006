@@ -303,6 +303,7 @@ types:
         size: 15
         type: str
         encoding: ASCII
+        terminator: 0x00
         doc: $MENU
       - id: dim_scale
         type: f8

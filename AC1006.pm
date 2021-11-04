@@ -2176,7 +2176,7 @@ sub _read {
     $self->{text_style} = $self->{_io}->read_s2le();
     $self->{osnap} = $self->{_io}->read_s2le();
     $self->{attributes} = $self->{_io}->read_s2le();
-    $self->{menu} = Encode::decode("ASCII", $self->{_io}->read_bytes(15));
+    $self->{menu} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(15), 0, 0));
     $self->{dim_scale} = $self->{_io}->read_f8le();
     $self->{dim_arrowhead_size} = $self->{_io}->read_f8le();
     $self->{dim_extension_line_offset} = $self->{_io}->read_f8le();
