@@ -31,5 +31,12 @@ test_requires 'Test::NoWarnings' => 0;
 tests_recursive;
 version '0.01';
 
+my $KSY_FILE = 'dwg_ac1006.ksy';
+my $OUTPUT_PM_FILE = 'AC1006.pm';
+
+system "ksc -t perl $KSY_FILE";
+system "mv DwgAc1006.pm $OUTPUT_PM_FILE";
+system "sed -i s/DwgAc1006/CAD::Format::DWG::AC1006/g $OUTPUT_PM_FILE";
+
 # Run.
 WriteAll();
