@@ -17,42 +17,45 @@ meta:
 seq:
   - id: header
     type: header
-#  - id: entities
-#    type: real_entities
-#    size: header.entities_end - header.entities_start
-#  - id: blocks
-#    type: block
-#    repeat: expr
-#    repeat-expr: header.number_of_table_blocks
-#  - id: layers
-#    type: layer
-#    repeat: expr
-#    repeat-expr: header.number_of_table_layers
-#  - id: styles
-#    type: style
-#    repeat: expr
-#    repeat-expr: header.number_of_table_styles
-#  - id: linetypes
-#    type: linetype
-#    repeat: expr
-#    repeat-expr: header.number_of_table_linetypes
-#  - id: views
-#    type: view
-#    repeat: expr
-#    repeat-expr: header.number_of_table_views
-#  - id: block_entities
-#    type: real_entities
-#    size: header.blocks_end - header.blocks_start
+  - id: entities
+    type: real_entities
+    size: header.entities_end - header.entities_start
+  - id: blocks
+    type: block
+    repeat: expr
+    repeat-expr: header.number_of_table_blocks
+  - id: layers
+    type: layer
+    repeat: expr
+    repeat-expr: header.number_of_table_layers
+  - id: styles
+    type: style
+    repeat: expr
+    repeat-expr: header.number_of_table_styles
+  - id: linetypes
+    type: linetype
+    repeat: expr
+    repeat-expr: header.number_of_table_linetypes
+  - id: views
+    type: view
+    repeat: expr
+    repeat-expr: header.number_of_table_views
+  # TODO Je tady nejaka chyba (AC1006/from_autocad_r10/TUTORIAL.DWG)
+  - id: block_entities
+    type: real_entities
+    size: header.blocks_size_b
 types:
   block:
     seq:
-      - id: unknown1
-        type: s1
+      - id: flag
+        type: block_flag
+        doc: BLOCK/70
       - id: block_name
         size: 31
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
+        doc: BLOCK/2
       - id: u1
         type: s1
       - id: u2
@@ -63,8 +66,24 @@ types:
         type: s1
       - id: u5
         type: s1
-      - id: u6
-        type: s1
+  block_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: flag8
+        type: b1
   header:
     seq:
       - id: magic
@@ -137,9 +156,9 @@ types:
       - id: insertion_base_z
         type: f8
         doc: 0x006e-0x0075
-      - id: number_of_entities
+      - id: plinegen
         type: s2
-        doc: 0x0076-0x0077
+        doc: 0x0076-0x0077 $PLINEGEN/70
       - id: drawing_first_x
         type: f8
         doc: $EXTMIN/10
@@ -433,7 +452,7 @@ types:
         size: 32
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
         doc: $DIMBLK
       - id: unknown30
         type: s1
@@ -579,7 +598,10 @@ types:
         value: create_date_days + (create_date_ms / 86400000.0)
       update_date:
         value: update_date_days + (update_date_ms / 86400000.0)
-      ## TODO
+      blocks_size_a:
+         value: (blocks_size & 0xff000000) >> 24
+      blocks_size_b:
+         value: (blocks_size & 0x00ffffff)
   entity:
     seq:
       - id: entity_type
@@ -589,24 +611,28 @@ types:
         type:
           switch-on: entity_type
           cases:
+# TODO entity_arc je spatne (from_autocad_r10/BRACKET.DWG)
             'entities::arc': entity_arc
-            'entities::attdef': entity_attdef
-            'entities::block_begin': entity_block_begin
-            'entities::block_end': entity_block_end
-            'entities::insert' : entity_insert
+#            'entities::attdef': entity_attdef
+#            'entities::block_begin': entity_block_begin
+#            'entities::block_end': entity_block_end
+#            'entities::insert' : entity_insert
             'entities::circle': entity_circle
-            'entities::dim': entity_dim
-            'entities::face3d': entity_face3d
-            'entities::line': entity_line
+# TODO entity_dim je spatne (from_autocad_r10/TUTORIAL.DWG)
+#            'entities::dim': entity_dim
+#            'entities::face3d': entity_face3d
+# TODO entity_line je spatne (from_autocad_r10/TUTORIAL.DWG)
+#            'entities::line': entity_line
+            'entities::line3d': entity_line3d
             'entities::point': entity_point
-            'entities::polyline': entity_polyline
-            'entities::polyline2': entity_polyline
-            'entities::seqend': entity_seqend
-            'entities::shape': entity_shape
-            'entities::solid': entity_solid
-            'entities::text': entity_text
-            'entities::trace': entity_trace
-            'entities::vertex': entity_vertex
+#            'entities::polyline': entity_polyline
+#            'entities::polyline2': entity_polyline
+#            'entities::seqend': entity_seqend
+#            'entities::shape': entity_shape
+#            'entities::solid': entity_solid
+#            'entities::text': entity_text
+#            'entities::trace': entity_trace
+#            'entities::vertex': entity_vertex
             _: entity_tmp
   entity_mode:
     seq:
@@ -687,6 +713,11 @@ types:
       - id: y
         type: f8
         doc: ARC/20
+      - id: z
+        type: f8
+        doc: ARC/30
+        # XXX not 2d_flag is 3d_flag
+        if: entity_common.entity_mode.entity_2d_flag == true
       - id: radius
         type: f8
         doc: ARC/40
@@ -817,6 +848,11 @@ types:
       - id: y
         type: f8
         doc: CIRCLE/20
+      - id: z
+        type: f8
+        doc: CIRCLE/30
+        # XXX not 2d_flag is 3d_flag
+        if: entity_common.entity_mode.entity_2d_flag == true
       - id: radius
         type: f8
         doc: CIRCLE/40
@@ -910,6 +946,52 @@ types:
         type: f8
         if: entity_common.entity_mode.entity_2d_flag == false
         doc: LINE/31
+      - id: unknown1
+        type: f8
+        if: entity_common.flag2_8
+        doc: LINE/210
+      - id: unknown2
+        type: f8
+        if: entity_common.flag2_8
+        doc: LINE/220
+      - id: unknown3
+        type: f8
+        if: entity_common.flag2_8
+        doc: LINE/230
+  entity_line3d:
+    seq:
+      - id: entity_common
+        type: entity_common
+      - id: x1
+        type: f8
+        doc: 3DLINE/10
+      - id: y1
+        type: f8
+        doc: 3DLINE/20
+      - id: z1
+        type: f8
+        doc: 3DLINE/30
+      - id: x2
+        type: f8
+        doc: 3DLINE/11
+      - id: y2
+        type: f8
+        doc: 3DLINE/21
+      - id: z2
+        type: f8
+        doc: 3DLINE/31
+      - id: unknown1
+        type: f8
+        if: entity_common.flag2_8
+        doc: 3DLINE/210
+      - id: unknown2
+        type: f8
+        if: entity_common.flag2_8
+        doc: 3DLINE/220
+      - id: unknown3
+        type: f8
+        if: entity_common.flag2_8
+        doc: 3DLINE/230
   entity_tmp:
     seq:
       - id: entity_mode
@@ -928,6 +1010,10 @@ types:
       - id: y
         type: f8
         doc: POINT/20
+      - id: z
+        type: f8
+        if: entity_common.entity_mode.entity_2d_flag == false
+        doc: POINT/30
   entity_polyline:
     seq:
       - id: entity_common
@@ -1084,50 +1170,56 @@ types:
         type: b1
   layer:
     seq:
-      - id: frozen
-        type: s1
+      - id: flag
+        type: layer_flag
         doc: LAYER/70
       - id: layer_name
-        size: 31
+        size: 32
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
         doc: LAYER/2
-      - id: unknown1
-        type: s1
       - id: color
-        type: s1
+        type: s2
         doc: LAYER/62
-      - id: unknown2
-        type: s1
       - id: linetype_index
-        type: s1
+        type: u2
         doc: LAYER/6
-      - id: unknown3
-        type: s1
-      - id: unknown4
-        type: s1
+  layer_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: frozen
+        type: b1
   linetype:
     seq:
-      - id: u2
-        type: u1
+      - id: flag
+        type: linetype_flag
         doc: LTYPE/70
       - id: linetype_name
-        size: 31
+        size: 32
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
         doc: LTYPE/2
-      - id: u3
-        type: u1
       - id: description
-        size: 44
+        size: 48
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
         doc: LTYPE/3
-      - id: u5
-        size: 4
       - id: alignment
         type: u1
         doc: LTYPE/72
@@ -1137,44 +1229,47 @@ types:
       - id: pattern_len
         type: f8
         doc: LTYPE/40
-      - id: u9
-        type: f8
+      - id: pattern
+        type: pattern
         doc: LTYPE/49
-      - id: u10
+  pattern:
+    seq:
+      - id: pattern1
         type: f8
-        doc: LTYPE/49
-      - id: u11
+      - id: pattern2
         type: f8
-        doc: LTYPE/49
-      - id: u12
+      - id: pattern3
         type: f8
-        doc: LTYPE/49
-      - id: u13
+      - id: pattern4
         type: f8
-        doc: LTYPE/49
-      - id: u14
+      - id: pattern5
         type: f8
-        doc: LTYPE/49
-      - id: u15
+      - id: pattern6
         type: f8
-        doc: LTYPE/49
-      - id: u16
+      - id: pattern7
         type: f8
-        doc: LTYPE/49
-      - id: u17
+      - id: pattern8
         type: f8
-        doc: LTYPE/49
-      - id: u18
+      - id: pattern9
         type: f8
-        doc: LTYPE/49
-      - id: u19
-        type: f8
-        doc: LTYPE/49
-      - id: u20
-        type: f8
-        doc: LTYPE/49
-      - id: u21
-        size: 1
+  linetype_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: frozen
+        type: b1
   real_entities:
     seq:
       - id: entities
@@ -1182,62 +1277,56 @@ types:
         repeat: eos
   style:
     seq:
-      - id: flag1_1
-        type: b1
-      - id: flag1_2
-        type: b1
-      - id: flag1_3
-        type: b1
-      - id: flag1_4
-        type: b1
-      - id: flag1_5
-        type: b1
-      - id: flag1_vertical
-        type: b1
-      - id: flag1_7
-        type: b1
-      - id: flag1_8
-        type: b1
-      - id: text
-        size: 31
+      - id: flag
+        type: style_flag
+        doc: STYLE/70
+      - id: style_name
+        size: 32
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
+        doc: STYLE/2
       - id: height
         type: f8
         doc: STYLE/40
-      - id: unknown1
-        type: u1
       - id: width_factor
         type: f8
         doc: STYLE/41
       - id: obliquing_angle_in_radians
         type: f8
         doc: STYLE/50
-      - id: flag2_1
-        type: b1
+      - id: generation
+        type: generation_flags
         doc: STYLE/71
-      - id: flag2_2
-        type: b1
-      - id: flag2_3
-        type: b1
-      - id: flag2_4
-        type: b1
-      - id: flag2_5
-        type: b1
-      - id: flag2_upside_down
-        type: b1
-      - id: flag2_backwards
-        type: b1
-      - id: flag2_8
-        type: b1
-      - id: u12
+      - id: last_height
         type: f8
         doc: STYLE/42
       - id: font_file
-        size: 90
+        size: 64
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: STYLE/3
       - id: u13
-        size: 38
+        size: 64
+  style_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: vertical
+        type: b1
+      - id: flag7
+        type: b1
+      - id: load
+        type: b1
   view:
     seq:
       - id: u1
@@ -1246,7 +1335,7 @@ types:
         size: 31
         type: str
         encoding: ASCII
-        terminator: 0x2e
+        terminator: 0x00
       - id: u2
         type: u1
       - id: view_size
@@ -1270,6 +1359,24 @@ types:
       - id: view_dir_z
         type: f8
         doc: VIEW/31
+  generation_flags:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: upside_down
+        type: b1
+      - id: backwards
+        type: b1
+      - id: flag8
+        type: b1
 enums:
   entities:
     1: line
@@ -1292,7 +1399,7 @@ enums:
     18: polyline
     19: polyline2
     20: vertex
-    # NOT_USED 21: line3d
+    21: line3d
     22: face3d
     23: dim
   osnap_modes:
