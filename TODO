@@ -4,7 +4,8 @@ TODO
 2. Update style to 2.10.
 3. Move convert.sh to Makefile.PL
 4. Update layer_flag from 2.10
-5.
+5. Update linetype, linetype_flag and pattern
+6.
 
 Applied
 =======
