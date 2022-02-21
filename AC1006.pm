@@ -135,6 +135,12 @@ sub _read {
     $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->blocks_size_b());
     my $io__raw_block_entities = IO::KaitaiStruct::Stream->new($self->{_raw_block_entities});
     $self->{block_entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_block_entities, $self, $self->{_root});
+    if (!($self->_io()->is_eof())) {
+        $self->{todo} = ();
+        while (!$self->{_io}->is_eof()) {
+            push @{$self->{todo}}, $self->{_io}->read_bytes_full();
+        }
+    }
 }
 
 sub header {
@@ -175,6 +181,11 @@ sub views {
 sub block_entities {
     my ($self) = @_;
     return $self->{block_entities};
+}
+
+sub todo {
+    my ($self) = @_;
+    return $self->{todo};
 }
 
 sub _raw_entities {
