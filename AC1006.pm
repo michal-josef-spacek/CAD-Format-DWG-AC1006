@@ -132,7 +132,7 @@ sub _read {
     for (my $i = 0; $i < $n_views; $i++) {
         $self->{views}[$i] = CAD::Format::DWG::AC1006::View->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->blocks_size_b());
+    $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->blocks_size());
     my $io__raw_block_entities = IO::KaitaiStruct::Stream->new($self->{_raw_block_entities});
     $self->{block_entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_block_entities, $self, $self->{_root});
     if (!($self->_io()->is_eof())) {
@@ -2460,8 +2460,7 @@ sub _read {
     $self->{entities_start} = $self->{_io}->read_s4le();
     $self->{entities_end} = $self->{_io}->read_s4le();
     $self->{blocks_start} = $self->{_io}->read_s4le();
-    $self->{blocks_size} = $self->{_io}->read_s2le();
-    $self->{unknown4a} = $self->{_io}->read_bytes(2);
+    $self->{blocks_size_raw} = $self->{_io}->read_u4le();
     $self->{blocks_end} = $self->{_io}->read_s4le();
     $self->{unknown4b} = $self->{_io}->read_bytes(2);
     $self->{unknown4c} = $self->{_io}->read_bytes(2);
@@ -2648,18 +2647,18 @@ sub update_date {
     return $self->{update_date};
 }
 
-sub blocks_size_a {
+sub blocks_size_unknown {
     my ($self) = @_;
-    return $self->{blocks_size_a} if ($self->{blocks_size_a});
-    $self->{blocks_size_a} = (($self->blocks_size() & 4278190080) >> 24);
-    return $self->{blocks_size_a};
+    return $self->{blocks_size_unknown} if ($self->{blocks_size_unknown});
+    $self->{blocks_size_unknown} = (($self->blocks_size_raw() & 4278190080) >> 24);
+    return $self->{blocks_size_unknown};
 }
 
-sub blocks_size_b {
+sub blocks_size {
     my ($self) = @_;
-    return $self->{blocks_size_b} if ($self->{blocks_size_b});
-    $self->{blocks_size_b} = ($self->blocks_size() & 16777215);
-    return $self->{blocks_size_b};
+    return $self->{blocks_size} if ($self->{blocks_size});
+    $self->{blocks_size} = ($self->blocks_size_raw() & 16777215);
+    return $self->{blocks_size};
 }
 
 sub magic {
@@ -2712,14 +2711,9 @@ sub blocks_start {
     return $self->{blocks_start};
 }
 
-sub blocks_size {
+sub blocks_size_raw {
     my ($self) = @_;
-    return $self->{blocks_size};
-}
-
-sub unknown4a {
-    my ($self) = @_;
-    return $self->{unknown4a};
+    return $self->{blocks_size_raw};
 }
 
 sub blocks_end {
