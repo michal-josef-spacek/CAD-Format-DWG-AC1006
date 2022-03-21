@@ -222,7 +222,7 @@ types:
       - id: current_layer_index
         type: s2
         doc: 0x014a-0x014b, $CLAYER
-      - id: unknown6
+      - id: current_color_convert
         type: f8
         doc: 0x014c-0x0153
       - id: unknown7a
