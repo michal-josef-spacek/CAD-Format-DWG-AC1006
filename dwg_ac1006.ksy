@@ -1340,30 +1340,48 @@ types:
         type: b1
   view:
     seq:
-      - id: u1
-        size: 4
+      - id: flag
+        type: view_flag
+        doc: VIEW/70
       - id: view_name
-        size: 31
+        size: 32
         type: str
         encoding: ASCII
         terminator: 0x00
-      - id: u2
-        type: u1
       - id: view_size
         type: f8
         doc: VIEW/40
-      - id: center_point_x
-        type: f8
-        doc: VIEW/10
-      - id: center_point_y
-        type: f8
-        doc: VIEW/20
+      - id: center_point
+        type: point_2d
+        doc: VIEW/10|20
       - id: view_width
         type: f8
         doc: VIEW/41
       - id: view_dir
         type: point_3d
         doc: VIEW/11|21|31
+      - id: u3
+        type: s2
+      - id: u4
+        size: 58
+  view_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: flag8
+        type: b1
   generation_flags:
     seq:
       - id: flag1

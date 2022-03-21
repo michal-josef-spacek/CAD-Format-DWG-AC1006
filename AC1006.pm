@@ -1787,6 +1787,86 @@ sub verify {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::ViewFlag;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag1} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag2} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag3} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag4} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag5} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag6} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag7} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag8} = $self->{_io}->read_bits_int_be(1);
+}
+
+sub flag1 {
+    my ($self) = @_;
+    return $self->{flag1};
+}
+
+sub flag2 {
+    my ($self) = @_;
+    return $self->{flag2};
+}
+
+sub flag3 {
+    my ($self) = @_;
+    return $self->{flag3};
+}
+
+sub flag4 {
+    my ($self) = @_;
+    return $self->{flag4};
+}
+
+sub flag5 {
+    my ($self) = @_;
+    return $self->{flag5};
+}
+
+sub flag6 {
+    my ($self) = @_;
+    return $self->{flag6};
+}
+
+sub flag7 {
+    my ($self) = @_;
+    return $self->{flag7};
+}
+
+sub flag8 {
+    my ($self) = @_;
+    return $self->{flag8};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::EntityTrace;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -4392,19 +4472,19 @@ sub new {
 sub _read {
     my ($self) = @_;
 
-    $self->{u1} = $self->{_io}->read_bytes(4);
-    $self->{view_name} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(31), 0, 0));
-    $self->{u2} = $self->{_io}->read_u1();
+    $self->{flag} = CAD::Format::DWG::AC1006::ViewFlag->new($self->{_io}, $self, $self->{_root});
+    $self->{view_name} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(32), 0, 0));
     $self->{view_size} = $self->{_io}->read_f8le();
-    $self->{center_point_x} = $self->{_io}->read_f8le();
-    $self->{center_point_y} = $self->{_io}->read_f8le();
+    $self->{center_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     $self->{view_width} = $self->{_io}->read_f8le();
     $self->{view_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{u3} = $self->{_io}->read_s2le();
+    $self->{u4} = $self->{_io}->read_bytes(58);
 }
 
-sub u1 {
+sub flag {
     my ($self) = @_;
-    return $self->{u1};
+    return $self->{flag};
 }
 
 sub view_name {
@@ -4412,24 +4492,14 @@ sub view_name {
     return $self->{view_name};
 }
 
-sub u2 {
-    my ($self) = @_;
-    return $self->{u2};
-}
-
 sub view_size {
     my ($self) = @_;
     return $self->{view_size};
 }
 
-sub center_point_x {
+sub center_point {
     my ($self) = @_;
-    return $self->{center_point_x};
-}
-
-sub center_point_y {
-    my ($self) = @_;
-    return $self->{center_point_y};
+    return $self->{center_point};
 }
 
 sub view_width {
@@ -4440,6 +4510,16 @@ sub view_width {
 sub view_dir {
     my ($self) = @_;
     return $self->{view_dir};
+}
+
+sub u3 {
+    my ($self) = @_;
+    return $self->{u3};
+}
+
+sub u4 {
+    my ($self) = @_;
+    return $self->{u4};
 }
 
 1;
