@@ -353,7 +353,7 @@ types:
         type: unknown_repeating
         doc: 0x0252-0x02e0
       - id: unknown29
-        size: 2
+        type: s2
       - id: blip
         type: s2
         doc: 0x02e3-0x02e4, $BLIPMODE

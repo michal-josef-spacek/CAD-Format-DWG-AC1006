@@ -2734,7 +2734,7 @@ sub _read {
     $self->{thickness} = $self->{_io}->read_f8le();
     $self->{view_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{unknown_repeating} = CAD::Format::DWG::AC1006::UnknownRepeating->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown29} = $self->{_io}->read_bytes(2);
+    $self->{unknown29} = $self->{_io}->read_s2le();
     $self->{blip} = $self->{_io}->read_s2le();
     $self->{dim_suppression_of_zeros} = $self->{_io}->read_s1();
     $self->{dim_rounding} = $self->{_io}->read_f8le();
