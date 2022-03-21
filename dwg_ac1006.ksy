@@ -180,8 +180,8 @@ types:
         doc: 0x0112-0x0113, $SNAPSTYLE
       - id: snap_iso_pair
         type: s2
+        enum: iso_plane
         doc: 0x0114-0x0115, $SNAPISOPAIR
-        # TODO enum ISOPLAIN command
       - id: grid
         type: s2
         doc: 0x0116-0x0117, $GRIDMODE
@@ -1461,3 +1461,7 @@ enums:
     6: magenta
     7: white
     256: bylayer
+  iso_plane:
+    0: left
+    1: top
+    2: right
