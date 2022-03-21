@@ -6,12 +6,94 @@ SYNOPSIS
 
      my $dwg = CAD::Format::DWG::AC1006->new;
      my $dwg = CAD::Format::DWG::AC1006::from_file($dwg_file);
-     my $header_hr = $dwg->header;
-     my $entities_hr = $dwg->entities;
+     my $blocks_ar = $dwg->blocks;
+     my $entities = $dwg->entities;
+     my $header = $dwg->header;
+     my $layers_ar = $dwg->layers;
+     my $linetypes_ar = $dwg->linetypes;
+     my $styles_ar = $dwg->styles;
+     my $views_ar = $dwg->views;
+     my $block_entities = $dwg->block_entities;
 
 DESCRIPTION
     In distribution is kaitai structure definition file dwg_ac1006.ksy which
     described AutoCAD DWG format version AC1006.
+
+METHODS
+  "new"
+     my $dwg = CAD::Format::DWG::AC1006->new;
+
+    Constructor.
+
+    Returns instance of object.
+
+  "from_file"
+     my $dwg = CAD::Format::DWG::AC1006->from_file($dwg_file);
+
+    Create instance of object from DWG file.
+
+    Returns instance of object.
+
+  "blocks"
+     my $blocks_ar = $dwg->blocks;
+
+    Get list of blocks in DWG file.
+
+    Returns reference to array with CAD::Format::DWG::AC1006::Block
+    instances.
+
+  "entities"
+     my $entities = $dwg->entities;
+
+    Get list of entities in DWG file.
+
+    Returns CAD::Format::DWG::AC1006::RealEntities instance.
+
+  "header"
+     my $header = $dwg->header;
+
+    Get header of DWG file.
+
+    Returns instance of CAD::Format::DWG::AC1006::Header object.
+
+  "layers"
+     my $layers_ar = $dwg->layers;
+
+    Get list of layers in DWG file.
+
+    Returns reference to array with CAD::Format::DWG::AC1006::Layer
+    instances.
+
+  "linetypes"
+     my $linetypes_ar = $dwg->linetypes;
+
+    Get list of line types in DWG file.
+
+    Returns reference to array with CAD::Format::DWG::AC1006::Linetype
+    instances.
+
+  "styles"
+     my $styles_ar = $dwg->styles;
+
+    Get list of styles in DWG file.
+
+    Returns reference to array with CAD::Format::DWG::AC1006::Style
+    instances.
+
+  "views"
+     my $views_ar = $dwg->views;
+
+    Get list of views in DWG file.
+
+    Returns reference to array with CAD::Format::DWG::AC1006::View
+    instances.
+
+  "block_entities"
+     my $block_entities = $dwg->block_entities;
+
+    Get list of block entitites.
+
+    Returns CAD::Format::DWG::AC1006::RealEntities instance.
 
 DEPENDENCIES
     IO::KaitaiStruct.
