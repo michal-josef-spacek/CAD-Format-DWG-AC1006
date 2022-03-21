@@ -1333,7 +1333,7 @@ types:
         encoding: ASCII
         terminator: 0x00
         doc: STYLE/3
-      - id: u13
+      - id: u1
         size: 64
   style_flag:
     seq:
