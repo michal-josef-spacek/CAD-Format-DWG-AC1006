@@ -108,27 +108,27 @@ sub _read {
     my $io__raw_entities = IO::KaitaiStruct::Stream->new($self->{_raw_entities});
     $self->{entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_entities, $self, $self->{_root});
     $self->{blocks} = ();
-    my $n_blocks = $self->header()->number_of_table_blocks();
+    my $n_blocks = $self->header()->table_block()->items();
     for (my $i = 0; $i < $n_blocks; $i++) {
         $self->{blocks}[$i] = CAD::Format::DWG::AC1006::Block->new($self->{_io}, $self, $self->{_root});
     }
     $self->{layers} = ();
-    my $n_layers = $self->header()->number_of_table_layers();
+    my $n_layers = $self->header()->table_layer()->items();
     for (my $i = 0; $i < $n_layers; $i++) {
         $self->{layers}[$i] = CAD::Format::DWG::AC1006::Layer->new($self->{_io}, $self, $self->{_root});
     }
     $self->{styles} = ();
-    my $n_styles = $self->header()->number_of_table_styles();
+    my $n_styles = $self->header()->table_style()->items();
     for (my $i = 0; $i < $n_styles; $i++) {
         $self->{styles}[$i] = CAD::Format::DWG::AC1006::Style->new($self->{_io}, $self, $self->{_root});
     }
     $self->{linetypes} = ();
-    my $n_linetypes = $self->header()->number_of_table_linetypes();
+    my $n_linetypes = $self->header()->table_linetype()->items();
     for (my $i = 0; $i < $n_linetypes; $i++) {
         $self->{linetypes}[$i] = CAD::Format::DWG::AC1006::Linetype->new($self->{_io}, $self, $self->{_root});
     }
     $self->{views} = ();
-    my $n_views = $self->header()->number_of_table_views();
+    my $n_views = $self->header()->table_view()->items();
     for (my $i = 0; $i < $n_views; $i++) {
         $self->{views}[$i] = CAD::Format::DWG::AC1006::View->new($self->{_io}, $self, $self->{_root});
     }
@@ -2458,21 +2458,11 @@ sub _read {
     $self->{blocks_end} = $self->{_io}->read_s4le();
     $self->{unknown4b} = $self->{_io}->read_bytes(2);
     $self->{unknown4c} = $self->{_io}->read_bytes(2);
-    $self->{block_table_item_size} = $self->{_io}->read_s2le();
-    $self->{number_of_table_blocks} = $self->{_io}->read_s4le();
-    $self->{block_table_begin} = $self->{_io}->read_u4le();
-    $self->{layer_table_item_size} = $self->{_io}->read_s2le();
-    $self->{number_of_table_layers} = $self->{_io}->read_s4le();
-    $self->{layer_table_begin} = $self->{_io}->read_u4le();
-    $self->{style_table_item_size} = $self->{_io}->read_s2le();
-    $self->{number_of_table_styles} = $self->{_io}->read_s4le();
-    $self->{style_table_begin} = $self->{_io}->read_u4le();
-    $self->{linetype_table_item_size} = $self->{_io}->read_s2le();
-    $self->{number_of_table_linetypes} = $self->{_io}->read_s4le();
-    $self->{linetype_table_begin} = $self->{_io}->read_u4le();
-    $self->{view_table_item_size} = $self->{_io}->read_s2le();
-    $self->{number_of_table_views} = $self->{_io}->read_s4le();
-    $self->{view_table_begin} = $self->{_io}->read_u4le();
+    $self->{table_block} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_layer} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_style} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_linetype} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_view} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
     $self->{insertion_base_x} = $self->{_io}->read_f8le();
     $self->{insertion_base_y} = $self->{_io}->read_f8le();
     $self->{insertion_base_z} = $self->{_io}->read_f8le();
@@ -2725,79 +2715,29 @@ sub unknown4c {
     return $self->{unknown4c};
 }
 
-sub block_table_item_size {
+sub table_block {
     my ($self) = @_;
-    return $self->{block_table_item_size};
+    return $self->{table_block};
 }
 
-sub number_of_table_blocks {
+sub table_layer {
     my ($self) = @_;
-    return $self->{number_of_table_blocks};
+    return $self->{table_layer};
 }
 
-sub block_table_begin {
+sub table_style {
     my ($self) = @_;
-    return $self->{block_table_begin};
+    return $self->{table_style};
 }
 
-sub layer_table_item_size {
+sub table_linetype {
     my ($self) = @_;
-    return $self->{layer_table_item_size};
+    return $self->{table_linetype};
 }
 
-sub number_of_table_layers {
+sub table_view {
     my ($self) = @_;
-    return $self->{number_of_table_layers};
-}
-
-sub layer_table_begin {
-    my ($self) = @_;
-    return $self->{layer_table_begin};
-}
-
-sub style_table_item_size {
-    my ($self) = @_;
-    return $self->{style_table_item_size};
-}
-
-sub number_of_table_styles {
-    my ($self) = @_;
-    return $self->{number_of_table_styles};
-}
-
-sub style_table_begin {
-    my ($self) = @_;
-    return $self->{style_table_begin};
-}
-
-sub linetype_table_item_size {
-    my ($self) = @_;
-    return $self->{linetype_table_item_size};
-}
-
-sub number_of_table_linetypes {
-    my ($self) = @_;
-    return $self->{number_of_table_linetypes};
-}
-
-sub linetype_table_begin {
-    my ($self) = @_;
-    return $self->{linetype_table_begin};
-}
-
-sub view_table_item_size {
-    my ($self) = @_;
-    return $self->{view_table_item_size};
-}
-
-sub number_of_table_views {
-    my ($self) = @_;
-    return $self->{number_of_table_views};
-}
-
-sub view_table_begin {
-    my ($self) = @_;
-    return $self->{view_table_begin};
+    return $self->{table_view};
 }
 
 sub insertion_base_x {
@@ -4075,6 +4015,62 @@ sub unknown2 {
 sub unknown3 {
     my ($self) = @_;
     return $self->{unknown3};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::Table;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{item_size} = $self->{_io}->read_u2le();
+    $self->{items} = $self->{_io}->read_u2le();
+    $self->{unknown} = $self->{_io}->read_bytes(2);
+    $self->{begin} = $self->{_io}->read_u4le();
+}
+
+sub item_size {
+    my ($self) = @_;
+    return $self->{item_size};
+}
+
+sub items {
+    my ($self) = @_;
+    return $self->{items};
+}
+
+sub unknown {
+    my ($self) = @_;
+    return $self->{unknown};
+}
+
+sub begin {
+    my ($self) = @_;
+    return $self->{begin};
 }
 
 ########################################################################
