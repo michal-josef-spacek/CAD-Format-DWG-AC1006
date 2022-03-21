@@ -99,7 +99,7 @@ types:
         type: s2
       - id: num_sections
         type: s2
-      - id: version_micro
+      - id: num_header_vars
         type: s2
       - id: dwg_version
         type: s1
