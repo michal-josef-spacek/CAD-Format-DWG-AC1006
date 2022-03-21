@@ -897,6 +897,34 @@ types:
     seq:
       - id: entity_common
         type: entity_common
+      - id: first_point_x
+        type: f8
+      - id: first_point_y
+        type: f8
+      - id: first_point_z
+        type: f8
+        if: entity_common.flag2_8
+      - id: second_point_x
+        type: f8
+      - id: second_point_y
+        type: f8
+      - id: second_point_z
+        type: f8
+        if: entity_common.flag2_7
+      - id: third_point_x
+        type: f8
+      - id: third_point_y
+        type: f8
+      - id: third_point_z
+        type: f8
+        if: entity_common.flag2_6
+      - id: fourth_point_x
+        type: f8
+      - id: fourth_point_y
+        type: f8
+      - id: fourth_point_z
+        type: f8
+        if: entity_common.flag2_5
   entity_line:
     seq:
       - id: entity_common
