@@ -696,16 +696,25 @@ types:
         type: s2
       - id: default
         size: default_size
+        type: str
+        encoding: ASCII
+        terminator: 0x00
         doc: ATTDEF/1
       - id: prompt_size
         type: s2
       - id: prompt
         size: prompt_size
+        type: str
+        encoding: ASCII
+        terminator: 0x00
         doc: ATTDEF/3
       - id: tag_size
         type: s2
       - id: tag
         size: tag_size
+        type: str
+        encoding: ASCII
+        terminator: 0x00
         doc: ATTDEF/2
       - id: flags
         type: attdef_flags
