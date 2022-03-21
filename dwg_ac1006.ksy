@@ -671,7 +671,6 @@ types:
       - id: z
         type: f8
         doc: ARC/30
-        # XXX not 2d_flag is 3d_flag
         if: entity_common.entity_mode.entity_elevation_flag == true
       - id: radius
         type: f8
@@ -848,7 +847,6 @@ types:
       - id: z
         type: f8
         doc: CIRCLE/30
-        # XXX not 2d_flag is 3d_flag
         if: entity_common.entity_mode.entity_elevation_flag == true
       - id: radius
         type: f8
