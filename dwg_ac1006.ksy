@@ -373,10 +373,8 @@ types:
       - id: unknown29
         size: 2
       - id: blip
-        type: s1
-        doc: 0x02e3, $BLIPMODE, TODO s1 or s2?
-      - id: unknown29a
-        size: 1
+        type: s2
+        doc: 0x02e3-0x02e4, $BLIPMODE
       - id: dim_suppression_of_zeros
         type: s1
         doc: 0x02e5, $DIMZIN
