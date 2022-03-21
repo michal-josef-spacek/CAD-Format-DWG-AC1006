@@ -489,11 +489,13 @@ types:
         size: 16
         type: str
         encoding: ASCII
+        terminator: 0x00
         doc: $DIMPOST, TODO And prefix?
       - id: dim_alternate_measurement_postfix
         size: 16
         type: str
         encoding: ASCII
+        terminator: 0x00
         doc: $DIMAPOST, TODO And prefix
       - id: dim_alternate_units_multiplier
         type: f8

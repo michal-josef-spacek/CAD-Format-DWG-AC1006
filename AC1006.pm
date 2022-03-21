@@ -2714,8 +2714,8 @@ sub _read {
     $self->{dim_alternate_units_decimal_places} = $self->{_io}->read_s1();
     $self->{dim_associative} = $self->{_io}->read_s1();
     $self->{dim_sho} = $self->{_io}->read_s1();
-    $self->{dim_measurement_postfix} = Encode::decode("ASCII", $self->{_io}->read_bytes(16));
-    $self->{dim_alternate_measurement_postfix} = Encode::decode("ASCII", $self->{_io}->read_bytes(16));
+    $self->{dim_measurement_postfix} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(16), 0, 0));
+    $self->{dim_alternate_measurement_postfix} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(16), 0, 0));
     $self->{dim_alternate_units_multiplier} = $self->{_io}->read_f8le();
     $self->{dim_linear_measurements_scale_factor} = $self->{_io}->read_f8le();
     $self->{unknown35} = $self->{_io}->read_bytes(8);
