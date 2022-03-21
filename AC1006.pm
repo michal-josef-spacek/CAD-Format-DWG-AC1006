@@ -1465,6 +1465,146 @@ sub entity_common {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::UnknownRepeating;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{unknown_repeating1} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating2} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating3} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating4} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating5} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating6} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating7} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating8} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating9} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating10} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating11} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating12} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating13} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating14} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating15} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating16} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating17} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating18} = $self->{_io}->read_f8le();
+}
+
+sub unknown_repeating1 {
+    my ($self) = @_;
+    return $self->{unknown_repeating1};
+}
+
+sub unknown_repeating2 {
+    my ($self) = @_;
+    return $self->{unknown_repeating2};
+}
+
+sub unknown_repeating3 {
+    my ($self) = @_;
+    return $self->{unknown_repeating3};
+}
+
+sub unknown_repeating4 {
+    my ($self) = @_;
+    return $self->{unknown_repeating4};
+}
+
+sub unknown_repeating5 {
+    my ($self) = @_;
+    return $self->{unknown_repeating5};
+}
+
+sub unknown_repeating6 {
+    my ($self) = @_;
+    return $self->{unknown_repeating6};
+}
+
+sub unknown_repeating7 {
+    my ($self) = @_;
+    return $self->{unknown_repeating7};
+}
+
+sub unknown_repeating8 {
+    my ($self) = @_;
+    return $self->{unknown_repeating8};
+}
+
+sub unknown_repeating9 {
+    my ($self) = @_;
+    return $self->{unknown_repeating9};
+}
+
+sub unknown_repeating10 {
+    my ($self) = @_;
+    return $self->{unknown_repeating10};
+}
+
+sub unknown_repeating11 {
+    my ($self) = @_;
+    return $self->{unknown_repeating11};
+}
+
+sub unknown_repeating12 {
+    my ($self) = @_;
+    return $self->{unknown_repeating12};
+}
+
+sub unknown_repeating13 {
+    my ($self) = @_;
+    return $self->{unknown_repeating13};
+}
+
+sub unknown_repeating14 {
+    my ($self) = @_;
+    return $self->{unknown_repeating14};
+}
+
+sub unknown_repeating15 {
+    my ($self) = @_;
+    return $self->{unknown_repeating15};
+}
+
+sub unknown_repeating16 {
+    my ($self) = @_;
+    return $self->{unknown_repeating16};
+}
+
+sub unknown_repeating17 {
+    my ($self) = @_;
+    return $self->{unknown_repeating17};
+}
+
+sub unknown_repeating18 {
+    my ($self) = @_;
+    return $self->{unknown_repeating18};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::Point2d;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -2553,24 +2693,7 @@ sub _read {
     $self->{elevation} = $self->{_io}->read_f8le();
     $self->{thickness} = $self->{_io}->read_f8le();
     $self->{view_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown11} = $self->{_io}->read_f8le();
-    $self->{unknown12} = $self->{_io}->read_f8le();
-    $self->{unknown13} = $self->{_io}->read_f8le();
-    $self->{unknown14} = $self->{_io}->read_f8le();
-    $self->{unknown15} = $self->{_io}->read_f8le();
-    $self->{unknown16} = $self->{_io}->read_f8le();
-    $self->{unknown17} = $self->{_io}->read_f8le();
-    $self->{unknown18} = $self->{_io}->read_f8le();
-    $self->{unknown19} = $self->{_io}->read_f8le();
-    $self->{unknown20} = $self->{_io}->read_f8le();
-    $self->{unknown21} = $self->{_io}->read_f8le();
-    $self->{unknown22} = $self->{_io}->read_f8le();
-    $self->{unknown23} = $self->{_io}->read_f8le();
-    $self->{unknown24} = $self->{_io}->read_f8le();
-    $self->{unknown25} = $self->{_io}->read_f8le();
-    $self->{unknown26} = $self->{_io}->read_f8le();
-    $self->{unknown27} = $self->{_io}->read_f8le();
-    $self->{unknown28} = $self->{_io}->read_f8le();
+    $self->{unknown_repeating} = CAD::Format::DWG::AC1006::UnknownRepeating->new($self->{_io}, $self, $self->{_root});
     $self->{unknown29} = $self->{_io}->read_bytes(2);
     $self->{blip} = $self->{_io}->read_s1();
     $self->{unknown29a} = $self->{_io}->read_bytes(1);
@@ -2995,94 +3118,9 @@ sub view_point {
     return $self->{view_point};
 }
 
-sub unknown11 {
+sub unknown_repeating {
     my ($self) = @_;
-    return $self->{unknown11};
-}
-
-sub unknown12 {
-    my ($self) = @_;
-    return $self->{unknown12};
-}
-
-sub unknown13 {
-    my ($self) = @_;
-    return $self->{unknown13};
-}
-
-sub unknown14 {
-    my ($self) = @_;
-    return $self->{unknown14};
-}
-
-sub unknown15 {
-    my ($self) = @_;
-    return $self->{unknown15};
-}
-
-sub unknown16 {
-    my ($self) = @_;
-    return $self->{unknown16};
-}
-
-sub unknown17 {
-    my ($self) = @_;
-    return $self->{unknown17};
-}
-
-sub unknown18 {
-    my ($self) = @_;
-    return $self->{unknown18};
-}
-
-sub unknown19 {
-    my ($self) = @_;
-    return $self->{unknown19};
-}
-
-sub unknown20 {
-    my ($self) = @_;
-    return $self->{unknown20};
-}
-
-sub unknown21 {
-    my ($self) = @_;
-    return $self->{unknown21};
-}
-
-sub unknown22 {
-    my ($self) = @_;
-    return $self->{unknown22};
-}
-
-sub unknown23 {
-    my ($self) = @_;
-    return $self->{unknown23};
-}
-
-sub unknown24 {
-    my ($self) = @_;
-    return $self->{unknown24};
-}
-
-sub unknown25 {
-    my ($self) = @_;
-    return $self->{unknown25};
-}
-
-sub unknown26 {
-    my ($self) = @_;
-    return $self->{unknown26};
-}
-
-sub unknown27 {
-    my ($self) = @_;
-    return $self->{unknown27};
-}
-
-sub unknown28 {
-    my ($self) = @_;
-    return $self->{unknown28};
+    return $self->{unknown_repeating};
 }
 
 sub unknown29 {
