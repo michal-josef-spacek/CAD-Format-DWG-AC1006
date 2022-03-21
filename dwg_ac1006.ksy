@@ -97,7 +97,7 @@ types:
         type: s1
       - id: unknown_3
         type: s2
-      - id: version_minor
+      - id: num_sections
         type: s2
       - id: version_micro
         type: s2
