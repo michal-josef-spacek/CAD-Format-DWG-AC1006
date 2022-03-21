@@ -1,12 +1,20 @@
 TODO
 ====
-1. Import attrib z predchozi verze.
-2. Update style to 2.10.
-3. Move convert.sh to Makefile.PL
-4. Update layer_flag from 2.10
 6.
 
 Applied
 =======
 5. Update linetype, linetype_flag and pattern
 OK [20220217] skim
+
+2. Update style to 2.10.
+OK [20220321] skim
+
+4. Update layer_flag from 2.10
+OK [20220321] skim
+
+1. Import attrib z predchozi verze.
+OK [20220321] skim
+
+3. Move convert.sh to Makefile.PL
+OK [20220321] skim
