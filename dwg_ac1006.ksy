@@ -158,18 +158,12 @@ types:
       - id: drawing_second
         type: point_3d
         doc: 0x0090-0x00a7, $EXTMAX/10|20|30
-      - id: limits_min_x
-        type: f8
-        doc: 0x00a8-0x00af, $LIMMIN/10
-      - id: limits_min_y
-        type: f8
-        doc: 0x00b0-0x00b7, $LIMMIN/20
-      - id: limits_max_x
-        type: f8
-        doc: 0x00b8-0x00bf
-      - id: limits_max_y
-        type: f8
-        doc: 0x00c0-0x00c7
+      - id: limits_min
+        type: point_2d
+        doc: 0x00a8-0x00b7, $LIMMIN/10|20
+      - id: limits_max
+        type: point_2d
+        doc: 0x00b8-0x00c7, $LIMMAX/10|20
       - id: view_ctrl
         type: point_3d
         doc: 0x00c8-0x00da, $VIEWCTRL/10|20|30
@@ -179,18 +173,12 @@ types:
       - id: snap
         type: s2
         doc: 0x00e8-0x00e9, $SNAPMODE
-      - id: snap_resolution_x
-        type: f8
-        doc: 0x00ea-0x00f1, $SNAPUNIT/10
-      - id: snap_resolution_y
-        type: f8
-        doc: 0x00f2-0x00f9, $SNAPUNIT/20
-      - id: snap_base_x
-        type: f8
-        doc: 0x00fa-0x0101, $SNAPBASE/10
-      - id: snap_base_y
-        type: f8
-        doc: 0x0102-0x0109, $SNAPBASE/20
+      - id: snap_resolution
+        type: point_2d
+        doc: 0x00ea-0x00f9, $SNAPUNIT/10|20
+      - id: snap_base
+        type: point_2d
+        doc: 0x00fa-0x0109, $SNAPBASE/10|20
       - id: snap_angle
         type: f8
         doc: 0x010a-0x0111, $SNAPANG
@@ -204,12 +192,9 @@ types:
       - id: grid
         type: s2
         doc: 0x0116-0x0117, $GRIDMODE
-      - id: grid_unit_x
-        type: f8
-        doc: 0x0118-0x011f, $GRIDUNIT/10
-      - id: grid_unit_y
-        type: f8
-        doc: 0x0120-0x0127, $GRIDUNIT/20
+      - id: grid_unit
+        type: point_2d
+        doc: 0x0118-0x0127, $GRIDUNIT/10|20
       - id: ortho
         type: s2
         doc: 0x0128-0x0129, $ORTHOMODE
@@ -265,12 +250,9 @@ types:
       - id: axis
         type: s2
         doc: 0x0168-0x0169, $AXISMODE/70
-      - id: axis_value_x
-        type: f8
-        doc: 0x016a-0x171, $AXISUNIT/10
-      - id: axis_value_y
-        type: f8
-        doc: 0x0172-0x0179, $AXISUNIT/20
+      - id: axis_value
+        type: point_2d
+        doc: 0x016a-0x0179, $AXISUNIT/10|20
       - id: sketch_increment
         type: f8
         doc: 0x017a-0x0181, $SKETCHINC
@@ -702,12 +684,9 @@ types:
     seq:
       - id: entity_common
         type: entity_common
-      - id: start_point_x
-        type: f8
-        doc: ATTDEF/10
-      - id: start_point_y
-        type: f8
-        doc: ATTDEF/20
+      - id: start_point
+        type: point_2d
+        doc: ATTDEF/10|20
       - id: height
         type: f8
         doc: ATTDEF/40
@@ -744,14 +723,10 @@ types:
         type: attdef_flags2
         if: entity_common.flag2_2
         doc: ATTDEF/72
-      - id: end_point_x
-        type: f8
+      - id: end_point
+        type: point_2d
         if: entity_common.flag2_1
-        doc: ATTDEF/11
-      - id: end_point_y
-        type: f8
-        if: entity_common.flag2_1
-        doc: ATTDEF/21
+        doc: ATTDEF/11|21
   entity_attrib:
     seq:
       - id: entity_common
@@ -873,18 +848,12 @@ types:
         type: entity_common
       - id: block_index
         type: s2
-      - id: dimension_line_defining_point_x
-        type: f8
-        doc: DIMENSION/10
-      - id: dimension_line_defining_point_y
-        type: f8
-        doc: DIMENSION/20
-      - id: default_text_position_x
-        type: f8
-        doc: DIMENSION/11
-      - id: default_text_position_y
-        type: f8
-        doc: DIMENSION/21
+      - id: dimension_line_defining_point
+        type: point_2d
+        doc: DIMENSION/10|20
+      - id: default_text_position
+        type: point_2d
+        doc: DIMENSION/11|21
       - id: unknown1
         type: u1
         if: entity_common.flag2_7
@@ -896,35 +865,20 @@ types:
         size: text_size
         if: entity_common.flag2_6
         doc: DIMENSION/1
-      - id: extension_defining_point1_x
-        type: f8
+      - id: extension_defining_point1
+        type: point_2d
         if: entity_common.flag2_5
-        doc: DIMENSION/13
-      - id: extension_defining_point1_y
-        type: f8
-        if: entity_common.flag2_5
-        doc: DIMENSION/23
-      - id: extension_defining_point2_x
-        type: f8
+        doc: DIMENSION/13|23
+      - id: extension_defining_point2
+        type: point_2d
         if: entity_common.flag2_4
-        doc: DIMENSION/14
-      - id: extension_defining_point2_y
-        type: f8
-        if: entity_common.flag2_4
-        doc: DIMENSION/24
-      - id: defining_point_x
-        type: f8
+        doc: DIMENSION/14|24
+      - id: defining_point
+        type: point_2d
         if: entity_common.flag2_3
-        doc: DIMENSION/15
-      - id: defining_point_y
-        type: f8
-        if: entity_common.flag2_3
-        doc: DIMENSION/25
-      - id: dimension_line_arc_definition_point_x
-        type: f8
-        if: entity_common.flag2_2
-      - id: dimension_line_arc_definition_point_y
-        type: f8
+        doc: DIMENSION/15|25
+      - id: dimension_line_arc_definition_point
+        type: point_2d
         if: entity_common.flag2_2
       - id: rotation_in_radians
         type: f8
@@ -1068,22 +1022,14 @@ types:
     seq:
       - id: entity_common
         type: entity_common
-      - id: from_x
-        type: f8
-      - id: from_y
-        type: f8
-      - id: from_and_x
-        type: f8
-      - id: from_and_y
-        type: f8
-      - id: to_x
-        type: f8
-      - id: to_y
-        type: f8
-      - id: to_and_x
-        type: f8
-      - id: to_and_y
-        type: f8
+      - id: from
+        type: point_2d
+      - id: from_and
+        type: point_2d
+      - id: to
+        type: point_2d
+      - id: to_and
+        type: point_2d
   entity_text:
     seq:
       - id: entity_common
@@ -1101,26 +1047,22 @@ types:
       - id: angle
         type: f8
         if: entity_common.flag2_8
+      - id: aligned_to
+        type: point_2d
+        if: entity_common.flag2_2
+        doc: TEXT/11|21
   entity_trace:
     seq:
       - id: entity_common
         type: entity_common
-      - id: from_x
-        type: f8
-      - id: from_y
-        type: f8
-      - id: from_and_x
-        type: f8
-      - id: from_and_y
-        type: f8
-      - id: to_x
-        type: f8
-      - id: to_y
-        type: f8
-      - id: to_and_x
-        type: f8
-      - id: to_and_y
-        type: f8
+      - id: from
+        type: point_2d
+      - id: from_and
+        type: point_2d
+      - id: to
+        type: point_2d
+      - id: to_and
+        type: point_2d
   entity_vertex:
     seq:
       - id: entity_common
