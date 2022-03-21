@@ -354,6 +354,7 @@ types:
         doc: 0x0252-0x02e0
       - id: unknown29
         type: s2
+        doc: 0x02e1-0x02e2
       - id: blip
         type: s2
         doc: 0x02e3-0x02e4, $BLIPMODE
