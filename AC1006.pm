@@ -48,6 +48,12 @@ our $ISO_PLANE_LEFT = 0;
 our $ISO_PLANE_TOP = 1;
 our $ISO_PLANE_RIGHT = 2;
 
+our $TEXT_TYPE_CENTER = 1;
+our $TEXT_TYPE_END = 2;
+our $TEXT_TYPE_ALIGNED = 3;
+our $TEXT_TYPE_MIDDLE = 4;
+our $TEXT_TYPE_FIT = 5;
+
 our $ATTRIBUTES_FALSE = 0;
 our $ATTRIBUTES_NORMAL = 1;
 our $ATTRIBUTES_TRUE = 2;
@@ -2143,9 +2149,24 @@ sub _read {
     $self->{y} = $self->{_io}->read_f8le();
     $self->{height} = $self->{_io}->read_f8le();
     $self->{size} = $self->{_io}->read_s2le();
-    $self->{value} = $self->{_io}->read_bytes($self->size());
+    $self->{value} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->size()), 0, 0));
     if ($self->entity_common()->flag2_8()) {
         $self->{angle} = $self->{_io}->read_f8le();
+    }
+    if ($self->entity_common()->flag2_7()) {
+        $self->{width_factor} = $self->{_io}->read_f8le();
+    }
+    if ($self->entity_common()->flag2_6()) {
+        $self->{obliquing_angle} = $self->{_io}->read_f8le();
+    }
+    if ($self->entity_common()->flag2_5()) {
+        $self->{style_index} = $self->{_io}->read_u1();
+    }
+    if ($self->entity_common()->flag2_4()) {
+        $self->{generation} = CAD::Format::DWG::AC1006::GenerationFlags->new($self->{_io}, $self, $self->{_root});
+    }
+    if ($self->entity_common()->flag2_3()) {
+        $self->{type} = $self->{_io}->read_u1();
     }
     if ($self->entity_common()->flag2_2()) {
         $self->{aligned_to} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -2185,6 +2206,31 @@ sub value {
 sub angle {
     my ($self) = @_;
     return $self->{angle};
+}
+
+sub width_factor {
+    my ($self) = @_;
+    return $self->{width_factor};
+}
+
+sub obliquing_angle {
+    my ($self) = @_;
+    return $self->{obliquing_angle};
+}
+
+sub style_index {
+    my ($self) = @_;
+    return $self->{style_index};
+}
+
+sub generation {
+    my ($self) = @_;
+    return $self->{generation};
+}
+
+sub type {
+    my ($self) = @_;
+    return $self->{type};
 }
 
 sub aligned_to {

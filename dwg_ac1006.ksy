@@ -1038,17 +1038,46 @@ types:
         type: entity_common
       - id: x
         type: f8
+        doc: TEXT/10
       - id: y
         type: f8
+        doc: TEXT/20
       - id: height
         type: f8
+        doc: TEXT/40
       - id: size
         type: s2
       - id: value
         size: size
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: TEXT/1
       - id: angle
         type: f8
         if: entity_common.flag2_8
+        doc: TEXT/50
+      - id: width_factor
+        type: f8
+        if: entity_common.flag2_7
+        doc: TEXT/41
+      - id: obliquing_angle
+        type: f8
+        if: entity_common.flag2_6
+        doc: TEXT/51
+      - id: style_index
+        type: u1
+        if: entity_common.flag2_5
+        doc: TEXT/7
+      - id: generation
+        type: generation_flags
+        if: entity_common.flag2_4
+        doc: TEXT/71
+      - id: type
+        enum: text_type
+        type: u1
+        if: entity_common.flag2_3
+        doc: TEXT/72
       - id: aligned_to
         type: point_2d
         if: entity_common.flag2_2
@@ -1435,3 +1464,9 @@ enums:
     0: left
     1: top
     2: right
+  text_type:
+    1: center
+    2: end
+    3: aligned
+    4: middle
+    5: fit
