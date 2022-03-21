@@ -127,34 +127,18 @@ types:
         type: table
       - id: table_view
         type: table
-      - id: insertion_base_x
-        type: f8
-        doc: 0x005e-0x0065, $INSBASE/10
-      - id: insertion_base_y
-        type: f8
-        doc: 0x0066-0x006d, $INSBASE/20
-      - id: insertion_base_z
-        type: f8
-        doc: 0x006e-0x0075
+      - id: insertion_base
+        type: point_3d
+        doc: 0x005e-0x0075, $INSBASE/10|20|30
       - id: plinegen
         type: s2
         doc: 0x0076-0x0077 $PLINEGEN/70
-      - id: drawing_first_x
-        type: f8
-        doc: $EXTMIN/10
-      - id: drawing_first_y
-        type: f8
-        doc: $EXTMIN/20
-      - id: drawing_first_z
-        type: f8
-      - id: drawing_second_x
-        type: f8
-        doc: $EXTMAX/10
-      - id: drawing_second_y
-        type: f8
-        doc: $EXTMAX/20
-      - id: drawing_second_z
-        type: f8
+      - id: drawing_first
+        type: point_3d
+        doc: 0x0078-0x008f, $EXTMIN/10|20|30
+      - id: drawing_second
+        type: point_3d
+        doc: 0x0090-0x00a7, $EXTMAX/10|20|30
       - id: limits_min_x
         type: f8
         doc: 0x00a8-0x00af, $LIMMIN/10
@@ -167,15 +151,9 @@ types:
       - id: limits_max_y
         type: f8
         doc: 0x00c0-0x00c7
-      - id: view_ctrl_x
-        type: f8
-        doc: 0x00c8-0x00cf, $VIEWCTRL/10
-      - id: view_ctrl_y
-        type: f8
-        doc: 0x00d0-0x00d7, $VIEWCTRL/20
-      - id: view_ctrl_z
-        type: f8
-        doc: 0x00d8-0x00da
+      - id: view_ctrl
+        type: point_3d
+        doc: 0x00c8-0x00da, $VIEWCTRL/10|20|30
       - id: view_size
         type: f8
         doc: 0x00e0-0x00e7
@@ -367,15 +345,9 @@ types:
       - id: thickness
         type: f8
         doc: 0x0231-0x0238,, $THICKNESS
-      - id: view_point_x
-        type: f8
-        doc: 0x0239-0x0241, $VIEWDIR/10
-      - id: view_point_y
-        type: f8
-        doc: 0x0242-0x0249, $VIEWDIR/20
-      - id: view_point_z
-        type: f8
-        doc: 0x024a-0x0251, $VIEWDIR/30
+      - id: view_point
+        type: point_3d
+        doc: 0x0239-0x0251, $VIEWDIR/10|20|30
       - id: unknown11
         type: f8
       - id: unknown12
@@ -1340,15 +1312,9 @@ types:
       - id: view_width
         type: f8
         doc: VIEW/41
-      - id: view_dir_x
-        type: f8
-        doc: VIEW/11
-      - id: view_dir_y
-        type: f8
-        doc: VIEW/21
-      - id: view_dir_z
-        type: f8
-        doc: VIEW/31
+      - id: view_dir
+        type: point_3d
+        doc: VIEW/11|21|31
   generation_flags:
     seq:
       - id: flag1
@@ -1367,6 +1333,14 @@ types:
         type: b1
       - id: flag8
         type: b1
+  point_3d:
+    seq:
+      - id: x
+        type: f8
+      - id: y
+        type: f8
+      - id: z
+        type: f8
 enums:
   entities:
     1: line
