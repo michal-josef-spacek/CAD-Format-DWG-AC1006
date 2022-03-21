@@ -55,13 +55,11 @@ types:
         type: block_flag
         doc: BLOCK/70
       - id: block_name
-        size: 31
+        size: 32
         type: str
         encoding: ASCII
         terminator: 0x00
         doc: BLOCK/2
-      - id: u1
-        type: s1
       - id: u2
         type: s1
       - id: u3
