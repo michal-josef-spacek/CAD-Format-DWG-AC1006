@@ -674,6 +674,9 @@ sub _read {
     $self->{pattern7} = $self->{_io}->read_f8le();
     $self->{pattern8} = $self->{_io}->read_f8le();
     $self->{pattern9} = $self->{_io}->read_f8le();
+    $self->{pattern10} = $self->{_io}->read_f8le();
+    $self->{pattern11} = $self->{_io}->read_f8le();
+    $self->{pattern12} = $self->{_io}->read_f8le();
 }
 
 sub pattern1 {
@@ -719,6 +722,21 @@ sub pattern8 {
 sub pattern9 {
     my ($self) = @_;
     return $self->{pattern9};
+}
+
+sub pattern10 {
+    my ($self) = @_;
+    return $self->{pattern10};
+}
+
+sub pattern11 {
+    my ($self) = @_;
+    return $self->{pattern11};
+}
+
+sub pattern12 {
+    my ($self) = @_;
+    return $self->{pattern12};
 }
 
 ########################################################################

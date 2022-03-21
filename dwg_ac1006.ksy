@@ -1236,6 +1236,12 @@ types:
         type: f8
       - id: pattern9
         type: f8
+      - id: pattern10
+        type: f8
+      - id: pattern11
+        type: f8
+      - id: pattern12
+        type: f8
   linetype_flag:
     seq:
       - id: flag1
