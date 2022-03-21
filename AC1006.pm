@@ -2533,7 +2533,7 @@ sub _read {
     $self->{fillet_radius} = $self->{_io}->read_f8le();
     $self->{units_for_angles} = $self->{_io}->read_s2le();
     $self->{angular_precision} = $self->{_io}->read_s2le();
-    $self->{text_style} = $self->{_io}->read_s2le();
+    $self->{text_style_index} = $self->{_io}->read_s2le();
     $self->{osnap} = $self->{_io}->read_s2le();
     $self->{attributes} = $self->{_io}->read_s2le();
     $self->{menu} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(15), 0, 0));
@@ -3077,9 +3077,9 @@ sub angular_precision {
     return $self->{angular_precision};
 }
 
-sub text_style {
+sub text_style_index {
     my ($self) = @_;
-    return $self->{text_style};
+    return $self->{text_style_index};
 }
 
 sub osnap {

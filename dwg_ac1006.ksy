@@ -311,7 +311,7 @@ types:
       - id: angular_precision
         type: s2
         doc: $AUPREC
-      - id: text_style
+      - id: text_style_index
         type: s2
         doc: 0x018e-0x018f, $TEXTSTYLE (index)
       - id: osnap
