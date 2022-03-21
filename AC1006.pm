@@ -35,6 +35,7 @@ our $ENTITIES_BLOCK_BEGIN = 12;
 our $ENTITIES_BLOCK_END = 13;
 our $ENTITIES_INSERT = 14;
 our $ENTITIES_ATTDEF = 15;
+our $ENTITIES_ATTRIB = 16;
 our $ENTITIES_SEQEND = 17;
 our $ENTITIES_POLYLINE = 18;
 our $ENTITIES_POLYLINE2 = 19;
@@ -196,6 +197,124 @@ sub _raw_entities {
 sub _raw_block_entities {
     my ($self) = @_;
     return $self->{_raw_block_entities};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::EntityAttrib;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
+    $self->{u1} = $self->{_io}->read_f8le();
+    $self->{u2} = $self->{_io}->read_f8le();
+    $self->{u3} = $self->{_io}->read_f8le();
+    $self->{size} = $self->{_io}->read_s2le();
+    $self->{text} = $self->{_io}->read_bytes($self->size());
+    $self->{size2} = $self->{_io}->read_s2le();
+    $self->{text2} = $self->{_io}->read_bytes($self->size2());
+    $self->{u4} = $self->{_io}->read_u1();
+    if ($self->entity_common()->flag2_7()) {
+        $self->{u5} = $self->{_io}->read_f8le();
+    }
+    if ($self->entity_common()->flag2_4()) {
+        $self->{u6} = $self->{_io}->read_u1();
+    }
+    if ($self->entity_common()->flag2_2()) {
+        $self->{u7} = $self->{_io}->read_u1();
+    }
+    if ($self->entity_common()->flag2_1()) {
+        $self->{aligned_to} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    }
+}
+
+sub entity_common {
+    my ($self) = @_;
+    return $self->{entity_common};
+}
+
+sub u1 {
+    my ($self) = @_;
+    return $self->{u1};
+}
+
+sub u2 {
+    my ($self) = @_;
+    return $self->{u2};
+}
+
+sub u3 {
+    my ($self) = @_;
+    return $self->{u3};
+}
+
+sub size {
+    my ($self) = @_;
+    return $self->{size};
+}
+
+sub text {
+    my ($self) = @_;
+    return $self->{text};
+}
+
+sub size2 {
+    my ($self) = @_;
+    return $self->{size2};
+}
+
+sub text2 {
+    my ($self) = @_;
+    return $self->{text2};
+}
+
+sub u4 {
+    my ($self) = @_;
+    return $self->{u4};
+}
+
+sub u5 {
+    my ($self) = @_;
+    return $self->{u5};
+}
+
+sub u6 {
+    my ($self) = @_;
+    return $self->{u6};
+}
+
+sub u7 {
+    my ($self) = @_;
+    return $self->{u7};
+}
+
+sub aligned_to {
+    my ($self) = @_;
+    return $self->{aligned_to};
 }
 
 ########################################################################
@@ -1339,6 +1458,50 @@ sub _read {
 sub entity_common {
     my ($self) = @_;
     return $self->{entity_common};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::Point2d;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{x} = $self->{_io}->read_f8le();
+    $self->{y} = $self->{_io}->read_f8le();
+}
+
+sub x {
+    my ($self) = @_;
+    return $self->{x};
+}
+
+sub y {
+    my ($self) = @_;
+    return $self->{y};
 }
 
 ########################################################################
