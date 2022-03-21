@@ -2447,7 +2447,7 @@ sub _read {
     $self->{magic} = $self->{_io}->read_bytes(6);
     $self->{zeros} = $self->{_io}->read_bytes(6);
     $self->{zero_one_or_three} = $self->{_io}->read_s1();
-    $self->{version_major} = $self->{_io}->read_s2le();
+    $self->{unknown_3} = $self->{_io}->read_s2le();
     $self->{version_minor} = $self->{_io}->read_s2le();
     $self->{version_micro} = $self->{_io}->read_s2le();
     $self->{dwg_version} = $self->{_io}->read_s1();
@@ -2670,9 +2670,9 @@ sub zero_one_or_three {
     return $self->{zero_one_or_three};
 }
 
-sub version_major {
+sub unknown_3 {
     my ($self) = @_;
-    return $self->{version_major};
+    return $self->{unknown_3};
 }
 
 sub version_minor {

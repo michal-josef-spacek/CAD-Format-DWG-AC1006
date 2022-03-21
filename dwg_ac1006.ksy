@@ -95,7 +95,7 @@ types:
         size: 6
       - id: zero_one_or_three
         type: s1
-      - id: version_major
+      - id: unknown_3
         type: s2
       - id: version_minor
         type: s2
