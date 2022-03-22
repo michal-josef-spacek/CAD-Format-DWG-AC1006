@@ -1,7 +1,6 @@
 TODO
 ====
 7. Fix entities
-8. Implement second tables (like vport, is in blank)
 9.
 
 Applied
@@ -22,4 +21,8 @@ OK [20220321] skim
 OK [20220321] skim
 
 6. Tests.
+OK [20220322] skim
+
+8. Implement second tables (like vport, is in blank)
+There are ucs and vport tables. Added
 OK [20220322] skim
