@@ -535,6 +535,15 @@ types:
         type: table
       - id: unknown37
         size: 2
+      - id: ucs_org
+        type: point_3d
+        doc: $UCSORG/10|20|30
+      - id: ucs_x_dir
+        type: point_3d
+        doc: $UCSXDIR/11|21|31
+      - id: ucs_y_dir
+        type: point_3d
+        doc: $UCSYDIR/12|22|32
       - id: unknown38
         type: f8
       - id: unknown39
@@ -544,29 +553,24 @@ types:
       - id: unknown41
         type: f8
       - id: unknown42
-        type: f8
+        size: 26
       - id: unknown43
-        type: f8
+        type: u1
+        doc: 0x047d, TODO libredwg DIMTOFL
       - id: unknown44
-        type: f8
-      - id: unknown45
-        type: f8
-      - id: unknown46
-        type: f8
-      - id: unknown47
-        type: f8
-      - id: unknown48
-        type: f8
-      - id: unknown49
-        type: f8
-      - id: unknown50
-        type: f8
-      - id: unknown51
-        size: 157
+        size: 130
       - id: table_vport
         type: table
-      - id: unknown52
-        size: 8
+      - id: unknown45
+        type: u2
+      - id: spline_type
+        type: u2
+        doc: 0x050c-0x050d, $SPLINETYPE
+      - id: unknown46
+        type: u2
+      - id: unknown47
+        type: u2
+# 29 variables from mirror_text
     instances:
       create_date:
         value: create_date_days + (create_date_ms / 86400000.0)

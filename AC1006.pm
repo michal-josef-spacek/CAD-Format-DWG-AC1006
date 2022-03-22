@@ -2971,22 +2971,21 @@ sub _read {
     $self->{mirror_text} = $self->{_io}->read_s2le();
     $self->{table_ucs} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
     $self->{unknown37} = $self->{_io}->read_bytes(2);
+    $self->{ucs_org} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{ucs_x_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{ucs_y_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{unknown38} = $self->{_io}->read_f8le();
     $self->{unknown39} = $self->{_io}->read_f8le();
     $self->{unknown40} = $self->{_io}->read_f8le();
     $self->{unknown41} = $self->{_io}->read_f8le();
-    $self->{unknown42} = $self->{_io}->read_f8le();
-    $self->{unknown43} = $self->{_io}->read_f8le();
-    $self->{unknown44} = $self->{_io}->read_f8le();
-    $self->{unknown45} = $self->{_io}->read_f8le();
-    $self->{unknown46} = $self->{_io}->read_f8le();
-    $self->{unknown47} = $self->{_io}->read_f8le();
-    $self->{unknown48} = $self->{_io}->read_f8le();
-    $self->{unknown49} = $self->{_io}->read_f8le();
-    $self->{unknown50} = $self->{_io}->read_f8le();
-    $self->{unknown51} = $self->{_io}->read_bytes(157);
+    $self->{unknown42} = $self->{_io}->read_bytes(26);
+    $self->{unknown43} = $self->{_io}->read_u1();
+    $self->{unknown44} = $self->{_io}->read_bytes(130);
     $self->{table_vport} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown52} = $self->{_io}->read_bytes(8);
+    $self->{unknown45} = $self->{_io}->read_u2le();
+    $self->{spline_type} = $self->{_io}->read_u2le();
+    $self->{unknown46} = $self->{_io}->read_u2le();
+    $self->{unknown47} = $self->{_io}->read_u2le();
 }
 
 sub create_date {
@@ -3618,6 +3617,21 @@ sub unknown37 {
     return $self->{unknown37};
 }
 
+sub ucs_org {
+    my ($self) = @_;
+    return $self->{ucs_org};
+}
+
+sub ucs_x_dir {
+    my ($self) = @_;
+    return $self->{ucs_x_dir};
+}
+
+sub ucs_y_dir {
+    my ($self) = @_;
+    return $self->{ucs_y_dir};
+}
+
 sub unknown38 {
     my ($self) = @_;
     return $self->{unknown38};
@@ -3653,9 +3667,19 @@ sub unknown44 {
     return $self->{unknown44};
 }
 
+sub table_vport {
+    my ($self) = @_;
+    return $self->{table_vport};
+}
+
 sub unknown45 {
     my ($self) = @_;
     return $self->{unknown45};
+}
+
+sub spline_type {
+    my ($self) = @_;
+    return $self->{spline_type};
 }
 
 sub unknown46 {
@@ -3666,36 +3690,6 @@ sub unknown46 {
 sub unknown47 {
     my ($self) = @_;
     return $self->{unknown47};
-}
-
-sub unknown48 {
-    my ($self) = @_;
-    return $self->{unknown48};
-}
-
-sub unknown49 {
-    my ($self) = @_;
-    return $self->{unknown49};
-}
-
-sub unknown50 {
-    my ($self) = @_;
-    return $self->{unknown50};
-}
-
-sub unknown51 {
-    my ($self) = @_;
-    return $self->{unknown51};
-}
-
-sub table_vport {
-    my ($self) = @_;
-    return $self->{table_vport};
-}
-
-sub unknown52 {
-    my ($self) = @_;
-    return $self->{unknown52};
 }
 
 ########################################################################
