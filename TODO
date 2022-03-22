@@ -1,6 +1,5 @@
 TODO
 ====
-6. Tests.
 7. Fix entities
 8. Implement second tables (like vport, is in blank)
 9.
@@ -21,3 +20,6 @@ OK [20220321] skim
 
 3. Move convert.sh to Makefile.PL
 OK [20220321] skim
+
+6. Tests.
+OK [20220322] skim
