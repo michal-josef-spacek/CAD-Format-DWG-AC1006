@@ -4629,7 +4629,10 @@ sub _read {
     my ($self) = @_;
 
     $self->{flag} = CAD::Format::DWG::AC1006::UcsFlag->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown} = $self->{_io}->read_bytes(104);
+    $self->{ucs_name} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(32), 0, 0));
+    $self->{ucs_org} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{ucs_x_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{ucs_y_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
 }
 
 sub flag {
@@ -4637,9 +4640,24 @@ sub flag {
     return $self->{flag};
 }
 
-sub unknown {
+sub ucs_name {
     my ($self) = @_;
-    return $self->{unknown};
+    return $self->{ucs_name};
+}
+
+sub ucs_org {
+    my ($self) = @_;
+    return $self->{ucs_org};
+}
+
+sub ucs_x_dir {
+    my ($self) = @_;
+    return $self->{ucs_x_dir};
+}
+
+sub ucs_y_dir {
+    my ($self) = @_;
+    return $self->{ucs_y_dir};
 }
 
 ########################################################################

@@ -1458,8 +1458,22 @@ types:
     seq:
       - id: flag
         type: ucs_flag
-      - id: unknown
-        size: 104
+        doc: UCS/70
+      - id: ucs_name
+        size: 32
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: UCS/2
+      - id: ucs_org
+        type: point_3d
+        doc: UCS/10|20|30
+      - id: ucs_x_dir
+        type: point_3d
+        doc: UCS/11|21|31
+      - id: ucs_y_dir
+        type: point_3d
+        doc: UCS/12|22|32
   ucs_flag:
     seq:
       - id: flag1
