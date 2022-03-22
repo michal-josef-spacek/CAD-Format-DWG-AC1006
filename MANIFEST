@@ -120,6 +120,9 @@ t/CAD-Format-DWG-AC1006/098-header-table_block_items.t
 t/CAD-Format-DWG-AC1006/099-header-table_layer_begin.t
 t/CAD-Format-DWG-AC1006/100-header-table_layer_item_size.t
 t/CAD-Format-DWG-AC1006/101-header-table_layer_items.t
+t/CAD-Format-DWG-AC1006/102-header-table_linetype_begin.t
+t/CAD-Format-DWG-AC1006/103-header-table_linetype_item_size.t
+t/CAD-Format-DWG-AC1006/104-header-table_linetype_items.t
 t/data/blank/BLANK.DWG
 TODO
 xt/CAD-Format-DWG-AC1006/01-pod_coverage.t
