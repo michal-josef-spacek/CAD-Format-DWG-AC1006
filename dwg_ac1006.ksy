@@ -41,6 +41,14 @@ seq:
     repeat: expr
     repeat-expr: header.table_view.items
   # TODO Je tady nejaka chyba (AC1006/from_autocad_r10/TUTORIAL.DWG)
+  - id: ucss
+    type: ucs
+    repeat: expr
+    repeat-expr: header.variables.table_ucs.items
+  - id: vports
+    type: vport
+    repeat: expr
+    repeat-expr: header.variables.table_vport.items
   - id: block_entities
     type: real_entities
     size: header.blocks_size
@@ -504,16 +512,61 @@ types:
       - id: dim_linear_measurements_scale_factor
         type: f8
         doc: 0x03cd-0x03d4, $DIMLFAC
-      - id: unknown35
-        size: 8
+      - id: spline_segs
+        type: s2
+        doc: 0x03d5-0x03d6, $SPLINESEGS
+      - id: spline_frame
+        type: s2
+        doc: 0x03d7-0x03d8, $SPLFRAME
+      - id: unknown31b
+        type: s2
+      - id: unknown31c
+        type: s2
       - id: chamfera
         type: f8
         doc: $CHAMFERA/40
       - id: chamferb
         type: f8
         doc: $CHAMFERB/40
-      - id: unknown36
-        size: 293
+      - id: mirror_text
+        type: s2
+        doc: 0x03ed-0x03ee, $MIRRTEXT
+      - id: table_ucs
+        type: table
+      - id: unknown37
+        size: 2
+      - id: unknown38
+        type: f8
+      - id: unknown39
+        type: f8
+      - id: unknown40
+        type: f8
+      - id: unknown41
+        type: f8
+      - id: unknown42
+        type: f8
+      - id: unknown43
+        type: f8
+      - id: unknown44
+        type: f8
+      - id: unknown45
+        type: f8
+      - id: unknown46
+        type: f8
+      - id: unknown47
+        type: f8
+      - id: unknown48
+        type: f8
+      - id: unknown49
+        type: f8
+      - id: unknown50
+        type: f8
+      - id: unknown51
+        size: 157
+      - id: table_vport
+        type: table
+      - id: unknown52
+        size: 8
     instances:
       create_date:
         value: create_date_days + (create_date_ms / 86400000.0)
@@ -1380,6 +1433,54 @@ types:
       - id: u4
         size: 58
   view_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: flag8
+        type: b1
+  ucs:
+    seq:
+      - id: flag
+        type: ucs_flag
+      - id: unknown
+        size: 104
+  ucs_flag:
+    seq:
+      - id: flag1
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: flag8
+        type: b1
+  vport:
+    seq:
+      - id: flag
+        type: vport_flag
+      - id: unknown
+        size: 248
+  vport_flag:
     seq:
       - id: flag1
         type: b1
