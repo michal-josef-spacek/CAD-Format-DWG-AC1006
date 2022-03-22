@@ -1,7 +1,6 @@
 TODO
 ====
 7. Fix entities
-9. Rename tests in variables block to header-variables names.
 10. Implement vport
 11. Implement ucs
 12.
@@ -28,4 +27,7 @@ OK [20220322] skim
 
 8. Implement second tables (like vport, is in blank)
 There are ucs and vport tables. Added
+OK [20220322] skim
+
+9. Rename tests in variables block to header-variables names.
 OK [20220322] skim
