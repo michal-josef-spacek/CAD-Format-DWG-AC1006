@@ -1496,11 +1496,85 @@ types:
     seq:
       - id: flag
         type: vport_flag
-      - id: unknown
-        size: 248
+        doc: VPORT/70
+      - id: vport_name
+        size: 32
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: VPORT/2
+      - id: view_size_vport_10_20
+        type: point_2d
+        doc: VPORT/10|20, TODO
+      - id: view_ctrl_vport_11_21
+        type: point_2d
+        doc: VPORT/11|21
+      - id: view_taget_vport_17_27_37
+        type: point_3d
+        doc: VPORT/17|27|37
+      - id: vport_16_26_36
+        type: point_3d
+        doc: VPORT/16|26|36
+      - id: vport_51_in_radians
+        type: f8
+        doc: VPORT/51
+      - id: vport_40
+        type: f8
+        doc: VPORT/40
+      - id: vport_12_22
+        type: point_2d
+        doc: VPORT/12|22
+      - id: vport_41
+        type: f8
+        doc: VPORT/41
+      - id: vport_42
+        type: f8
+        doc: VPORT/42
+      - id: vport_43
+        type: f8
+        doc: VPORT/43
+      - id: vport_44
+        type: f8
+        doc: VPORT/44
+      - id: vport_71
+        type: u2
+        doc: VPORT/71
+      - id: vport_72
+        type: u2
+        doc: VPORT/72
+      - id: vport_73
+        type: u2
+        doc: VPORT/73
+      - id: vport_74
+        type: u2
+        doc: VPORT/74
+      - id: vport_75
+        type: u2
+        doc: VPORT/75
+      - id: vport_76
+        type: u2
+        doc: VPORT/76
+      - id: vport_77
+        type: u2
+        doc: VPORT/77
+      - id: vport_78
+        type: u2
+        doc: VPORT/78
+      - id: u14
+        type: f8
+      - id: u15
+        type: f8
+      - id: u16
+        type: f8
+      - id: vport_14_24
+        type: point_2d
+        doc: VPORT/14|24
+      - id: vport_15_25
+        type: point_2d
+        doc: VPORT/15|25
   vport_flag:
     seq:
-      - id: flag1
+      - id: deleted
         type: b1
       - id: flag2
         type: b1

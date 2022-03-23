@@ -4109,7 +4109,31 @@ sub _read {
     my ($self) = @_;
 
     $self->{flag} = CAD::Format::DWG::AC1006::VportFlag->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown} = $self->{_io}->read_bytes(248);
+    $self->{vport_name} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(32), 0, 0));
+    $self->{view_size_vport_10_20} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_ctrl_vport_11_21} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_taget_vport_17_27_37} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{vport_16_26_36} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{vport_51_in_radians} = $self->{_io}->read_f8le();
+    $self->{vport_40} = $self->{_io}->read_f8le();
+    $self->{vport_12_22} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    $self->{vport_41} = $self->{_io}->read_f8le();
+    $self->{vport_42} = $self->{_io}->read_f8le();
+    $self->{vport_43} = $self->{_io}->read_f8le();
+    $self->{vport_44} = $self->{_io}->read_f8le();
+    $self->{vport_71} = $self->{_io}->read_u2le();
+    $self->{vport_72} = $self->{_io}->read_u2le();
+    $self->{vport_73} = $self->{_io}->read_u2le();
+    $self->{vport_74} = $self->{_io}->read_u2le();
+    $self->{vport_75} = $self->{_io}->read_u2le();
+    $self->{vport_76} = $self->{_io}->read_u2le();
+    $self->{vport_77} = $self->{_io}->read_u2le();
+    $self->{vport_78} = $self->{_io}->read_u2le();
+    $self->{u14} = $self->{_io}->read_f8le();
+    $self->{u15} = $self->{_io}->read_f8le();
+    $self->{u16} = $self->{_io}->read_f8le();
+    $self->{vport_14_24} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    $self->{vport_15_25} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
 }
 
 sub flag {
@@ -4117,9 +4141,129 @@ sub flag {
     return $self->{flag};
 }
 
-sub unknown {
+sub vport_name {
     my ($self) = @_;
-    return $self->{unknown};
+    return $self->{vport_name};
+}
+
+sub view_size_vport_10_20 {
+    my ($self) = @_;
+    return $self->{view_size_vport_10_20};
+}
+
+sub view_ctrl_vport_11_21 {
+    my ($self) = @_;
+    return $self->{view_ctrl_vport_11_21};
+}
+
+sub view_taget_vport_17_27_37 {
+    my ($self) = @_;
+    return $self->{view_taget_vport_17_27_37};
+}
+
+sub vport_16_26_36 {
+    my ($self) = @_;
+    return $self->{vport_16_26_36};
+}
+
+sub vport_51_in_radians {
+    my ($self) = @_;
+    return $self->{vport_51_in_radians};
+}
+
+sub vport_40 {
+    my ($self) = @_;
+    return $self->{vport_40};
+}
+
+sub vport_12_22 {
+    my ($self) = @_;
+    return $self->{vport_12_22};
+}
+
+sub vport_41 {
+    my ($self) = @_;
+    return $self->{vport_41};
+}
+
+sub vport_42 {
+    my ($self) = @_;
+    return $self->{vport_42};
+}
+
+sub vport_43 {
+    my ($self) = @_;
+    return $self->{vport_43};
+}
+
+sub vport_44 {
+    my ($self) = @_;
+    return $self->{vport_44};
+}
+
+sub vport_71 {
+    my ($self) = @_;
+    return $self->{vport_71};
+}
+
+sub vport_72 {
+    my ($self) = @_;
+    return $self->{vport_72};
+}
+
+sub vport_73 {
+    my ($self) = @_;
+    return $self->{vport_73};
+}
+
+sub vport_74 {
+    my ($self) = @_;
+    return $self->{vport_74};
+}
+
+sub vport_75 {
+    my ($self) = @_;
+    return $self->{vport_75};
+}
+
+sub vport_76 {
+    my ($self) = @_;
+    return $self->{vport_76};
+}
+
+sub vport_77 {
+    my ($self) = @_;
+    return $self->{vport_77};
+}
+
+sub vport_78 {
+    my ($self) = @_;
+    return $self->{vport_78};
+}
+
+sub u14 {
+    my ($self) = @_;
+    return $self->{u14};
+}
+
+sub u15 {
+    my ($self) = @_;
+    return $self->{u15};
+}
+
+sub u16 {
+    my ($self) = @_;
+    return $self->{u16};
+}
+
+sub vport_14_24 {
+    my ($self) = @_;
+    return $self->{vport_14_24};
+}
+
+sub vport_15_25 {
+    my ($self) = @_;
+    return $self->{vport_15_25};
 }
 
 ########################################################################
@@ -4808,7 +4952,7 @@ sub new {
 sub _read {
     my ($self) = @_;
 
-    $self->{flag1} = $self->{_io}->read_bits_int_be(1);
+    $self->{deleted} = $self->{_io}->read_bits_int_be(1);
     $self->{flag2} = $self->{_io}->read_bits_int_be(1);
     $self->{flag3} = $self->{_io}->read_bits_int_be(1);
     $self->{flag4} = $self->{_io}->read_bits_int_be(1);
@@ -4818,9 +4962,9 @@ sub _read {
     $self->{flag8} = $self->{_io}->read_bits_int_be(1);
 }
 
-sub flag1 {
+sub deleted {
     my ($self) = @_;
-    return $self->{flag1};
+    return $self->{deleted};
 }
 
 sub flag2 {
