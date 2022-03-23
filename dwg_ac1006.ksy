@@ -1029,18 +1029,10 @@ types:
         type: f8
         if: entity_common.entity_mode.entity_elevation_flag == false
         doc: LINE/31
-      - id: unknown1
-        type: f8
+      - id: extrusion_direction
+        type: point_3d
         if: entity_common.flag2_8
-        doc: LINE/210
-      - id: unknown2
-        type: f8
-        if: entity_common.flag2_8
-        doc: LINE/220
-      - id: unknown3
-        type: f8
-        if: entity_common.flag2_8
-        doc: LINE/230
+        doc: LINE/210|220|230
   entity_line3d:
     seq:
       - id: entity_common
@@ -1063,18 +1055,10 @@ types:
       - id: z2
         type: f8
         doc: 3DLINE/31
-      - id: unknown1
-        type: f8
+      - id: extrusion_direction
+        type: point_3d
         if: entity_common.flag2_8
-        doc: 3DLINE/210
-      - id: unknown2
-        type: f8
-        if: entity_common.flag2_8
-        doc: 3DLINE/220
-      - id: unknown3
-        type: f8
-        if: entity_common.flag2_8
-        doc: 3DLINE/230
+        doc: 3DLINE/210|220|230
   entity_tmp:
     seq:
       - id: entity_mode

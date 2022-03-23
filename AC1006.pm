@@ -716,13 +716,7 @@ sub _read {
     $self->{y2} = $self->{_io}->read_f8le();
     $self->{z2} = $self->{_io}->read_f8le();
     if ($self->entity_common()->flag2_8()) {
-        $self->{unknown1} = $self->{_io}->read_f8le();
-    }
-    if ($self->entity_common()->flag2_8()) {
-        $self->{unknown2} = $self->{_io}->read_f8le();
-    }
-    if ($self->entity_common()->flag2_8()) {
-        $self->{unknown3} = $self->{_io}->read_f8le();
+        $self->{extrusion_direction} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
 }
 
@@ -761,19 +755,9 @@ sub z2 {
     return $self->{z2};
 }
 
-sub unknown1 {
+sub extrusion_direction {
     my ($self) = @_;
-    return $self->{unknown1};
-}
-
-sub unknown2 {
-    my ($self) = @_;
-    return $self->{unknown2};
-}
-
-sub unknown3 {
-    my ($self) = @_;
-    return $self->{unknown3};
+    return $self->{extrusion_direction};
 }
 
 ########################################################################
@@ -4970,13 +4954,7 @@ sub _read {
         $self->{z2} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_8()) {
-        $self->{unknown1} = $self->{_io}->read_f8le();
-    }
-    if ($self->entity_common()->flag2_8()) {
-        $self->{unknown2} = $self->{_io}->read_f8le();
-    }
-    if ($self->entity_common()->flag2_8()) {
-        $self->{unknown3} = $self->{_io}->read_f8le();
+        $self->{extrusion_direction} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
 }
 
@@ -5015,19 +4993,9 @@ sub z2 {
     return $self->{z2};
 }
 
-sub unknown1 {
+sub extrusion_direction {
     my ($self) = @_;
-    return $self->{unknown1};
-}
-
-sub unknown2 {
-    my ($self) = @_;
-    return $self->{unknown2};
-}
-
-sub unknown3 {
-    my ($self) = @_;
-    return $self->{unknown3};
+    return $self->{extrusion_direction};
 }
 
 ########################################################################
