@@ -3803,6 +3803,9 @@ sub _read {
     $self->{radius} = $self->{_io}->read_f8le();
     $self->{angle_from} = $self->{_io}->read_f8le();
     $self->{angle_to} = $self->{_io}->read_f8le();
+    if ($self->entity_common()->flag2_8()) {
+        $self->{extrusion_direction} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    }
 }
 
 sub entity_common {
@@ -3838,6 +3841,11 @@ sub angle_from {
 sub angle_to {
     my ($self) = @_;
     return $self->{angle_to};
+}
+
+sub extrusion_direction {
+    my ($self) = @_;
+    return $self->{extrusion_direction};
 }
 
 ########################################################################

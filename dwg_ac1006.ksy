@@ -751,6 +751,10 @@ types:
       - id: angle_to
         type: f8
         doc: ARC/51
+      - id: extrusion_direction
+        type: point_3d
+        if: entity_common.flag2_8
+        doc: ARC/210|220|230
   entity_attdef:
     seq:
       - id: entity_common
