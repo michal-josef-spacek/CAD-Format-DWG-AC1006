@@ -1081,8 +1081,44 @@ types:
         type: entity_mode
       - id: entity_size
         type: s2
+      - id: entity_layer_index
+        type: s1
+      - id: flag1
+        type: s1
+      - id: flag2_1
+        type: b1
+      - id: flag2_2
+        type: b1
+      - id: flag2_3
+        type: b1
+      - id: flag2_4
+        type: b1
+      - id: flag2_5
+        type: b1
+      - id: flag2_6
+        type: b1
+      - id: flag2_7
+        type: b1
+      - id: flag2_8
+        type: b1
+      - id: flag3_1
+        type: b1
+      - id: flag3_2
+        type: b1
+      - id: flag3_3
+        type: b1
+      - id: flag3_4
+        type: b1
+      - id: flag3_5
+        type: b1
+      - id: flag3_6
+        type: b1
+      - id: flag3_7
+        type: b1
+      - id: flag3_8
+        type: b1
       - id: xxx
-        size: entity_size - 4
+        size: entity_size - 8
   entity_point:
     seq:
       - id: entity_common
