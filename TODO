@@ -8,7 +8,6 @@ TODO
 17. Fix dim (AC1006/from_autocad_r10/TUTORIAL.DWG)
 18. Fix line (AC1006/from_autocad_r10/TUTORIAL.DWG)
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
-20. Add test for arc.
 23.
 
 Applied
@@ -52,4 +51,7 @@ NONE [20220323] skim
 OK [20220323] skim
 
 22. Add test for text.
+OK [20220323] skim
+
+20. Add test for arc.
 OK [20220323] skim

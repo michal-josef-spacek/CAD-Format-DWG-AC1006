@@ -160,11 +160,13 @@ t/CAD-Format-DWG-AC1006/139-header-variables-view_point_z.t
 t/CAD-Format-DWG-AC1006/140-header-variables-view_size.t
 t/CAD-Format-DWG-AC1006/141-header-zeros.t
 t/CAD-Format-DWG-AC1006/142-header-zero_one_or_three.t
-t/CAD-Format-DWG-AC1006/143-entities-dim.t
-t/CAD-Format-DWG-AC1006/144-entities-line.t
-t/CAD-Format-DWG-AC1006/145-entities-point.t
-t/CAD-Format-DWG-AC1006/146-entities-text.t
+t/CAD-Format-DWG-AC1006/143-entities-arc.t
+t/CAD-Format-DWG-AC1006/144-entities-dim.t
+t/CAD-Format-DWG-AC1006/145-entities-line.t
+t/CAD-Format-DWG-AC1006/146-entities-point.t
+t/CAD-Format-DWG-AC1006/147-entities-text.t
 t/data/blank/BLANK.DWG
+t/data/entity/arc/ARC1.DWG
 t/data/entity/dim/DIM1.DWG
 t/data/entity/line/LINE1.DWG
 t/data/entity/point/POINT1.DWG
