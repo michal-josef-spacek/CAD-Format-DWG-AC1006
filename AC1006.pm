@@ -4048,6 +4048,9 @@ sub _read {
     if ($_on == $CAD::Format::DWG::AC1006::ENTITIES_DIM) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityDim->new($self->{_io}, $self, $self->{_root});
     }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityLine->new($self->{_io}, $self, $self->{_root});
+    }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE3D) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityLine3d->new($self->{_io}, $self, $self->{_root});
     }

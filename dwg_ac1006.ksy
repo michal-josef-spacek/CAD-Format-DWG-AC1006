@@ -646,7 +646,7 @@ types:
             'entities::dim': entity_dim
 #            'entities::face3d': entity_face3d
 # TODO entity_line je spatne (from_autocad_r10/TUTORIAL.DWG)
-#            'entities::line': entity_line
+            'entities::line': entity_line
             'entities::line3d': entity_line3d
             'entities::point': entity_point
 #            'entities::polyline': entity_polyline
