@@ -8,7 +8,8 @@ TODO
 17. Fix dim (AC1006/from_autocad_r10/TUTORIAL.DWG)
 18. Fix line (AC1006/from_autocad_r10/TUTORIAL.DWG)
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
-23.
+23. Add test for polyline.
+24.
 
 Applied
 =======
