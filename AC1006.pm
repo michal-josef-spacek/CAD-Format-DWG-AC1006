@@ -153,6 +153,13 @@ sub _read {
     for (my $i = 0; $i < $n_vports; $i++) {
         $self->{vports}[$i] = CAD::Format::DWG::AC1006::Vport->new($self->{_io}, $self, $self->{_root});
     }
+    if ($self->header()->num_header_vars() == 160) {
+        $self->{appids} = ();
+        my $n_appids = $self->header()->variables()->table_appid()->items();
+        for (my $i = 0; $i < $n_appids; $i++) {
+            $self->{appids}[$i] = CAD::Format::DWG::AC1006::Appid->new($self->{_io}, $self, $self->{_root});
+        }
+    }
     $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->blocks_size());
     my $io__raw_block_entities = IO::KaitaiStruct::Stream->new($self->{_raw_block_entities});
     $self->{block_entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_block_entities, $self, $self->{_root});
@@ -207,6 +214,11 @@ sub ucss {
 sub vports {
     my ($self) = @_;
     return $self->{vports};
+}
+
+sub appids {
+    my ($self) = @_;
+    return $self->{appids};
 }
 
 sub block_entities {
@@ -2437,6 +2449,50 @@ sub aligned_to {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::Appid;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag} = CAD::Format::DWG::AC1006::AppidFlag->new($self->{_io}, $self, $self->{_root});
+    $self->{appid_name} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(32), 0, 0));
+}
+
+sub flag {
+    my ($self) = @_;
+    return $self->{flag};
+}
+
+sub appid_name {
+    my ($self) = @_;
+    return $self->{appid_name};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::GenerationFlags;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -2986,6 +3042,12 @@ sub _read {
     $self->{spline_type} = $self->{_io}->read_u2le();
     $self->{unknown46} = $self->{_io}->read_u2le();
     $self->{unknown47} = $self->{_io}->read_u2le();
+    if ($self->_parent()->num_header_vars() == 160) {
+        $self->{table_appid} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    }
+    if ($self->_parent()->num_header_vars() == 160) {
+        $self->{unknown48} = $self->{_io}->read_u2le();
+    }
 }
 
 sub create_date {
@@ -3692,6 +3754,16 @@ sub unknown47 {
     return $self->{unknown47};
 }
 
+sub table_appid {
+    my ($self) = @_;
+    return $self->{table_appid};
+}
+
+sub unknown48 {
+    my ($self) = @_;
+    return $self->{unknown48};
+}
+
 ########################################################################
 package CAD::Format::DWG::AC1006::EntityArc;
 
@@ -4076,6 +4148,86 @@ sub _read {
 sub entities {
     my ($self) = @_;
     return $self->{entities};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::AppidFlag;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag1} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag2} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag3} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag4} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag5} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag6} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag7} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag8} = $self->{_io}->read_bits_int_be(1);
+}
+
+sub flag1 {
+    my ($self) = @_;
+    return $self->{flag1};
+}
+
+sub flag2 {
+    my ($self) = @_;
+    return $self->{flag2};
+}
+
+sub flag3 {
+    my ($self) = @_;
+    return $self->{flag3};
+}
+
+sub flag4 {
+    my ($self) = @_;
+    return $self->{flag4};
+}
+
+sub flag5 {
+    my ($self) = @_;
+    return $self->{flag5};
+}
+
+sub flag6 {
+    my ($self) = @_;
+    return $self->{flag6};
+}
+
+sub flag7 {
+    my ($self) = @_;
+    return $self->{flag7};
+}
+
+sub flag8 {
+    my ($self) = @_;
+    return $self->{flag8};
 }
 
 ########################################################################

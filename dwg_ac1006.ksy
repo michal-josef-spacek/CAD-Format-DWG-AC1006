@@ -49,6 +49,11 @@ seq:
     type: vport
     repeat: expr
     repeat-expr: header.variables.table_vport.items
+  - id: appids
+    type: appid
+    repeat: expr
+    repeat-expr: header.variables.table_appid.items
+    if: header.num_header_vars == 160
   - id: block_entities
     type: real_entities
     size: header.blocks_size
@@ -571,6 +576,13 @@ types:
       - id: unknown47
         type: u2
 # 29 variables from mirror_text
+      - id: table_appid
+        type: table
+        doc: 0x0512-0x051c
+        if: _parent.num_header_vars == 160
+      - id: unknown48
+        type: u2
+        if: _parent.num_header_vars == 160
     instances:
       create_date:
         value: create_date_days + (create_date_ms / 86400000.0)
@@ -1575,6 +1587,35 @@ types:
   vport_flag:
     seq:
       - id: deleted
+        type: b1
+      - id: flag2
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: flag8
+        type: b1
+  appid:
+    seq:
+      - id: flag
+        type: appid_flag
+        doc: APPID/70
+      - id: appid_name
+        size: 32
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: APPID/2
+  appid_flag:
+    seq:
+      - id: flag1
         type: b1
       - id: flag2
         type: b1
