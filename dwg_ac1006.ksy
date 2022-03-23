@@ -640,7 +640,7 @@ types:
 #            'entities::attrib': entity_attrib
 #            'entities::block_begin': entity_block_begin
 #            'entities::block_end': entity_block_end
-#            'entities::insert' : entity_insert
+            'entities::insert' : entity_insert
             'entities::circle': entity_circle
 # TODO entity_dim je spatne (from_autocad_r10/TUTORIAL.DWG)
 #            'entities::dim': entity_dim
@@ -875,6 +875,10 @@ types:
       - id: y
         type: f8
         doc: INSERT/20
+      - id: z
+        type: f8
+        doc: ARC/30
+        if: entity_common.entity_mode.entity_elevation_flag == true
       - id: x_scale
         type: f8
         if: entity_common.flag2_8
@@ -907,6 +911,10 @@ types:
         type: f8
         if: entity_common.flag2_1
         doc: INSERT/45
+      - id: extrusion_direction
+        type: point_3d
+        if: entity_common.flag3_8
+        doc: INSERT/210|220|230
   entity_circle:
     seq:
       - id: entity_common

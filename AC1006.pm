@@ -985,6 +985,9 @@ sub _read {
     $self->{block_index} = $self->{_io}->read_s2le();
     $self->{x} = $self->{_io}->read_f8le();
     $self->{y} = $self->{_io}->read_f8le();
+    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 1) {
+        $self->{z} = $self->{_io}->read_f8le();
+    }
     if ($self->entity_common()->flag2_8()) {
         $self->{x_scale} = $self->{_io}->read_f8le();
     }
@@ -1009,6 +1012,9 @@ sub _read {
     if ($self->entity_common()->flag2_1()) {
         $self->{row_spacing} = $self->{_io}->read_f8le();
     }
+    if ($self->entity_common()->flag3_8()) {
+        $self->{extrusion_direction} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    }
 }
 
 sub entity_common {
@@ -1029,6 +1035,11 @@ sub x {
 sub y {
     my ($self) = @_;
     return $self->{y};
+}
+
+sub z {
+    my ($self) = @_;
+    return $self->{z};
 }
 
 sub x_scale {
@@ -1069,6 +1080,11 @@ sub column_spacing {
 sub row_spacing {
     my ($self) = @_;
     return $self->{row_spacing};
+}
+
+sub extrusion_direction {
+    my ($self) = @_;
+    return $self->{extrusion_direction};
 }
 
 ########################################################################
@@ -3882,6 +3898,9 @@ sub _read {
     my $_on = $self->entity_type();
     if ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE3D) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityLine3d->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_INSERT) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityInsert->new($self->{_io}, $self, $self->{_root});
     }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_CIRCLE) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityCircle->new($self->{_io}, $self, $self->{_root});
