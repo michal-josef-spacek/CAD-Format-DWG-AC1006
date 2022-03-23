@@ -3,7 +3,7 @@ use warnings;
 
 use CAD::Format::DWG::AC1006;
 use File::Object;
-use Test::More 'tests' => 9;
+use Test::More 'tests' => 18;
 use Test::NoWarnings;
 
 # Data directory.
@@ -24,4 +24,22 @@ is($circle1_data->x, 1, 'Center of circle x (1).');
 is($circle1_data->y, 1, 'Center of circle y (1).');
 is($circle1_data->radius, 1, 'Radius of circle (1).');
 my $entities = @{$obj->entities->entities};
+is($entities, 1, 'Number of entities (1).');
+
+# Test.
+$obj = CAD::Format::DWG::AC1006->from_file(
+	$data_dir->file('CIRCLE2.DWG')->s,
+);
+$entity1 = $obj->entities->entities->[0];
+isa_ok($entity1, 'CAD::Format::DWG::AC1006::Entity');
+is($entity1->entity_type, 3, 'Get entity type (3).');
+$circle1_data = $entity1->data;
+$entity_common = $circle1_data->entity_common;
+is($entity_common->entity_layer_index, 0, 'Circle layer index (0).');
+is($entity_common->entity_size, 40, 'Entity size (40).');
+is($circle1_data->x, 1, 'Center of circle x (1).');
+is($circle1_data->y, 1, 'Center of circle y (1).');
+is($circle1_data->z, 1, 'Center of circle z (1).');
+is($circle1_data->radius, 1, 'Radius of circle (1).');
+$entities = @{$obj->entities->entities};
 is($entities, 1, 'Number of entities (1).');

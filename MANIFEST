@@ -169,6 +169,7 @@ t/CAD-Format-DWG-AC1006/148-entities-text.t
 t/data/blank/BLANK.DWG
 t/data/entity/arc/ARC1.DWG
 t/data/entity/circle/CIRCLE1.DWG
+t/data/entity/circle/CIRCLE2.DWG
 t/data/entity/dim/DIM1.DWG
 t/data/entity/line/LINE1.DWG
 t/data/entity/point/POINT1.DWG
