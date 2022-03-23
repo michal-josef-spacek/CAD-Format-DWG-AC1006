@@ -9,7 +9,6 @@ TODO
 18. Fix line (AC1006/from_autocad_r10/TUTORIAL.DWG)
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
 20. Add test for arc.
-21. Add test for point.
 22. Add test for text.
 23.
 
@@ -49,3 +48,6 @@ OK [20220323] skim
 7. Fix entities
 Common TODO, move to concrete TODOs.
 NONE [20220323] skim
+
+21. Add test for point.
+OK [20220323] skim
