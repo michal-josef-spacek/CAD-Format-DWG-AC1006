@@ -1,8 +1,6 @@
 TODO
 ====
 7. Fix entities
-10. Implement vport
-11. Implement ucs
 12.
 
 Applied
@@ -31,3 +29,9 @@ OK [20220322] skim
 
 9. Rename tests in variables block to header-variables names.
 OK [20220322] skim
+
+10. Implement vport
+OK [20220323] skim
+
+11. Implement ucs
+OK [20220323] skim
