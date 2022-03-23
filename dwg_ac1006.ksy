@@ -636,27 +636,27 @@ types:
           switch-on: entity_type
           cases:
             'entities::arc': entity_arc
-#            'entities::attdef': entity_attdef
-#            'entities::attrib': entity_attrib
-#            'entities::block_begin': entity_block_begin
-#            'entities::block_end': entity_block_end
+            'entities::attdef': entity_attdef
+            'entities::attrib': entity_attrib
+            'entities::block_begin': entity_block_begin
+            'entities::block_end': entity_block_end
             'entities::insert' : entity_insert
             'entities::circle': entity_circle
 # TODO entity_dim je spatne (from_autocad_r10/TUTORIAL.DWG)
             'entities::dim': entity_dim
-#            'entities::face3d': entity_face3d
+            'entities::face3d': entity_face3d
 # TODO entity_line je spatne (from_autocad_r10/TUTORIAL.DWG)
             'entities::line': entity_line
             'entities::line3d': entity_line3d
             'entities::point': entity_point
-#            'entities::polyline': entity_polyline
-#            'entities::polyline2': entity_polyline
-#            'entities::seqend': entity_seqend
-#            'entities::shape': entity_shape
-#            'entities::solid': entity_solid
-#            'entities::text': entity_text
-#            'entities::trace': entity_trace
-#            'entities::vertex': entity_vertex
+            'entities::polyline': entity_polyline
+            'entities::polyline2': entity_polyline
+            'entities::seqend': entity_seqend
+            'entities::shape': entity_shape
+            'entities::solid': entity_solid
+            'entities::text': entity_text
+            'entities::trace': entity_trace
+            'entities::vertex': entity_vertex
             _: entity_tmp
   entity_mode:
     seq:

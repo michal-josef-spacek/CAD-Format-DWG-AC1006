@@ -4045,8 +4045,20 @@ sub _read {
 
     $self->{entity_type} = $self->{_io}->read_s1();
     my $_on = $self->entity_type();
-    if ($_on == $CAD::Format::DWG::AC1006::ENTITIES_DIM) {
+    if ($_on == $CAD::Format::DWG::AC1006::ENTITIES_SOLID) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntitySolid->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_SHAPE) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityShape->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_SEQEND) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntitySeqend->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_DIM) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityDim->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_BLOCK_BEGIN) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityBlockBegin->new($self->{_io}, $self, $self->{_root});
     }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityLine->new($self->{_io}, $self, $self->{_root});
@@ -4054,8 +4066,14 @@ sub _read {
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE3D) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityLine3d->new($self->{_io}, $self, $self->{_root});
     }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_TEXT) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityText->new($self->{_io}, $self, $self->{_root});
+    }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_INSERT) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityInsert->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_POLYLINE2) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityPolyline->new($self->{_io}, $self, $self->{_root});
     }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_CIRCLE) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityCircle->new($self->{_io}, $self, $self->{_root});
@@ -4063,8 +4081,29 @@ sub _read {
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_ARC) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityArc->new($self->{_io}, $self, $self->{_root});
     }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_VERTEX) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityVertex->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_FACE3D) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityFace3d->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_ATTRIB) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityAttrib->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_ATTDEF) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityAttdef->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_BLOCK_END) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityBlockEnd->new($self->{_io}, $self, $self->{_root});
+    }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_POINT) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityPoint->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_TRACE) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityTrace->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_POLYLINE) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityPolyline->new($self->{_io}, $self, $self->{_root});
     }
     else {
         $self->{data} = CAD::Format::DWG::AC1006::EntityTmp->new($self->{_io}, $self, $self->{_root});
