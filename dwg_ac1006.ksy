@@ -635,7 +635,6 @@ types:
         type:
           switch-on: entity_type
           cases:
-# TODO entity_arc je spatne (from_autocad_r10/BRACKET.DWG)
             'entities::arc': entity_arc
 #            'entities::attdef': entity_attdef
 #            'entities::attrib': entity_attrib
