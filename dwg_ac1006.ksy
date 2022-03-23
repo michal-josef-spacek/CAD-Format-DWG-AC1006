@@ -575,7 +575,6 @@ types:
         type: u2
       - id: unknown47
         type: u2
-# 29 variables from mirror_text
       - id: table_appid
         type: table
         doc: 0x0512-0x051c
@@ -642,10 +641,8 @@ types:
             'entities::block_end': entity_block_end
             'entities::insert' : entity_insert
             'entities::circle': entity_circle
-# TODO entity_dim je spatne (from_autocad_r10/TUTORIAL.DWG)
             'entities::dim': entity_dim
             'entities::face3d': entity_face3d
-# TODO entity_line je spatne (from_autocad_r10/TUTORIAL.DWG)
             'entities::line': entity_line
             'entities::line3d': entity_line3d
             'entities::point': entity_point
