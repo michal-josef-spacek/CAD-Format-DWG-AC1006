@@ -160,7 +160,9 @@ t/CAD-Format-DWG-AC1006/139-header-variables-view_point_z.t
 t/CAD-Format-DWG-AC1006/140-header-variables-view_size.t
 t/CAD-Format-DWG-AC1006/141-header-zeros.t
 t/CAD-Format-DWG-AC1006/142-header-zero_one_or_three.t
+t/CAD-Format-DWG-AC1006/143-entities-dim.t
 t/data/blank/BLANK.DWG
+t/data/entity/dim/DIM1.DWG
 TODO
 xt/CAD-Format-DWG-AC1006/01-pod_coverage.t
 xt/CAD-Format-DWG-AC1006/02-pod.t

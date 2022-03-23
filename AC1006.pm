@@ -2896,6 +2896,9 @@ sub _read {
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
     $self->{block_index} = $self->{_io}->read_s2le();
     $self->{dimension_line_defining_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) {
+        $self->{dimension_line_defining_point_z} = $self->{_io}->read_f8le();
+    }
     $self->{default_text_position} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     if ($self->entity_common()->flag2_7()) {
         $self->{unknown1} = $self->{_io}->read_u1();
@@ -2909,14 +2912,32 @@ sub _read {
     if ($self->entity_common()->flag2_5()) {
         $self->{extension_defining_point1} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     }
+    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_5())) ) {
+        $self->{extension_defining_point1_z} = $self->{_io}->read_f8le();
+    }
     if ($self->entity_common()->flag2_4()) {
         $self->{extension_defining_point2} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    }
+    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_4())) ) {
+        $self->{extension_defining_point2_z} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_3()) {
         $self->{defining_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     }
+    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_3())) ) {
+        $self->{defining_point_z} = $self->{_io}->read_f8le();
+    }
     if ($self->entity_common()->flag2_2()) {
         $self->{dimension_line_arc_definition_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    }
+    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_2())) ) {
+        $self->{dimension_line_arc_definition_point_z} = $self->{_io}->read_f8le();
+    }
+    if ($self->entity_common()->flag2_1()) {
+        $self->{unknown2} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    }
+    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_1())) ) {
+        $self->{unknown2_z} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag3_8()) {
         $self->{rotation_in_radians} = $self->{_io}->read_f8le();
@@ -2936,6 +2957,11 @@ sub block_index {
 sub dimension_line_defining_point {
     my ($self) = @_;
     return $self->{dimension_line_defining_point};
+}
+
+sub dimension_line_defining_point_z {
+    my ($self) = @_;
+    return $self->{dimension_line_defining_point_z};
 }
 
 sub default_text_position {
@@ -2963,9 +2989,19 @@ sub extension_defining_point1 {
     return $self->{extension_defining_point1};
 }
 
+sub extension_defining_point1_z {
+    my ($self) = @_;
+    return $self->{extension_defining_point1_z};
+}
+
 sub extension_defining_point2 {
     my ($self) = @_;
     return $self->{extension_defining_point2};
+}
+
+sub extension_defining_point2_z {
+    my ($self) = @_;
+    return $self->{extension_defining_point2_z};
 }
 
 sub defining_point {
@@ -2973,9 +3009,29 @@ sub defining_point {
     return $self->{defining_point};
 }
 
+sub defining_point_z {
+    my ($self) = @_;
+    return $self->{defining_point_z};
+}
+
 sub dimension_line_arc_definition_point {
     my ($self) = @_;
     return $self->{dimension_line_arc_definition_point};
+}
+
+sub dimension_line_arc_definition_point_z {
+    my ($self) = @_;
+    return $self->{dimension_line_arc_definition_point_z};
+}
+
+sub unknown2 {
+    my ($self) = @_;
+    return $self->{unknown2};
+}
+
+sub unknown2_z {
+    my ($self) = @_;
+    return $self->{unknown2_z};
 }
 
 sub rotation_in_radians {
@@ -3989,7 +4045,10 @@ sub _read {
 
     $self->{entity_type} = $self->{_io}->read_s1();
     my $_on = $self->entity_type();
-    if ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE3D) {
+    if ($_on == $CAD::Format::DWG::AC1006::ENTITIES_DIM) {
+        $self->{data} = CAD::Format::DWG::AC1006::EntityDim->new($self->{_io}, $self, $self->{_root});
+    }
+    elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_LINE3D) {
         $self->{data} = CAD::Format::DWG::AC1006::EntityLine3d->new($self->{_io}, $self, $self->{_root});
     }
     elsif ($_on == $CAD::Format::DWG::AC1006::ENTITIES_INSERT) {

@@ -643,7 +643,7 @@ types:
             'entities::insert' : entity_insert
             'entities::circle': entity_circle
 # TODO entity_dim je spatne (from_autocad_r10/TUTORIAL.DWG)
-#            'entities::dim': entity_dim
+            'entities::dim': entity_dim
 #            'entities::face3d': entity_face3d
 # TODO entity_line je spatne (from_autocad_r10/TUTORIAL.DWG)
 #            'entities::line': entity_line
@@ -941,9 +941,17 @@ types:
       - id: dimension_line_defining_point
         type: point_2d
         doc: DIMENSION/10|20
+      - id: dimension_line_defining_point_z
+        type: f8
+        if: entity_common.entity_mode.entity_elevation_flag == false
+        doc: DIMENSION/30
       - id: default_text_position
         type: point_2d
         doc: DIMENSION/11|21
+#      - id: default_text_position_z
+#        type: f8
+#        if: entity_common.entity_mode.entity_elevation_flag == false
+#        doc: DIMENSION/31
       - id: unknown1
         type: u1
         if: entity_common.flag2_7
@@ -959,17 +967,38 @@ types:
         type: point_2d
         if: entity_common.flag2_5
         doc: DIMENSION/13|23
+      - id: extension_defining_point1_z
+        type: f8
+        if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_5
+        doc: DIMENSION/33
       - id: extension_defining_point2
         type: point_2d
         if: entity_common.flag2_4
         doc: DIMENSION/14|24
+      - id: extension_defining_point2_z
+        type: f8
+        if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_4
+        doc: DIMENSION/34
       - id: defining_point
         type: point_2d
         if: entity_common.flag2_3
         doc: DIMENSION/15|25
+      - id: defining_point_z
+        type: f8
+        if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_3
+        doc: DIMENSION/35
       - id: dimension_line_arc_definition_point
         type: point_2d
         if: entity_common.flag2_2
+      - id: dimension_line_arc_definition_point_z
+        type: f8
+        if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_2
+      - id: unknown2
+        type: point_2d
+        if: entity_common.flag2_1
+      - id: unknown2_z
+        type: f8
+        if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_1
       - id: rotation_in_radians
         type: f8
         if: entity_common.flag3_8
