@@ -8,7 +8,9 @@ TODO
 18. Fix line (AC1006/from_autocad_r10/TUTORIAL.DWG)
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
 23. Add test for polyline.
-24.
+24. Add test for shape
+25. Add test for vertex
+26.
 
 Applied
 =======
