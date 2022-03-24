@@ -174,6 +174,7 @@ t/CAD-Format-DWG-AC1006/152-entities-polyline.t
 t/CAD-Format-DWG-AC1006/153-entities-polyline2.t
 t/CAD-Format-DWG-AC1006/155-entities-point.t
 t/CAD-Format-DWG-AC1006/156-entities-text.t
+t/CAD-Format-DWG-AC1006/157-entities-vertex.t
 t/data/blank/BLANK.DWG
 t/data/entity/arc/ARC1.DWG
 t/data/entity/circle/CIRCLE1.DWG
@@ -184,6 +185,7 @@ t/data/entity/point/POINT1.DWG
 t/data/entity/polyline/PL1.DWG
 t/data/entity/polyline2/PL1.DWG
 t/data/entity/text/TEXT1.DWG
+t/data/entity/vertex/PL1.DWG
 TODO
 xt/CAD-Format-DWG-AC1006/01-pod_coverage.t
 xt/CAD-Format-DWG-AC1006/02-pod.t
