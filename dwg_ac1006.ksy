@@ -164,7 +164,7 @@ types:
         doc: 0x005e-0x0075, $INSBASE/10|20|30
       - id: plinegen
         type: s2
-        doc: 0x0076-0x0077 $PLINEGEN/70
+        doc: 0x0076-0x0077, $PLINEGEN/70
       - id: drawing_first
         type: point_3d
         doc: 0x0078-0x008f, $EXTMIN/10|20|30
