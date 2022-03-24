@@ -3,7 +3,6 @@ TODO
 12. Blocks from block_start - AC1006/from_cadforum.cz/C37F.DWG - styles block
 13. appid table to tests.
 14. vport table to tests.
-15. ucs table to tests.
 16. Fix insert (AC1006/from_autocad_r10/TUTORIAL.DWG)
 17. Fix dim (AC1006/from_autocad_r10/TUTORIAL.DWG)
 18. Fix line (AC1006/from_autocad_r10/TUTORIAL.DWG)
@@ -56,3 +55,6 @@ OK [20220323] skim
 
 20. Add test for arc.
 OK [20220323] skim
+
+15. ucs table to tests.
+OK [20220324] skim
