@@ -540,7 +540,7 @@ types:
         type: table
       - id: unknown37
         size: 2
-      - id: ucs_org
+      - id: ucs_origin_point
         type: point_3d
         doc: $UCSORG/10|20|30
       - id: ucs_x_dir

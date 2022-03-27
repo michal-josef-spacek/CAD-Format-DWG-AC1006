@@ -9,7 +9,6 @@ How to create test file?
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
 26. Add spline_segs header variable
 27. Add spline_frame header variable
-28. Add ucs_org header variable
 29. Add ucs_x_dir header variable
 30. Add ucs_y_dir header variable
 32.
@@ -76,4 +75,7 @@ OK [20220324] skim
 OK [20220327] skim
 
 31. Add spline_type header variable
+OK [20220327] skim
+
+28. Add ucs_org header variable
 OK [20220327] skim

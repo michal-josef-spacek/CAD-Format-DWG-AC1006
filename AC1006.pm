@@ -3195,7 +3195,7 @@ sub _read {
     $self->{mirror_text} = $self->{_io}->read_s2le();
     $self->{table_ucs} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
     $self->{unknown37} = $self->{_io}->read_bytes(2);
-    $self->{ucs_org} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{ucs_origin_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_x_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_y_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{unknown38} = $self->{_io}->read_f8le();
@@ -3847,9 +3847,9 @@ sub unknown37 {
     return $self->{unknown37};
 }
 
-sub ucs_org {
+sub ucs_origin_point {
     my ($self) = @_;
-    return $self->{ucs_org};
+    return $self->{ucs_origin_point};
 }
 
 sub ucs_x_dir {
