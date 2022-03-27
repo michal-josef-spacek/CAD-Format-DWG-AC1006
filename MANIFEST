@@ -183,8 +183,9 @@ t/CAD-Format-DWG-AC1006/162-entities-line.t
 t/CAD-Format-DWG-AC1006/162-entities-polyline.t
 t/CAD-Format-DWG-AC1006/163-entities-polyline2.t
 t/CAD-Format-DWG-AC1006/165-entities-point.t
-t/CAD-Format-DWG-AC1006/166-entities-text.t
-t/CAD-Format-DWG-AC1006/167-entities-vertex.t
+t/CAD-Format-DWG-AC1006/166-entities-solid.t
+t/CAD-Format-DWG-AC1006/167-entities-text.t
+t/CAD-Format-DWG-AC1006/168-entities-vertex.t
 t/data/blank/BLANK.DWG
 t/data/entity/arc/ARC1.DWG
 t/data/entity/circle/CIRCLE1.DWG
@@ -194,6 +195,7 @@ t/data/entity/line/LINE1.DWG
 t/data/entity/point/POINT1.DWG
 t/data/entity/polyline/PL1.DWG
 t/data/entity/polyline2/PL1.DWG
+t/data/entity/solid/SOLID1.DWG
 t/data/entity/text/TEXT1.DWG
 t/data/entity/vertex/PL1.DWG
 TODO
