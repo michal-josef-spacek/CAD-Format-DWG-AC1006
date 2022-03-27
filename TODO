@@ -12,7 +12,6 @@ How to create test file?
 28. Add ucs_org header variable
 29. Add ucs_x_dir header variable
 30. Add ucs_y_dir header variable
-31. Add spline_type header variable
 32.
 
 Applied
@@ -74,4 +73,7 @@ OK [20220324] skim
 OK [20220324] skim
 
 24. Add test for shape
+OK [20220327] skim
+
+31. Add spline_type header variable
 OK [20220327] skim

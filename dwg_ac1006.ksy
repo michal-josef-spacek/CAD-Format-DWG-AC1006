@@ -570,6 +570,7 @@ types:
         type: u2
       - id: spline_type
         type: u2
+        enum: spline_type
         doc: 0x050c-0x050d, $SPLINETYPE
       - id: unknown46
         type: u2
@@ -1803,3 +1804,6 @@ enums:
     3: aligned
     4: middle
     5: fit
+  spline_type:
+    5: quadratic_b_spline
+    6: cubic_b_spline
