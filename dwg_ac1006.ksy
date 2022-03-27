@@ -423,7 +423,7 @@ types:
       - id: user_elapsed_timer_days
         type: u4
         doc: $TDUSRTIMER/days
-      - id: user_elapsed_times_ms
+      - id: user_elapsed_timer_ms
         type: u4
         doc: $TDUSRTIMER/ms
       - id: user_timer

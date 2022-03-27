@@ -3153,7 +3153,7 @@ sub _read {
     $self->{total_editing_time_days} = $self->{_io}->read_u4le();
     $self->{total_editing_time_ms} = $self->{_io}->read_u4le();
     $self->{user_elapsed_timer_days} = $self->{_io}->read_u4le();
-    $self->{user_elapsed_times_ms} = $self->{_io}->read_u4le();
+    $self->{user_elapsed_timer_ms} = $self->{_io}->read_u4le();
     $self->{user_timer} = $self->{_io}->read_s2le();
     $self->{fast_zoom} = $self->{_io}->read_s1();
     $self->{unknown33} = $self->{_io}->read_bytes(1);
@@ -3649,9 +3649,9 @@ sub user_elapsed_timer_days {
     return $self->{user_elapsed_timer_days};
 }
 
-sub user_elapsed_times_ms {
+sub user_elapsed_timer_ms {
     my ($self) = @_;
-    return $self->{user_elapsed_times_ms};
+    return $self->{user_elapsed_timer_ms};
 }
 
 sub user_timer {
