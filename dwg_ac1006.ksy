@@ -545,10 +545,10 @@ types:
         doc: $UCSORG/10|20|30
       - id: ucs_x_dir
         type: point_3d
-        doc: $UCSXDIR/11|21|31
+        doc: $UCSXDIR/11|21|31 ~ $UCSXORI
       - id: ucs_y_dir
         type: point_3d
-        doc: $UCSYDIR/12|22|32
+        doc: $UCSYDIR/12|22|32 ~ $UCSYORI
       - id: unknown38
         type: f8
       - id: unknown39
