@@ -561,9 +561,9 @@ types:
         type: f8
       - id: unknown42
         size: 26
-      - id: unknown43
+      - id: dim_tofl
         type: u1
-        doc: 0x047d, TODO libredwg DIMTOFL
+        doc: 0x047d, $DIMTOFL
       - id: unknown44
         size: 110
       - id: handling

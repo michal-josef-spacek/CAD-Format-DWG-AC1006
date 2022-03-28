@@ -3203,7 +3203,7 @@ sub _read {
     $self->{unknown40} = $self->{_io}->read_f8le();
     $self->{unknown41} = $self->{_io}->read_f8le();
     $self->{unknown42} = $self->{_io}->read_bytes(26);
-    $self->{unknown43} = $self->{_io}->read_u1();
+    $self->{dim_tofl} = $self->{_io}->read_u1();
     $self->{unknown44} = $self->{_io}->read_bytes(110);
     $self->{handling} = $self->{_io}->read_u2le();
     $self->{handseed} = $self->{_io}->read_u8be();
@@ -3894,9 +3894,9 @@ sub unknown42 {
     return $self->{unknown42};
 }
 
-sub unknown43 {
+sub dim_tofl {
     my ($self) = @_;
-    return $self->{unknown43};
+    return $self->{dim_tofl};
 }
 
 sub unknown44 {
