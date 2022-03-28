@@ -565,7 +565,13 @@ types:
         type: u1
         doc: 0x047d, TODO libredwg DIMTOFL
       - id: unknown44
-        size: 120
+        size: 110
+      - id: handling
+        type: u2
+        doc: $HANDLING
+      - id: handseed
+        type: u8be
+        doc: $HANDSEED, in hex
       - id: surfu
         type: u2
         doc: $SURFU

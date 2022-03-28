@@ -3204,7 +3204,9 @@ sub _read {
     $self->{unknown41} = $self->{_io}->read_f8le();
     $self->{unknown42} = $self->{_io}->read_bytes(26);
     $self->{unknown43} = $self->{_io}->read_u1();
-    $self->{unknown44} = $self->{_io}->read_bytes(120);
+    $self->{unknown44} = $self->{_io}->read_bytes(110);
+    $self->{handling} = $self->{_io}->read_u2le();
+    $self->{handseed} = $self->{_io}->read_u8be();
     $self->{surfu} = $self->{_io}->read_u2le();
     $self->{surfv} = $self->{_io}->read_u2le();
     $self->{unknown44_c} = $self->{_io}->read_u2le();
@@ -3900,6 +3902,16 @@ sub unknown43 {
 sub unknown44 {
     my ($self) = @_;
     return $self->{unknown44};
+}
+
+sub handling {
+    my ($self) = @_;
+    return $self->{handling};
+}
+
+sub handseed {
+    my ($self) = @_;
+    return $self->{handseed};
 }
 
 sub surfu {
