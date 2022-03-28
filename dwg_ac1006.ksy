@@ -573,7 +573,7 @@ types:
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: $DIMBLK1
+        doc: $DIMBLK2
       - id: dim_arrowhead_blocks_control
         type: u1
         doc: $DIMSAH
