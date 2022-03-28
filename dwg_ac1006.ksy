@@ -523,16 +523,18 @@ types:
       - id: spline_frame
         type: s2
         doc: 0x03d7-0x03d8, $SPLFRAME
-      - id: unknown31b
-        type: s2
-      - id: unknown31c
-        type: s2
+      - id: attreq
+        type: u2
+        doc: 0x03d9-0x03da, $ATTREQ
+      - id: attdia
+        type: u2
+        doc: 0x03db-0x03dc, $ATTDIA
       - id: chamfera
         type: f8
-        doc: $CHAMFERA/40
+        doc: 0x03dd-0x04e4, $CHAMFERA/40
       - id: chamferb
         type: f8
-        doc: $CHAMFERB/40
+        doc: 0x04e5-0x04ec, $CHAMFERB/40
       - id: mirror_text
         type: s2
         doc: 0x03ed-0x03ee, $MIRRTEXT
@@ -581,8 +583,9 @@ types:
         doc: $SURFTAB2
       - id: table_vport
         type: table
-      - id: unknown45
+      - id: flatland
         type: u2
+        doc: $FLATLAND
       - id: spline_type
         type: u2
         enum: spline_type
