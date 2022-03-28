@@ -578,9 +578,9 @@ types:
       - id: surfv
         type: u2
         doc: $SURFV
-      - id: unknown44_c
+      - id: surftype
         type: u2
-        doc: $SURFTYPE TODO?
+        doc: $SURFTYPE
       - id: surftab1
         type: u2
         doc: $SURFTAB1

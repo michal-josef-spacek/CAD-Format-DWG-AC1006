@@ -3209,7 +3209,7 @@ sub _read {
     $self->{handseed} = $self->{_io}->read_u8be();
     $self->{surfu} = $self->{_io}->read_u2le();
     $self->{surfv} = $self->{_io}->read_u2le();
-    $self->{unknown44_c} = $self->{_io}->read_u2le();
+    $self->{surftype} = $self->{_io}->read_u2le();
     $self->{surftab1} = $self->{_io}->read_u2le();
     $self->{surftab2} = $self->{_io}->read_u2le();
     $self->{table_vport} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
@@ -3924,9 +3924,9 @@ sub surfv {
     return $self->{surfv};
 }
 
-sub unknown44_c {
+sub surftype {
     my ($self) = @_;
-    return $self->{unknown44_c};
+    return $self->{surftype};
 }
 
 sub surftab1 {
