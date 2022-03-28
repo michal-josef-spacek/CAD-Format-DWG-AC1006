@@ -7,7 +7,6 @@ How to create test file?
 17. Fix dim (AC1006/from_autocad_r10/TUTORIAL.DWG)
 18. Fix line (AC1006/from_autocad_r10/TUTORIAL.DWG)
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
-27. Add spline_frame header variable
 32.
 
 Applied
@@ -84,4 +83,7 @@ OK [20220328] skim
 OK [20220328] skim
 
 26. Add spline_segs header variable
+OK [20220328] skim
+
+27. Add spline_frame header variable
 OK [20220328] skim
