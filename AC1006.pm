@@ -3143,8 +3143,7 @@ sub _read {
     $self->{dim_suppression_of_zeros} = $self->{_io}->read_s1();
     $self->{dim_rounding} = $self->{_io}->read_f8le();
     $self->{dim_extension_line_extend2} = $self->{_io}->read_f8le();
-    $self->{dim_arrowhead_block} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(32), 0, 0));
-    $self->{unknown30} = $self->{_io}->read_s1();
+    $self->{dim_arrowhead_block} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{circle_zoom_percent} = $self->{_io}->read_s2le();
     $self->{coordinates} = $self->{_io}->read_s2le();
     $self->{current_color} = $self->{_io}->read_s2le();
@@ -3204,7 +3203,8 @@ sub _read {
     $self->{unknown41} = $self->{_io}->read_f8le();
     $self->{unknown42} = $self->{_io}->read_bytes(26);
     $self->{dim_tofl} = $self->{_io}->read_u1();
-    $self->{unknown44} = $self->{_io}->read_bytes(66);
+    $self->{dim_arrowhead_block1} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
+    $self->{dim_arrowhead_block2} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{dim_arrowhead_blocks_control} = $self->{_io}->read_u1();
     $self->{unknown440} = $self->{_io}->read_bytes(43);
     $self->{handling} = $self->{_io}->read_u2le();
@@ -3601,11 +3601,6 @@ sub dim_arrowhead_block {
     return $self->{dim_arrowhead_block};
 }
 
-sub unknown30 {
-    my ($self) = @_;
-    return $self->{unknown30};
-}
-
 sub circle_zoom_percent {
     my ($self) = @_;
     return $self->{circle_zoom_percent};
@@ -3901,9 +3896,14 @@ sub dim_tofl {
     return $self->{dim_tofl};
 }
 
-sub unknown44 {
+sub dim_arrowhead_block1 {
     my ($self) = @_;
-    return $self->{unknown44};
+    return $self->{dim_arrowhead_block1};
+}
+
+sub dim_arrowhead_block2 {
+    my ($self) = @_;
+    return $self->{dim_arrowhead_block2};
 }
 
 sub dim_arrowhead_blocks_control {

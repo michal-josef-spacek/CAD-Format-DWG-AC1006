@@ -381,13 +381,11 @@ types:
         type: f8
         doc: 0x02ee-0x02f5, $DIMDLE
       - id: dim_arrowhead_block
-        size: 32
+        size: 33
         type: str
         encoding: ASCII
         terminator: 0x00
         doc: $DIMBLK
-      - id: unknown30
-        type: s1
       - id: circle_zoom_percent
         type: s2
         doc: 0x0317-0x0318
@@ -564,8 +562,18 @@ types:
       - id: dim_tofl
         type: u1
         doc: 0x047d, $DIMTOFL
-      - id: unknown44
-        size: 66
+      - id: dim_arrowhead_block1
+        size: 33
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: $DIMBLK1
+      - id: dim_arrowhead_block2
+        size: 33
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: $DIMBLK1
       - id: dim_arrowhead_blocks_control
         type: u1
         doc: $DIMSAH
