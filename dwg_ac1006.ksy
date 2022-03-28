@@ -563,7 +563,22 @@ types:
         type: u1
         doc: 0x047d, TODO libredwg DIMTOFL
       - id: unknown44
-        size: 130
+        size: 120
+      - id: surfu
+        type: u2
+        doc: $SURFU
+      - id: surfv
+        type: u2
+        doc: $SURFV
+      - id: unknown44_c
+        type: u2
+        doc: $SURFTYPE TODO?
+      - id: surftab1
+        type: u2
+        doc: $SURFTAB1
+      - id: surftab2
+        type: u2
+        doc: $SURFTAB2
       - id: table_vport
         type: table
       - id: unknown45

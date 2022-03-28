@@ -3204,7 +3204,12 @@ sub _read {
     $self->{unknown41} = $self->{_io}->read_f8le();
     $self->{unknown42} = $self->{_io}->read_bytes(26);
     $self->{unknown43} = $self->{_io}->read_u1();
-    $self->{unknown44} = $self->{_io}->read_bytes(130);
+    $self->{unknown44} = $self->{_io}->read_bytes(120);
+    $self->{surfu} = $self->{_io}->read_u2le();
+    $self->{surfv} = $self->{_io}->read_u2le();
+    $self->{unknown44_c} = $self->{_io}->read_u2le();
+    $self->{surftab1} = $self->{_io}->read_u2le();
+    $self->{surftab2} = $self->{_io}->read_u2le();
     $self->{table_vport} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
     $self->{unknown45} = $self->{_io}->read_u2le();
     $self->{spline_type} = $self->{_io}->read_u2le();
@@ -3895,6 +3900,31 @@ sub unknown43 {
 sub unknown44 {
     my ($self) = @_;
     return $self->{unknown44};
+}
+
+sub surfu {
+    my ($self) = @_;
+    return $self->{surfu};
+}
+
+sub surfv {
+    my ($self) = @_;
+    return $self->{surfv};
+}
+
+sub unknown44_c {
+    my ($self) = @_;
+    return $self->{unknown44_c};
+}
+
+sub surftab1 {
+    my ($self) = @_;
+    return $self->{surftab1};
+}
+
+sub surftab2 {
+    my ($self) = @_;
+    return $self->{surftab2};
 }
 
 sub table_vport {
