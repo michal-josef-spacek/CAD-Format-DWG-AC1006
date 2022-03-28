@@ -3204,7 +3204,9 @@ sub _read {
     $self->{unknown41} = $self->{_io}->read_f8le();
     $self->{unknown42} = $self->{_io}->read_bytes(26);
     $self->{dim_tofl} = $self->{_io}->read_u1();
-    $self->{unknown44} = $self->{_io}->read_bytes(110);
+    $self->{unknown44} = $self->{_io}->read_bytes(66);
+    $self->{dim_arrowhead_blocks_control} = $self->{_io}->read_u1();
+    $self->{unknown440} = $self->{_io}->read_bytes(43);
     $self->{handling} = $self->{_io}->read_u2le();
     $self->{handseed} = $self->{_io}->read_u8be();
     $self->{surfu} = $self->{_io}->read_u2le();
@@ -3902,6 +3904,16 @@ sub dim_tofl {
 sub unknown44 {
     my ($self) = @_;
     return $self->{unknown44};
+}
+
+sub dim_arrowhead_blocks_control {
+    my ($self) = @_;
+    return $self->{dim_arrowhead_blocks_control};
+}
+
+sub unknown440 {
+    my ($self) = @_;
+    return $self->{unknown440};
 }
 
 sub handling {

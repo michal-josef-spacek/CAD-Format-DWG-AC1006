@@ -565,7 +565,12 @@ types:
         type: u1
         doc: 0x047d, $DIMTOFL
       - id: unknown44
-        size: 110
+        size: 66
+      - id: dim_arrowhead_blocks_control
+        type: u1
+        doc: $DIMSAH
+      - id: unknown440
+        size: 43
       - id: handling
         type: u2
         doc: $HANDLING
