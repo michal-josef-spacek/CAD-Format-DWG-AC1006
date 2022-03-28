@@ -12,7 +12,8 @@ https://knowledge.autodesk.com/support/autocad/learn-explore/caas/CloudHelp/clou
 35. Describe block_flag (https://documentation.help/AutoCAD-DXF/WS1a9193826455f5ff18cb41610ec0a2e719-7a43.htm)
 36. Check $DIMBLK, $DIMBLK1, $DIMBLK2 length - seems = 33, but 1 byte doesn't used
 37. enum for ucs_icon
-38.
+38. Identify $BACKZ and $FRONTZ header variables
+39.
 
 Applied
 =======

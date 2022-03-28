@@ -558,8 +558,14 @@ types:
       - id: view_rotation_angle_radians
         type: f8
         doc: $VIEWTWIST
-      - id: unknown42
-        size: 18
+      - id: unknown42a
+        type: f8
+        doc: $BACKZ or $FRONTZ
+      - id: unknown42b
+        type: f8
+        doc: $BACKZ or $FRONTZ
+      - id: unknown42c
+        type: u2
       - id: dim_tofl
         type: u1
         doc: 0x047d, $DIMTOFL

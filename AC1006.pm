@@ -3200,7 +3200,9 @@ sub _read {
     $self->{target} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{lens_length} = $self->{_io}->read_f8le();
     $self->{view_rotation_angle_radians} = $self->{_io}->read_f8le();
-    $self->{unknown42} = $self->{_io}->read_bytes(18);
+    $self->{unknown42a} = $self->{_io}->read_f8le();
+    $self->{unknown42b} = $self->{_io}->read_f8le();
+    $self->{unknown42c} = $self->{_io}->read_u2le();
     $self->{dim_tofl} = $self->{_io}->read_u1();
     $self->{dim_arrowhead_block1} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{dim_arrowhead_block2} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
@@ -3883,9 +3885,19 @@ sub view_rotation_angle_radians {
     return $self->{view_rotation_angle_radians};
 }
 
-sub unknown42 {
+sub unknown42a {
     my ($self) = @_;
-    return $self->{unknown42};
+    return $self->{unknown42a};
+}
+
+sub unknown42b {
+    my ($self) = @_;
+    return $self->{unknown42b};
+}
+
+sub unknown42c {
+    my ($self) = @_;
+    return $self->{unknown42c};
 }
 
 sub dim_tofl {
