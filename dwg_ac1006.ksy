@@ -577,8 +577,14 @@ types:
       - id: dim_arrowhead_blocks_control
         type: u1
         doc: $DIMSAH
+      - id: dim_text_between_ext_lines
+        type: u1
+        doc: $DIMTIX
+      - id: dim_arrowhead_suppress
+        type: u1
+        doc: $DIMSOXD
       - id: unknown440
-        size: 43
+        size: 41
       - id: handling
         type: u2
         doc: $HANDLING

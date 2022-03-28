@@ -3206,7 +3206,9 @@ sub _read {
     $self->{dim_arrowhead_block1} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{dim_arrowhead_block2} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{dim_arrowhead_blocks_control} = $self->{_io}->read_u1();
-    $self->{unknown440} = $self->{_io}->read_bytes(43);
+    $self->{dim_text_between_ext_lines} = $self->{_io}->read_u1();
+    $self->{dim_arrowhead_suppress} = $self->{_io}->read_u1();
+    $self->{unknown440} = $self->{_io}->read_bytes(41);
     $self->{handling} = $self->{_io}->read_u2le();
     $self->{handseed} = $self->{_io}->read_u8be();
     $self->{surfu} = $self->{_io}->read_u2le();
@@ -3909,6 +3911,16 @@ sub dim_arrowhead_block2 {
 sub dim_arrowhead_blocks_control {
     my ($self) = @_;
     return $self->{dim_arrowhead_blocks_control};
+}
+
+sub dim_text_between_ext_lines {
+    my ($self) = @_;
+    return $self->{dim_text_between_ext_lines};
+}
+
+sub dim_arrowhead_suppress {
+    my ($self) = @_;
+    return $self->{dim_arrowhead_suppress};
 }
 
 sub unknown440 {
