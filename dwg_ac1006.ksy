@@ -583,8 +583,11 @@ types:
       - id: dim_arrowhead_suppress
         type: u1
         doc: $DIMSOXD
+      - id: dim_text_vertical_position_size
+        type: f8
+        doc: $DIMTVP
       - id: unknown440
-        size: 41
+        size: 33
       - id: handling
         type: u2
         doc: $HANDLING

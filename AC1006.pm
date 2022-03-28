@@ -3208,7 +3208,8 @@ sub _read {
     $self->{dim_arrowhead_blocks_control} = $self->{_io}->read_u1();
     $self->{dim_text_between_ext_lines} = $self->{_io}->read_u1();
     $self->{dim_arrowhead_suppress} = $self->{_io}->read_u1();
-    $self->{unknown440} = $self->{_io}->read_bytes(41);
+    $self->{dim_text_vertical_position_size} = $self->{_io}->read_f8le();
+    $self->{unknown440} = $self->{_io}->read_bytes(33);
     $self->{handling} = $self->{_io}->read_u2le();
     $self->{handseed} = $self->{_io}->read_u8be();
     $self->{surfu} = $self->{_io}->read_u2le();
@@ -3921,6 +3922,11 @@ sub dim_text_between_ext_lines {
 sub dim_arrowhead_suppress {
     my ($self) = @_;
     return $self->{dim_arrowhead_suppress};
+}
+
+sub dim_text_vertical_position_size {
+    my ($self) = @_;
+    return $self->{dim_text_vertical_position_size};
 }
 
 sub unknown440 {
