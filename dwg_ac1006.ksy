@@ -591,7 +591,7 @@ types:
         type: table
       - id: flatland
         type: u2
-        doc: $FLATLAND
+        doc: 0x050a-0x050b, $FLATLAND
       - id: spline_type
         type: u2
         enum: spline_type
