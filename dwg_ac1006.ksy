@@ -549,16 +549,17 @@ types:
       - id: ucs_y_dir
         type: point_3d
         doc: $UCSYDIR/12|22|32 ~ $UCSYORI
-      - id: unknown38
+      - id: target
+        type: point_3d
+        doc: $TARGET
+      - id: lens_length
         type: f8
-      - id: unknown39
+        doc: $LENSLENGTH
+      - id: view_rotation_angle_radians
         type: f8
-      - id: unknown40
-        type: f8
-      - id: unknown41
-        type: f8
+        doc: $VIEWTWIST
       - id: unknown42
-        size: 26
+        size: 18
       - id: dim_tofl
         type: u1
         doc: 0x047d, $DIMTOFL
@@ -618,8 +619,9 @@ types:
         type: u2
         enum: spline_type
         doc: 0x050c-0x050d, $SPLINETYPE
-      - id: unknown46
+      - id: ucs_icon
         type: u2
+        doc: $UCSICON
       - id: unknown47
         type: u2
       - id: table_appid

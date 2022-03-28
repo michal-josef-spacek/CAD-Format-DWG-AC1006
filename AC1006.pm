@@ -3197,11 +3197,10 @@ sub _read {
     $self->{ucs_origin_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_x_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_y_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown38} = $self->{_io}->read_f8le();
-    $self->{unknown39} = $self->{_io}->read_f8le();
-    $self->{unknown40} = $self->{_io}->read_f8le();
-    $self->{unknown41} = $self->{_io}->read_f8le();
-    $self->{unknown42} = $self->{_io}->read_bytes(26);
+    $self->{target} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{lens_length} = $self->{_io}->read_f8le();
+    $self->{view_rotation_angle_radians} = $self->{_io}->read_f8le();
+    $self->{unknown42} = $self->{_io}->read_bytes(18);
     $self->{dim_tofl} = $self->{_io}->read_u1();
     $self->{dim_arrowhead_block1} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{dim_arrowhead_block2} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
@@ -3220,7 +3219,7 @@ sub _read {
     $self->{table_vport} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
     $self->{flatland} = $self->{_io}->read_u2le();
     $self->{spline_type} = $self->{_io}->read_u2le();
-    $self->{unknown46} = $self->{_io}->read_u2le();
+    $self->{ucs_icon} = $self->{_io}->read_u2le();
     $self->{unknown47} = $self->{_io}->read_u2le();
     if ($self->_parent()->num_header_vars() == 160) {
         $self->{table_appid} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
@@ -3869,24 +3868,19 @@ sub ucs_y_dir {
     return $self->{ucs_y_dir};
 }
 
-sub unknown38 {
+sub target {
     my ($self) = @_;
-    return $self->{unknown38};
+    return $self->{target};
 }
 
-sub unknown39 {
+sub lens_length {
     my ($self) = @_;
-    return $self->{unknown39};
+    return $self->{lens_length};
 }
 
-sub unknown40 {
+sub view_rotation_angle_radians {
     my ($self) = @_;
-    return $self->{unknown40};
-}
-
-sub unknown41 {
-    my ($self) = @_;
-    return $self->{unknown41};
+    return $self->{view_rotation_angle_radians};
 }
 
 sub unknown42 {
@@ -3984,9 +3978,9 @@ sub spline_type {
     return $self->{spline_type};
 }
 
-sub unknown46 {
+sub ucs_icon {
     my ($self) = @_;
-    return $self->{unknown46};
+    return $self->{ucs_icon};
 }
 
 sub unknown47 {
