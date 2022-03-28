@@ -3157,11 +3157,15 @@ sub _read {
     $self->{user_elapsed_timer_days} = $self->{_io}->read_u4le();
     $self->{user_elapsed_timer_ms} = $self->{_io}->read_u4le();
     $self->{user_timer} = $self->{_io}->read_s2le();
-    $self->{fast_zoom} = $self->{_io}->read_s1();
-    $self->{unknown33} = $self->{_io}->read_bytes(1);
-    $self->{sketch_type} = $self->{_io}->read_s1();
-    $self->{unknown33b} = $self->{_io}->read_bytes(7);
-    $self->{unknown34} = $self->{_io}->read_f8le();
+    $self->{fast_zoom} = $self->{_io}->read_u2le();
+    $self->{sketch_type} = $self->{_io}->read_u2le();
+    $self->{unknown33a} = $self->{_io}->read_u2le();
+    $self->{unknown33b} = $self->{_io}->read_u2le();
+    $self->{unknown33c} = $self->{_io}->read_u2le();
+    $self->{unknown33d} = $self->{_io}->read_u2le();
+    $self->{unknown33e} = $self->{_io}->read_u2le();
+    $self->{unknown33f} = $self->{_io}->read_u2le();
+    $self->{unknown33g} = $self->{_io}->read_u2le();
     $self->{angle_base} = $self->{_io}->read_f8le();
     $self->{angle_direction} = $self->{_io}->read_s2le();
     $self->{point_mode} = $self->{_io}->read_s2le();
@@ -3675,14 +3679,14 @@ sub fast_zoom {
     return $self->{fast_zoom};
 }
 
-sub unknown33 {
-    my ($self) = @_;
-    return $self->{unknown33};
-}
-
 sub sketch_type {
     my ($self) = @_;
     return $self->{sketch_type};
+}
+
+sub unknown33a {
+    my ($self) = @_;
+    return $self->{unknown33a};
 }
 
 sub unknown33b {
@@ -3690,9 +3694,29 @@ sub unknown33b {
     return $self->{unknown33b};
 }
 
-sub unknown34 {
+sub unknown33c {
     my ($self) = @_;
-    return $self->{unknown34};
+    return $self->{unknown33c};
+}
+
+sub unknown33d {
+    my ($self) = @_;
+    return $self->{unknown33d};
+}
+
+sub unknown33e {
+    my ($self) = @_;
+    return $self->{unknown33e};
+}
+
+sub unknown33f {
+    my ($self) = @_;
+    return $self->{unknown33f};
+}
+
+sub unknown33g {
+    my ($self) = @_;
+    return $self->{unknown33g};
 }
 
 sub angle_base {
