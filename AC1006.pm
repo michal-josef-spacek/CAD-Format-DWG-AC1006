@@ -4920,8 +4920,14 @@ sub _read {
     if ($self->entity_common()->flag2_8()) {
         $self->{width} = $self->{_io}->read_f8le();
     }
+    if ($self->entity_common()->flag2_7()) {
+        $self->{unknown1} = $self->{_io}->read_f8le();
+    }
     if ($self->entity_common()->flag2_6()) {
         $self->{bulge} = $self->{_io}->read_f8le();
+    }
+    if ($self->entity_common()->flag2_5()) {
+        $self->{unknown2} = $self->{_io}->read_u1();
     }
     if ($self->entity_common()->flag2_4()) {
         $self->{unknown_in_radians} = $self->{_io}->read_f8le();
@@ -4948,9 +4954,19 @@ sub width {
     return $self->{width};
 }
 
+sub unknown1 {
+    my ($self) = @_;
+    return $self->{unknown1};
+}
+
 sub bulge {
     my ($self) = @_;
     return $self->{bulge};
+}
+
+sub unknown2 {
+    my ($self) = @_;
+    return $self->{unknown2};
 }
 
 sub unknown_in_radians {

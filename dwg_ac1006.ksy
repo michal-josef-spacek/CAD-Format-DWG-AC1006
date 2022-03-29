@@ -1332,10 +1332,16 @@ types:
       - id: width
         type: f8
         if: entity_common.flag2_8
+      - id: unknown1
+        type: f8
+        if: entity_common.flag2_7
       - id: bulge
         type: f8
         if: entity_common.flag2_6
         doc: VERTEX/42
+      - id: unknown2
+        type: u1
+        if: entity_common.flag2_5
       - id: unknown_in_radians
         type: f8
         if: entity_common.flag2_4
