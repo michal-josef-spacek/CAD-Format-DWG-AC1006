@@ -182,7 +182,7 @@ types:
         doc: 0x00c8-0x00da, $VIEWCTRL/10|20|30
       - id: view_size
         type: f8
-        doc: 0x00e0-0x00e7
+        doc: 0x00e0-0x00e7, $VIEWSIZE/40
       - id: snap
         type: s2
         doc: 0x00e8-0x00e9, $SNAPMODE
