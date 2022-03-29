@@ -3207,7 +3207,28 @@ sub _read {
     $self->{dim_extension_line_second_suppress} = $self->{_io}->read_s1();
     $self->{dim_text_vertical_position} = $self->{_io}->read_s1();
     $self->{limits_check} = $self->{_io}->read_s2le();
-    $self->{unknown10} = $self->{_io}->read_bytes(45);
+    $self->{unknown10a} = $self->{_io}->read_u1();
+    $self->{unknown10b} = $self->{_io}->read_u1();
+    $self->{unknown10c} = $self->{_io}->read_u1();
+    $self->{unknown10d} = $self->{_io}->read_u1();
+    $self->{unknown10e} = $self->{_io}->read_u1();
+    $self->{unknown10f} = $self->{_io}->read_u1();
+    $self->{unknown10g} = $self->{_io}->read_f8le();
+    $self->{unknown10h} = $self->{_io}->read_u1();
+    $self->{unknown10i} = $self->{_io}->read_u1();
+    $self->{unknown10j} = $self->{_io}->read_u1();
+    $self->{unknown10k} = $self->{_io}->read_u1();
+    $self->{unknown10l} = $self->{_io}->read_u1();
+    $self->{unknown10m} = $self->{_io}->read_u1();
+    $self->{unknown10n} = $self->{_io}->read_u1();
+    $self->{unknown10o} = $self->{_io}->read_u1();
+    $self->{unknown10p} = $self->{_io}->read_f8le();
+    $self->{unknown10q} = $self->{_io}->read_f8le();
+    $self->{unknown10r} = $self->{_io}->read_u2le();
+    $self->{unknown10s} = $self->{_io}->read_u2le();
+    $self->{unknown10t} = $self->{_io}->read_u1();
+    $self->{unknown10u} = $self->{_io}->read_u1();
+    $self->{unknown10v} = $self->{_io}->read_u1();
     $self->{elevation} = $self->{_io}->read_f8le();
     $self->{thickness} = $self->{_io}->read_f8le();
     $self->{view_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
@@ -3622,9 +3643,114 @@ sub limits_check {
     return $self->{limits_check};
 }
 
-sub unknown10 {
+sub unknown10a {
     my ($self) = @_;
-    return $self->{unknown10};
+    return $self->{unknown10a};
+}
+
+sub unknown10b {
+    my ($self) = @_;
+    return $self->{unknown10b};
+}
+
+sub unknown10c {
+    my ($self) = @_;
+    return $self->{unknown10c};
+}
+
+sub unknown10d {
+    my ($self) = @_;
+    return $self->{unknown10d};
+}
+
+sub unknown10e {
+    my ($self) = @_;
+    return $self->{unknown10e};
+}
+
+sub unknown10f {
+    my ($self) = @_;
+    return $self->{unknown10f};
+}
+
+sub unknown10g {
+    my ($self) = @_;
+    return $self->{unknown10g};
+}
+
+sub unknown10h {
+    my ($self) = @_;
+    return $self->{unknown10h};
+}
+
+sub unknown10i {
+    my ($self) = @_;
+    return $self->{unknown10i};
+}
+
+sub unknown10j {
+    my ($self) = @_;
+    return $self->{unknown10j};
+}
+
+sub unknown10k {
+    my ($self) = @_;
+    return $self->{unknown10k};
+}
+
+sub unknown10l {
+    my ($self) = @_;
+    return $self->{unknown10l};
+}
+
+sub unknown10m {
+    my ($self) = @_;
+    return $self->{unknown10m};
+}
+
+sub unknown10n {
+    my ($self) = @_;
+    return $self->{unknown10n};
+}
+
+sub unknown10o {
+    my ($self) = @_;
+    return $self->{unknown10o};
+}
+
+sub unknown10p {
+    my ($self) = @_;
+    return $self->{unknown10p};
+}
+
+sub unknown10q {
+    my ($self) = @_;
+    return $self->{unknown10q};
+}
+
+sub unknown10r {
+    my ($self) = @_;
+    return $self->{unknown10r};
+}
+
+sub unknown10s {
+    my ($self) = @_;
+    return $self->{unknown10s};
+}
+
+sub unknown10t {
+    my ($self) = @_;
+    return $self->{unknown10t};
+}
+
+sub unknown10u {
+    my ($self) = @_;
+    return $self->{unknown10u};
+}
+
+sub unknown10v {
+    my ($self) = @_;
+    return $self->{unknown10v};
 }
 
 sub elevation {
