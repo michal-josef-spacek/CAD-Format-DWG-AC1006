@@ -1048,6 +1048,80 @@ sub to_and {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::UnknownDate;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{month} = $self->{_io}->read_u2le();
+    $self->{day} = $self->{_io}->read_u2le();
+    $self->{year} = $self->{_io}->read_u2le();
+    $self->{hour} = $self->{_io}->read_u2le();
+    $self->{minute} = $self->{_io}->read_u2le();
+    $self->{second} = $self->{_io}->read_u2le();
+    $self->{ms} = $self->{_io}->read_u2le();
+}
+
+sub month {
+    my ($self) = @_;
+    return $self->{month};
+}
+
+sub day {
+    my ($self) = @_;
+    return $self->{day};
+}
+
+sub year {
+    my ($self) = @_;
+    return $self->{year};
+}
+
+sub hour {
+    my ($self) = @_;
+    return $self->{hour};
+}
+
+sub minute {
+    my ($self) = @_;
+    return $self->{minute};
+}
+
+sub second {
+    my ($self) = @_;
+    return $self->{second};
+}
+
+sub ms {
+    my ($self) = @_;
+    return $self->{ms};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::EntityInsert;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -3159,13 +3233,7 @@ sub _read {
     $self->{user_timer} = $self->{_io}->read_s2le();
     $self->{fast_zoom} = $self->{_io}->read_u2le();
     $self->{sketch_type} = $self->{_io}->read_u2le();
-    $self->{unknown33a} = $self->{_io}->read_u2le();
-    $self->{unknown33b} = $self->{_io}->read_u2le();
-    $self->{unknown33c} = $self->{_io}->read_u2le();
-    $self->{unknown33d} = $self->{_io}->read_u2le();
-    $self->{unknown33e} = $self->{_io}->read_u2le();
-    $self->{unknown33f} = $self->{_io}->read_u2le();
-    $self->{unknown33g} = $self->{_io}->read_u2le();
+    $self->{unknown_date} = CAD::Format::DWG::AC1006::UnknownDate->new($self->{_io}, $self, $self->{_root});
     $self->{angle_base} = $self->{_io}->read_f8le();
     $self->{angle_direction} = $self->{_io}->read_s2le();
     $self->{point_mode} = $self->{_io}->read_s2le();
@@ -3684,39 +3752,9 @@ sub sketch_type {
     return $self->{sketch_type};
 }
 
-sub unknown33a {
+sub unknown_date {
     my ($self) = @_;
-    return $self->{unknown33a};
-}
-
-sub unknown33b {
-    my ($self) = @_;
-    return $self->{unknown33b};
-}
-
-sub unknown33c {
-    my ($self) = @_;
-    return $self->{unknown33c};
-}
-
-sub unknown33d {
-    my ($self) = @_;
-    return $self->{unknown33d};
-}
-
-sub unknown33e {
-    my ($self) = @_;
-    return $self->{unknown33e};
-}
-
-sub unknown33f {
-    my ($self) = @_;
-    return $self->{unknown33f};
-}
-
-sub unknown33g {
-    my ($self) = @_;
-    return $self->{unknown33g};
+    return $self->{unknown_date};
 }
 
 sub angle_base {
