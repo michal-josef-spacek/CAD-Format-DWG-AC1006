@@ -26,8 +26,8 @@ t/CAD-Format-DWG-AC1006/005-header-blocks_size_unknown.t
 t/CAD-Format-DWG-AC1006/006-header-blocks_size.t
 t/CAD-Format-DWG-AC1006/007-header-blocks_start.t
 t/CAD-Format-DWG-AC1006/008-header-dwg_version.t
-t/CAD-Format-DWG-AC1006/009-header-entities_start.t
-t/CAD-Format-DWG-AC1006/010-header-entities_end.t
+t/CAD-Format-DWG-AC1006/009-header-entities_end.t
+t/CAD-Format-DWG-AC1006/010-header-entities_start.t
 t/CAD-Format-DWG-AC1006/011-header-magic.t
 t/CAD-Format-DWG-AC1006/012-header-num_header_vars.t
 t/CAD-Format-DWG-AC1006/013-header-num_sections.t
