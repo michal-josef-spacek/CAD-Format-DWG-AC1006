@@ -429,10 +429,10 @@ types:
         doc: 0x033f-0x0340, $USRTIMER
       - id: fast_zoom
         type: u2
-        doc: 0x0341, $FASTZOOM
+        doc: 0x0341-0x0342, $FASTZOOM
       - id: sketch_type
         type: u2
-        doc: 0x0343, $SKPOLY
+        doc: 0x0343-0x0344, $SKPOLY
       - id: unknown_date
         type: unknown_date
       - id: angle_base
