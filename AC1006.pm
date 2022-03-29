@@ -5008,7 +5008,7 @@ sub _read {
     $self->{height} = $self->{_io}->read_f8le();
     $self->{item_num} = $self->{_io}->read_u1();
     if ($self->entity_common()->flag2_8()) {
-        $self->{angle} = $self->{_io}->read_f8le();
+        $self->{angle_in_radians} = $self->{_io}->read_f8le();
     }
     $self->{load_num} = $self->{_io}->read_u1();
 }
@@ -5038,9 +5038,9 @@ sub item_num {
     return $self->{item_num};
 }
 
-sub angle {
+sub angle_in_radians {
     my ($self) = @_;
-    return $self->{angle};
+    return $self->{angle_in_radians};
 }
 
 sub load_num {

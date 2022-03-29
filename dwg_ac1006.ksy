@@ -1281,15 +1281,20 @@ types:
         type: entity_common
       - id: x
         type: f8
+        doc: SHAPE/10
       - id: y
         type: f8
+        doc: SHAPE/20
       - id: height
         type: f8
+        doc: SHAPE/40
       - id: item_num
         type: u1
-      - id: angle
+        doc: SHAPE/2
+      - id: angle_in_radians
         type: f8
         if: entity_common.flag2_8
+        doc: SHAPE/50
       - id: load_num
         type: u1
   entity_solid:
