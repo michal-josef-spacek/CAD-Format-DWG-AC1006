@@ -577,6 +577,7 @@ types:
         doc: 0x03ed-0x03ee, $MIRRTEXT
       - id: table_ucs
         type: table
+        doc: 0x03ef-0x03f9
       - id: unknown37
         size: 2
       - id: ucs_origin_point
@@ -657,6 +658,7 @@ types:
         doc: $SURFTAB2
       - id: table_vport
         type: table
+        doc: 0x0500-0x050a
       - id: flatland
         type: u2
         doc: 0x050a-0x050b, $FLATLAND
