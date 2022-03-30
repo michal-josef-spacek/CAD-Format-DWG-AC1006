@@ -598,14 +598,15 @@ types:
       - id: view_rotation_angle_radians
         type: f8
         doc: $VIEWTWIST
-      - id: unknown42a
+      - id: frontz_z
         type: f8
-        doc: $BACKZ or $FRONTZ
-      - id: unknown42b
+        doc: $FRONTZ
+      - id: backz_z
         type: f8
-        doc: $BACKZ or $FRONTZ
-      - id: unknown42c
+        doc: $BACKZ
+      - id: view_mode
         type: u2
+        doc: $VIEWMODE
       - id: dim_tofl
         type: u1
         doc: 0x047d, $DIMTOFL
@@ -675,8 +676,9 @@ types:
         type: table
         doc: 0x0512-0x051c
         if: _parent.num_header_vars == 160
-      - id: unknown48
+      - id: world_view
         type: u2
+        doc: 0x051d-0x051e, $WORLDVIEW/70
         if: _parent.num_header_vars == 160
     instances:
       create_date:

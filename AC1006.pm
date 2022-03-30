@@ -3293,9 +3293,9 @@ sub _read {
     $self->{target} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{lens_length} = $self->{_io}->read_f8le();
     $self->{view_rotation_angle_radians} = $self->{_io}->read_f8le();
-    $self->{unknown42a} = $self->{_io}->read_f8le();
-    $self->{unknown42b} = $self->{_io}->read_f8le();
-    $self->{unknown42c} = $self->{_io}->read_u2le();
+    $self->{frontz_z} = $self->{_io}->read_f8le();
+    $self->{backz_z} = $self->{_io}->read_f8le();
+    $self->{view_mode} = $self->{_io}->read_u2le();
     $self->{dim_tofl} = $self->{_io}->read_u1();
     $self->{dim_arrowhead_block1} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{dim_arrowhead_block2} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
@@ -3320,7 +3320,7 @@ sub _read {
         $self->{table_appid} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->_parent()->num_header_vars() == 160) {
-        $self->{unknown48} = $self->{_io}->read_u2le();
+        $self->{world_view} = $self->{_io}->read_u2le();
     }
 }
 
@@ -4073,19 +4073,19 @@ sub view_rotation_angle_radians {
     return $self->{view_rotation_angle_radians};
 }
 
-sub unknown42a {
+sub frontz_z {
     my ($self) = @_;
-    return $self->{unknown42a};
+    return $self->{frontz_z};
 }
 
-sub unknown42b {
+sub backz_z {
     my ($self) = @_;
-    return $self->{unknown42b};
+    return $self->{backz_z};
 }
 
-sub unknown42c {
+sub view_mode {
     my ($self) = @_;
-    return $self->{unknown42c};
+    return $self->{view_mode};
 }
 
 sub dim_tofl {
@@ -4193,9 +4193,9 @@ sub table_appid {
     return $self->{table_appid};
 }
 
-sub unknown48 {
+sub world_view {
     my ($self) = @_;
-    return $self->{unknown48};
+    return $self->{world_view};
 }
 
 ########################################################################
