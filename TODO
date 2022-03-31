@@ -12,7 +12,6 @@ https://knowledge.autodesk.com/support/autocad/learn-explore/caas/CloudHelp/clou
 35. Describe block_flag (https://documentation.help/AutoCAD-DXF/WS1a9193826455f5ff18cb41610ec0a2e719-7a43.htm)
 36. Check $DIMBLK, $DIMBLK1, $DIMBLK2 length - seems = 33, but 1 byte doesn't used
 37. enum for ucs_icon
-38. Identify $BACKZ and $FRONTZ header variables
 41. Add test for seqend
 42.
 
@@ -113,3 +112,6 @@ OK [20220329] skim
 39. Identify 33a to 33g variables (AC1006/from_simtelnet_pkey12-2/DRTAG1.DWG)
 unknown_date
 OK [20220329] skim
+
+38. Identify $BACKZ and $FRONTZ header variables
+OK [20220331] skim
