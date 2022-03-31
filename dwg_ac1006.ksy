@@ -638,25 +638,25 @@ types:
         size: 33
       - id: handling
         type: u2
-        doc: 0x048c-0x048d, $HANDLING
+        doc: 0x04ec-0x04ed, $HANDLING
       - id: handseed
         type: u8be
-        doc: 0x048e-0x0495, $HANDSEED, in hex
+        doc: 0x04ee-0x04f5, $HANDSEED, in hex
       - id: surfu
         type: u2
-        doc: 0x0496-0x0497, $SURFU
+        doc: 0x04f6-0x04f7, $SURFU
       - id: surfv
         type: u2
-        doc: 0x0498-0x0499, $SURFV
+        doc: 0x04f8-0x04f9, $SURFV
       - id: surftype
         type: u2
-        doc: 0x049a-0x949b, $SURFTYPE
+        doc: 0x04fa-0x94fb, $SURFTYPE
       - id: surftab1
         type: u2
-        doc: 0x049c-0x049d, $SURFTAB1
+        doc: 0x04fc-0x04fd, $SURFTAB1
       - id: surftab2
         type: u2
-        doc: 0x049e-0x049f, $SURFTAB2
+        doc: 0x04fe-0x04ff, $SURFTAB2
       - id: table_vport
         type: table
         doc: 0x0500-0x050a
