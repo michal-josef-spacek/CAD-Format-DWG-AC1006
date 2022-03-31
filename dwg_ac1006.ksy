@@ -615,48 +615,48 @@ types:
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: $DIMBLK1
+        doc: 0x047e-0x049e, $DIMBLK1
       - id: dim_arrowhead_block2
         size: 33
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: $DIMBLK2
+        doc: 0x049f-0x04bf, $DIMBLK2
       - id: dim_arrowhead_blocks_control
         type: u1
-        doc: $DIMSAH
+        doc: 0x04c0, $DIMSAH
       - id: dim_text_between_ext_lines
         type: u1
-        doc: $DIMTIX
+        doc: 0x04c1, $DIMTIX
       - id: dim_arrowhead_suppress
         type: u1
-        doc: $DIMSOXD
+        doc: 0x04c2, $DIMSOXD
       - id: dim_text_vertical_position_size
         type: f8
-        doc: $DIMTVP
+        doc: 0x04c3-0x4ca, $DIMTVP
       - id: unknown440
         size: 33
       - id: handling
         type: u2
-        doc: $HANDLING
+        doc: 0x048c-0x048d, $HANDLING
       - id: handseed
         type: u8be
-        doc: $HANDSEED, in hex
+        doc: 0x048e-0x0495, $HANDSEED, in hex
       - id: surfu
         type: u2
-        doc: $SURFU
+        doc: 0x0496-0x0497, $SURFU
       - id: surfv
         type: u2
-        doc: $SURFV
+        doc: 0x0498-0x0499, $SURFV
       - id: surftype
         type: u2
-        doc: $SURFTYPE
+        doc: 0x049a-0x949b, $SURFTYPE
       - id: surftab1
         type: u2
-        doc: $SURFTAB1
+        doc: 0x049c-0x049d, $SURFTAB1
       - id: surftab2
         type: u2
-        doc: $SURFTAB2
+        doc: 0x049e-0x049f, $SURFTAB2
       - id: table_vport
         type: table
         doc: 0x0500-0x050a
