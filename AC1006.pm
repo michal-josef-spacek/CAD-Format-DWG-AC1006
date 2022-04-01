@@ -1295,7 +1295,7 @@ sub _read {
     $self->{generation} = CAD::Format::DWG::AC1006::GenerationFlags->new($self->{_io}, $self, $self->{_root});
     $self->{last_height} = $self->{_io}->read_f8le();
     $self->{font_file} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(64), 0, 0));
-    $self->{u1} = $self->{_io}->read_bytes(64);
+    $self->{bigfont_file} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(64), 0, 0));
 }
 
 sub flag {
@@ -1338,9 +1338,9 @@ sub font_file {
     return $self->{font_file};
 }
 
-sub u1 {
+sub bigfont_file {
     my ($self) = @_;
-    return $self->{u1};
+    return $self->{bigfont_file};
 }
 
 ########################################################################
