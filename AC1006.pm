@@ -57,10 +57,6 @@ our $TEXT_TYPE_ALIGNED = 3;
 our $TEXT_TYPE_MIDDLE = 4;
 our $TEXT_TYPE_FIT = 5;
 
-our $ATTRIBUTES_FALSE = 0;
-our $ATTRIBUTES_NORMAL = 1;
-our $ATTRIBUTES_TRUE = 2;
-
 our $ANGLE_DIRECTION_COUNTERCLOCKWISE = 0;
 our $ANGLE_DIRECTION_CLOCKWISE = 1;
 
@@ -85,6 +81,10 @@ our $UNITS_FOR_ANGLES_DEGREES_MINUTES_SECONDS = 1;
 our $UNITS_FOR_ANGLES_GRADIANS = 2;
 our $UNITS_FOR_ANGLES_RADIANS = 3;
 our $UNITS_FOR_ANGLES_SURVEYOR_S_UNITS = 4;
+
+our $ATT_VISIBILITY_FALSE = 0;
+our $ATT_VISIBILITY_NORMAL = 1;
+our $ATT_VISIBILITY_ALL = 2;
 
 our $LIMITS_CHECK_OBJECTS_CAN_OUTSIDE_GRID = 0;
 our $LIMITS_CHECK_OBJECTS_CANNOT_OUTSIDE_GRID = 1;
@@ -3187,7 +3187,7 @@ sub _read {
     $self->{angular_precision} = $self->{_io}->read_s2le();
     $self->{text_style_index} = $self->{_io}->read_s2le();
     $self->{osnap} = $self->{_io}->read_s2le();
-    $self->{attributes} = $self->{_io}->read_s2le();
+    $self->{att_visibility} = $self->{_io}->read_s2le();
     $self->{menu} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(15), 0, 0));
     $self->{dim_scale} = $self->{_io}->read_f8le();
     $self->{dim_arrowhead_size} = $self->{_io}->read_f8le();
@@ -3543,9 +3543,9 @@ sub osnap {
     return $self->{osnap};
 }
 
-sub attributes {
+sub att_visibility {
     my ($self) = @_;
-    return $self->{attributes};
+    return $self->{att_visibility};
 }
 
 sub menu {

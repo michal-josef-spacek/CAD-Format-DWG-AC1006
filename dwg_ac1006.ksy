@@ -286,8 +286,8 @@ types:
         enum: osnap_modes
         type: s2
         doc: 0x0190-0x0191, $OSMODE
-      - id: attributes
-        enum: attributes
+      - id: att_visibility
+        enum: att_visibility
         type: s2
         doc: 0x0192-0x0193, $ATTMODE
       - id: menu
@@ -1908,10 +1908,10 @@ enums:
     0: absolute_coordinates
     1: absolute_coordinates_realtime
     2: relative_polar_coordinates
-  attributes:
+  att_visibility:
     0: off
     1: normal
-    2: on
+    2: all
   current_color:
     0: byblock
     1: red
