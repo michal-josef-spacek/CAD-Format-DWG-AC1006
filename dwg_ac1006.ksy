@@ -238,12 +238,12 @@ types:
       - id: current_color_convert
         type: f8
         doc: 0x014c-0x0153
-      - id: unknown7a
-        size: 2
+      - id: unknown6
+        type: u2
         doc: 0x0154-0x0155
-      - id: unknown7b
-        size: 2
-        doc: 0x0156-0x0157
+      - id: psltscale
+        type: u2
+        doc: 0x0156-0x0157, $PSLTSCALE/70
       - id: unknown7c
         size: 2
         doc: 0x0158-0x0159
