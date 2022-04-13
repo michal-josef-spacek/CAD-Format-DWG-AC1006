@@ -1403,6 +1403,12 @@ sub _read {
     if ($self->entity_mode()->entity_thickness_flag()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
+    if ($self->entity_mode()->entity_handling_flag()) {
+        $self->{handling_size} = $self->{_io}->read_u1();
+    }
+    if ($self->entity_mode()->entity_handling_flag()) {
+        $self->{handling_id} = $self->{_io}->read_bytes($self->handling_size());
+    }
 }
 
 sub entity_mode {
@@ -1518,6 +1524,16 @@ sub entity_linetype_index {
 sub entity_thickness {
     my ($self) = @_;
     return $self->{entity_thickness};
+}
+
+sub handling_size {
+    my ($self) = @_;
+    return $self->{handling_size};
+}
+
+sub handling_id {
+    my ($self) = @_;
+    return $self->{handling_id};
 }
 
 ########################################################################
@@ -5250,7 +5266,7 @@ sub _read {
 
     $self->{entity_mode1} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_mode2} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_mode3} = $self->{_io}->read_bits_int_be(1);
+    $self->{entity_handling_flag} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_mode4} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_thickness_flag} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_elevation_flag} = $self->{_io}->read_bits_int_be(1);
@@ -5268,9 +5284,9 @@ sub entity_mode2 {
     return $self->{entity_mode2};
 }
 
-sub entity_mode3 {
+sub entity_handling_flag {
     my ($self) = @_;
-    return $self->{entity_mode3};
+    return $self->{entity_handling_flag};
 }
 
 sub entity_mode4 {

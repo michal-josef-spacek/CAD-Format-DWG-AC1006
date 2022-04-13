@@ -775,7 +775,7 @@ types:
         type: b1
       - id: entity_mode2
         type: b1
-      - id: entity_mode3
+      - id: entity_handling_flag
         type: b1
       - id: entity_mode4
         type: b1
@@ -838,6 +838,12 @@ types:
       - id: entity_thickness
         type: f8
         if: entity_mode.entity_thickness_flag
+      - id: handling_size
+        type: u1
+        if: entity_mode.entity_handling_flag
+      - id: handling_id
+        size: handling_size
+        if: entity_mode.entity_handling_flag
   entity_arc:
     seq:
       - id: entity_common
