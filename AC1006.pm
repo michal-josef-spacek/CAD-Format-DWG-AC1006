@@ -3319,7 +3319,7 @@ sub _read {
     $self->{dim_text_between_ext_lines} = $self->{_io}->read_u1();
     $self->{dim_arrowhead_suppress} = $self->{_io}->read_u1();
     $self->{dim_text_vertical_position_size} = $self->{_io}->read_f8le();
-    $self->{unknown440} = $self->{_io}->read_bytes(33);
+    $self->{unknown_string} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{handling} = $self->{_io}->read_u2le();
     $self->{handseed} = $self->{_io}->read_u8be();
     $self->{surfu} = $self->{_io}->read_u2le();
@@ -4139,9 +4139,9 @@ sub dim_text_vertical_position_size {
     return $self->{dim_text_vertical_position_size};
 }
 
-sub unknown440 {
+sub unknown_string {
     my ($self) = @_;
-    return $self->{unknown440};
+    return $self->{unknown_string};
 }
 
 sub handling {
