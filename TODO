@@ -13,7 +13,8 @@ https://knowledge.autodesk.com/support/autocad/learn-explore/caas/CloudHelp/clou
 36. Check $DIMBLK, $DIMBLK1, $DIMBLK2 length - seems = 33, but 1 byte doesn't used
 37. enum for ucs_icon
 41. Add test for seqend
-42.
+42. Sync attdef and attrib with previous version.
+43.
 
 Applied
 =======
