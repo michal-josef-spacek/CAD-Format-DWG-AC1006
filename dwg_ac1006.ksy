@@ -1954,8 +1954,9 @@ enums:
     1: top
     2: right
   text_type:
+    0: left
     1: center
-    2: end
+    2: right
     3: aligned
     4: middle
     5: fit
