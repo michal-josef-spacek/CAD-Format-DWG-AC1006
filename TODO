@@ -14,7 +14,8 @@ https://knowledge.autodesk.com/support/autocad/learn-explore/caas/CloudHelp/clou
 37. enum for ucs_icon
 41. Add test for seqend
 42. Sync attdef and attrib with previous version.
-43.
+43. elevation in common entity structure is every time instead of point and line
+44.
 
 Applied
 =======
