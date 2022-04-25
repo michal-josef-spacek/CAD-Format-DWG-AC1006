@@ -1344,6 +1344,86 @@ sub bigfont_file {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::PolylineFlags;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag1} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag2} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag3} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag4} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag5} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag6} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag7} = $self->{_io}->read_bits_int_be(1);
+    $self->{closed} = $self->{_io}->read_bits_int_be(1);
+}
+
+sub flag1 {
+    my ($self) = @_;
+    return $self->{flag1};
+}
+
+sub flag2 {
+    my ($self) = @_;
+    return $self->{flag2};
+}
+
+sub flag3 {
+    my ($self) = @_;
+    return $self->{flag3};
+}
+
+sub flag4 {
+    my ($self) = @_;
+    return $self->{flag4};
+}
+
+sub flag5 {
+    my ($self) = @_;
+    return $self->{flag5};
+}
+
+sub flag6 {
+    my ($self) = @_;
+    return $self->{flag6};
+}
+
+sub flag7 {
+    my ($self) = @_;
+    return $self->{flag7};
+}
+
+sub closed {
+    my ($self) = @_;
+    return $self->{closed};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::EntityCommon;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -5550,7 +5630,7 @@ sub _read {
 
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
     if ($self->entity_common()->flag2_8()) {
-        $self->{closed} = $self->{_io}->read_u1();
+        $self->{flag} = CAD::Format::DWG::AC1006::PolylineFlags->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_7()) {
         $self->{x} = $self->{_io}->read_f8le();
@@ -5565,9 +5645,9 @@ sub entity_common {
     return $self->{entity_common};
 }
 
-sub closed {
+sub flag {
     my ($self) = @_;
-    return $self->{closed};
+    return $self->{flag};
 }
 
 sub x {
