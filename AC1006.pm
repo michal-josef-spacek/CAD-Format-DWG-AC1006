@@ -901,22 +901,22 @@ sub _read {
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
     $self->{first_point_x} = $self->{_io}->read_f8le();
     $self->{first_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->flag2_8()) {
+    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) {
         $self->{first_point_z} = $self->{_io}->read_f8le();
     }
     $self->{second_point_x} = $self->{_io}->read_f8le();
     $self->{second_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->flag2_7()) {
+    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) {
         $self->{second_point_z} = $self->{_io}->read_f8le();
     }
     $self->{third_point_x} = $self->{_io}->read_f8le();
     $self->{third_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->flag2_6()) {
+    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) {
         $self->{third_point_z} = $self->{_io}->read_f8le();
     }
     $self->{fourth_point_x} = $self->{_io}->read_f8le();
     $self->{fourth_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->flag2_5()) {
+    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) {
         $self->{fourth_point_z} = $self->{_io}->read_f8le();
     }
 }
