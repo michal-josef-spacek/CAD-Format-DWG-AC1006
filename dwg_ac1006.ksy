@@ -1271,6 +1271,7 @@ types:
       - id: flag
         type: polyline_flags
         if: entity_common.flag2_8
+        doc: POLYLINE/70
       - id: x
         type: f8
         if: entity_common.flag2_7
