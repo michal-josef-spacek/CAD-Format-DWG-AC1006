@@ -475,8 +475,7 @@ sub _read {
 
     $self->{entity_mode} = CAD::Format::DWG::AC1006::EntityMode->new($self->{_io}, $self, $self->{_root});
     $self->{entity_size} = $self->{_io}->read_s2le();
-    $self->{entity_layer_index} = $self->{_io}->read_s1();
-    $self->{flag1} = $self->{_io}->read_s1();
+    $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{flag2_1} = $self->{_io}->read_bits_int_be(1);
     $self->{flag2_2} = $self->{_io}->read_bits_int_be(1);
     $self->{flag2_3} = $self->{_io}->read_bits_int_be(1);
@@ -510,11 +509,6 @@ sub entity_size {
 sub entity_layer_index {
     my ($self) = @_;
     return $self->{entity_layer_index};
-}
-
-sub flag1 {
-    my ($self) = @_;
-    return $self->{flag1};
 }
 
 sub flag2_1 {

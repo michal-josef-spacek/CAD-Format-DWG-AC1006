@@ -1213,9 +1213,7 @@ types:
       - id: entity_size
         type: s2
       - id: entity_layer_index
-        type: s1
-      - id: flag1
-        type: s1
+        type: s2
       - id: flag2_1
         type: b1
       - id: flag2_2
