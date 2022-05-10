@@ -1070,8 +1070,8 @@ types:
 #        type: f8
 #        if: entity_common.entity_mode.entity_elevation_flag == false
 #        doc: DIMENSION/31
-      - id: unknown1
-        type: u1
+      - id: dim_type
+        type: dim_type
         if: entity_common.flag2_7
         doc: DIMENSION/70
       - id: text_size
@@ -1120,6 +1120,19 @@ types:
       - id: rotation_in_radians
         type: f8
         if: entity_common.flag3_8
+  dim_type:
+    seq:
+      - id: flag_text_in_user_location
+        type: b1
+      - id: flag_x_type_ordinate
+        type: b1
+      - id: flag_block_for_dim_only
+        type: b1
+      - id: flag_u4
+        type: b1
+      - id: type
+        type: b4
+        enum: dim_type
   entity_face3d:
     seq:
       - id: entity_common
@@ -1956,6 +1969,14 @@ enums:
     3: aligned
     4: middle
     5: fit
+  dim_type:
+    0: rotated_horizontal_or_vertical
+    1: aligned
+    2: angular
+    3: diameter
+    4: radius
+    5: angular_3_point
+    6: ordinate
   spline_type:
     5: quadratic_b_spline
     6: cubic_b_spline

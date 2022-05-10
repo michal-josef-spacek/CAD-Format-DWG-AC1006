@@ -102,6 +102,14 @@ our $OSNAP_MODES_PERPENDICULAR = 128;
 our $OSNAP_MODES_TANGENT = 256;
 our $OSNAP_MODES_NEAREST = 512;
 
+our $DIM_TYPE_ROTATED_HORIZONTAL_OR_VERTICAL = 0;
+our $DIM_TYPE_ALIGNED = 1;
+our $DIM_TYPE_ANGULAR = 2;
+our $DIM_TYPE_DIAMETER = 3;
+our $DIM_TYPE_RADIUS = 4;
+our $DIM_TYPE_ANGULAR_3_POINT = 5;
+our $DIM_TYPE_ORDINATE = 6;
+
 sub new {
     my ($class, $_io, $_parent, $_root) = @_;
     my $self = IO::KaitaiStruct::Struct->new($_io);
@@ -3063,7 +3071,7 @@ sub _read {
     }
     $self->{default_text_position} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     if ($self->entity_common()->flag2_7()) {
-        $self->{unknown1} = $self->{_io}->read_u1();
+        $self->{dim_type} = CAD::Format::DWG::AC1006::DimType->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_6()) {
         $self->{text_size} = $self->{_io}->read_s2le();
@@ -3131,9 +3139,9 @@ sub default_text_position {
     return $self->{default_text_position};
 }
 
-sub unknown1 {
+sub dim_type {
     my ($self) = @_;
-    return $self->{unknown1};
+    return $self->{dim_type};
 }
 
 sub text_size {
@@ -5467,6 +5475,68 @@ sub z2 {
 sub extrusion_direction {
     my ($self) = @_;
     return $self->{extrusion_direction};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::DimType;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag_text_in_user_location} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag_x_type_ordinate} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag_block_for_dim_only} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag_u4} = $self->{_io}->read_bits_int_be(1);
+    $self->{type} = $self->{_io}->read_bits_int_be(4);
+}
+
+sub flag_text_in_user_location {
+    my ($self) = @_;
+    return $self->{flag_text_in_user_location};
+}
+
+sub flag_x_type_ordinate {
+    my ($self) = @_;
+    return $self->{flag_x_type_ordinate};
+}
+
+sub flag_block_for_dim_only {
+    my ($self) = @_;
+    return $self->{flag_block_for_dim_only};
+}
+
+sub flag_u4 {
+    my ($self) = @_;
+    return $self->{flag_u4};
+}
+
+sub type {
+    my ($self) = @_;
+    return $self->{type};
 }
 
 ########################################################################
