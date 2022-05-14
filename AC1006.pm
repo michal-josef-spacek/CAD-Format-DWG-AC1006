@@ -408,7 +408,7 @@ sub _read {
     $self->{flag5} = $self->{_io}->read_bits_int_be(1);
     $self->{flag6} = $self->{_io}->read_bits_int_be(1);
     $self->{flag7} = $self->{_io}->read_bits_int_be(1);
-    $self->{frozen} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag8} = $self->{_io}->read_bits_int_be(1);
 }
 
 sub flag1 {
@@ -446,9 +446,9 @@ sub flag7 {
     return $self->{flag7};
 }
 
-sub frozen {
+sub flag8 {
     my ($self) = @_;
-    return $self->{frozen};
+    return $self->{flag8};
 }
 
 ########################################################################

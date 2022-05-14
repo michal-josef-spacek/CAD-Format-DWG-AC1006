@@ -1581,7 +1581,7 @@ types:
         type: b1
       - id: flag7
         type: b1
-      - id: frozen
+      - id: flag8
         type: b1
   real_entities:
     seq:
