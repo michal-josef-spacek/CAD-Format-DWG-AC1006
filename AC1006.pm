@@ -5103,7 +5103,9 @@ sub _read {
     if ($self->entity_common()->flag2_8()) {
         $self->{angle_in_radians} = $self->{_io}->read_f8le();
     }
-    $self->{load_num} = $self->{_io}->read_u1();
+    if ($self->entity_common()->flag2_7()) {
+        $self->{load_num} = $self->{_io}->read_u1();
+    }
 }
 
 sub entity_common {

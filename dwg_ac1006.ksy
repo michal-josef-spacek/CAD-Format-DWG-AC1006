@@ -1337,6 +1337,7 @@ types:
         doc: SHAPE/50
       - id: load_num
         type: u1
+        if: entity_common.flag2_7
   entity_solid:
     seq:
       - id: entity_common
