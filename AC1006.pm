@@ -3175,7 +3175,7 @@ sub _read {
         $self->{text_size} = $self->{_io}->read_s2le();
     }
     if ($self->entity_common()->flag2_6()) {
-        $self->{text} = $self->{_io}->read_bytes($self->text_size());
+        $self->{text} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->text_size()), 0, 0));
     }
     if ($self->entity_common()->flag2_5()) {
         $self->{extension_defining_point1} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -3202,10 +3202,7 @@ sub _read {
         $self->{dimension_line_arc_definition_point_z} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_1()) {
-        $self->{unknown2} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
-    }
-    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_1())) ) {
-        $self->{unknown2_z} = $self->{_io}->read_f8le();
+        $self->{leader_len} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag3_8()) {
         $self->{rotation_in_radians} = $self->{_io}->read_f8le();
@@ -3292,14 +3289,9 @@ sub dimension_line_arc_definition_point_z {
     return $self->{dimension_line_arc_definition_point_z};
 }
 
-sub unknown2 {
+sub leader_len {
     my ($self) = @_;
-    return $self->{unknown2};
-}
-
-sub unknown2_z {
-    my ($self) = @_;
-    return $self->{unknown2_z};
+    return $self->{leader_len};
 }
 
 sub rotation_in_radians {

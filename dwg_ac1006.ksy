@@ -1102,10 +1102,6 @@ types:
       - id: default_text_position
         type: point_2d
         doc: DIMENSION/11|21
-#      - id: default_text_position_z
-#        type: f8
-#        if: entity_common.entity_mode.entity_elevation_flag == false
-#        doc: DIMENSION/31
       - id: dim_type
         type: dim_type
         if: entity_common.flag2_7
@@ -1114,7 +1110,10 @@ types:
         type: s2
         if: entity_common.flag2_6
       - id: text
+        type: str
         size: text_size
+        encoding: ASCII
+        terminator: 0x00
         if: entity_common.flag2_6
         doc: DIMENSION/1
       - id: extension_defining_point1
@@ -1147,12 +1146,10 @@ types:
       - id: dimension_line_arc_definition_point_z
         type: f8
         if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_2
-      - id: unknown2
-        type: point_2d
-        if: entity_common.flag2_1
-      - id: unknown2_z
+      - id: leader_len
         type: f8
-        if: entity_common.entity_mode.entity_elevation_flag == false and entity_common.flag2_1
+        if: entity_common.flag2_1
+        doc: DIMENSION/40
       - id: rotation_in_radians
         type: f8
         if: entity_common.flag3_8
