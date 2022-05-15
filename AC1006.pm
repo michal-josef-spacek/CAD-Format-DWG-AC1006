@@ -3163,10 +3163,7 @@ sub _read {
 
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
     $self->{block_index} = $self->{_io}->read_s2le();
-    $self->{dimension_line_defining_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) {
-        $self->{dimension_line_defining_point_z} = $self->{_io}->read_f8le();
-    }
+    $self->{dimension_line_defining_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{default_text_position} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     if ($self->entity_common()->flag2_7()) {
         $self->{dim_type} = CAD::Format::DWG::AC1006::DimType->new($self->{_io}, $self, $self->{_root});
@@ -3178,28 +3175,16 @@ sub _read {
         $self->{text} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->text_size()), 0, 0));
     }
     if ($self->entity_common()->flag2_5()) {
-        $self->{extension_defining_point1} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
-    }
-    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_5())) ) {
-        $self->{extension_defining_point1_z} = $self->{_io}->read_f8le();
+        $self->{extension_defining_point1} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_4()) {
-        $self->{extension_defining_point2} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
-    }
-    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_4())) ) {
-        $self->{extension_defining_point2_z} = $self->{_io}->read_f8le();
+        $self->{extension_defining_point2} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_3()) {
-        $self->{defining_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
-    }
-    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_3())) ) {
-        $self->{defining_point_z} = $self->{_io}->read_f8le();
+        $self->{defining_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_2()) {
-        $self->{dimension_line_arc_definition_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
-    }
-    if ( (($self->entity_common()->entity_mode()->entity_elevation_flag() == 0) && ($self->entity_common()->flag2_2())) ) {
-        $self->{dimension_line_arc_definition_point_z} = $self->{_io}->read_f8le();
+        $self->{dimension_line_arc_definition_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_1()) {
         $self->{leader_len} = $self->{_io}->read_f8le();
@@ -3222,11 +3207,6 @@ sub block_index {
 sub dimension_line_defining_point {
     my ($self) = @_;
     return $self->{dimension_line_defining_point};
-}
-
-sub dimension_line_defining_point_z {
-    my ($self) = @_;
-    return $self->{dimension_line_defining_point_z};
 }
 
 sub default_text_position {
@@ -3254,19 +3234,9 @@ sub extension_defining_point1 {
     return $self->{extension_defining_point1};
 }
 
-sub extension_defining_point1_z {
-    my ($self) = @_;
-    return $self->{extension_defining_point1_z};
-}
-
 sub extension_defining_point2 {
     my ($self) = @_;
     return $self->{extension_defining_point2};
-}
-
-sub extension_defining_point2_z {
-    my ($self) = @_;
-    return $self->{extension_defining_point2_z};
 }
 
 sub defining_point {
@@ -3274,19 +3244,9 @@ sub defining_point {
     return $self->{defining_point};
 }
 
-sub defining_point_z {
-    my ($self) = @_;
-    return $self->{defining_point_z};
-}
-
 sub dimension_line_arc_definition_point {
     my ($self) = @_;
     return $self->{dimension_line_arc_definition_point};
-}
-
-sub dimension_line_arc_definition_point_z {
-    my ($self) = @_;
-    return $self->{dimension_line_arc_definition_point_z};
 }
 
 sub leader_len {
