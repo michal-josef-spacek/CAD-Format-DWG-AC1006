@@ -9,6 +9,7 @@ How to create test file?
 19. Identify header variables between mirror_text and table_appid (must be 29 variables).
 32. Exists $HANDLES variable in this version?
 https://knowledge.autodesk.com/support/autocad/learn-explore/caas/CloudHelp/cloudhelp/2020/ENU/AutoCAD-Core/files/GUID-FC1B6550-B675-49F7-96DF-A44445CBC797-htm.html
+yes
 35. Describe block_flag (https://documentation.help/AutoCAD-DXF/WS1a9193826455f5ff18cb41610ec0a2e719-7a43.htm)
 36. Check $DIMBLK, $DIMBLK1, $DIMBLK2 length - seems = 33, but 1 byte doesn't used
 37. enum for ucs_icon
@@ -16,6 +17,7 @@ https://knowledge.autodesk.com/support/autocad/learn-explore/caas/CloudHelp/clou
 42. Sync attdef and attrib with previous version.
 attrib is
 43. elevation in common entity structure is every time instead of point and line
+and 3dface
 44.
 
 Applied
