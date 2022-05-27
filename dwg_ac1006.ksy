@@ -1011,10 +1011,9 @@ types:
     seq:
       - id: entity_common
         type: entity_common
-      - id: x
-        type: f8
-      - id: y
-        type: f8
+      - id: insert_point
+        type: point_2d
+        doc: BLOCK/10|20
   entity_block_end:
     seq:
       - id: entity_common
