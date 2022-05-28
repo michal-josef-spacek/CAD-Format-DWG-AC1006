@@ -3041,11 +3041,17 @@ sub _read {
     if ($self->entity_common()->flag2_6()) {
         $self->{width_scale_factor} = $self->{_io}->read_f8le();
     }
+    if ($self->entity_common()->flag2_5()) {
+        $self->{obliquing_angle_in_radians} = $self->{_io}->read_f8le();
+    }
     if ($self->entity_common()->flag2_4()) {
-        $self->{unknown_index} = $self->{_io}->read_u1();
+        $self->{text_style_index} = $self->{_io}->read_u1();
+    }
+    if ($self->entity_common()->flag2_3()) {
+        $self->{generation} = CAD::Format::DWG::AC1006::GenerationFlags->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_2()) {
-        $self->{flags2} = CAD::Format::DWG::AC1006::AttdefFlags2->new($self->{_io}, $self, $self->{_root});
+        $self->{text_type} = $self->{_io}->read_u1();
     }
     if ($self->entity_common()->flag2_1()) {
         $self->{end_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -3112,14 +3118,24 @@ sub width_scale_factor {
     return $self->{width_scale_factor};
 }
 
-sub unknown_index {
+sub obliquing_angle_in_radians {
     my ($self) = @_;
-    return $self->{unknown_index};
+    return $self->{obliquing_angle_in_radians};
 }
 
-sub flags2 {
+sub text_style_index {
     my ($self) = @_;
-    return $self->{flags2};
+    return $self->{text_style_index};
+}
+
+sub generation {
+    my ($self) = @_;
+    return $self->{generation};
+}
+
+sub text_type {
+    my ($self) = @_;
+    return $self->{text_type};
 }
 
 sub end_point {
