@@ -1370,12 +1370,9 @@ types:
     seq:
       - id: entity_common
         type: entity_common
-      - id: x
-        type: f8
-        doc: TEXT/10
-      - id: y
-        type: f8
-        doc: TEXT/20
+      - id: insert_point
+        type: point_2d
+        doc: TEXT/10|20
       - id: height
         type: f8
         doc: TEXT/40
