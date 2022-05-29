@@ -852,16 +852,9 @@ types:
     seq:
       - id: entity_common
         type: entity_common
-      - id: x
-        type: f8
-        doc: ARC/10
-      - id: y
-        type: f8
-        doc: ARC/20
-      - id: z
-        type: f8
-        doc: ARC/30
-        if: entity_common.entity_mode.entity_elevation_flag == true
+      - id: center_point
+        type: arc_center_point
+        doc: ARC/10|20|30
       - id: radius
         type: f8
         doc: ARC/40
@@ -875,6 +868,18 @@ types:
         type: point_3d
         if: entity_common.flag2_8
         doc: ARC/210|220|230
+  arc_center_point:
+    seq:
+      - id: x
+        type: f8
+        doc: ARC/10
+      - id: y
+        type: f8
+        doc: ARC/20
+      - id: z
+        type: f8
+        doc: ARC/30
+        if: _parent.entity_common.entity_mode.entity_elevation_flag == true
   entity_attdef:
     seq:
       - id: entity_common

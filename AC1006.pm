@@ -1279,6 +1279,58 @@ sub extrusion_direction {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::ArcCenterPoint;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{x} = $self->{_io}->read_f8le();
+    $self->{y} = $self->{_io}->read_f8le();
+    if ($self->_parent()->entity_common()->entity_mode()->entity_elevation_flag() == 1) {
+        $self->{z} = $self->{_io}->read_f8le();
+    }
+}
+
+sub x {
+    my ($self) = @_;
+    return $self->{x};
+}
+
+sub y {
+    my ($self) = @_;
+    return $self->{y};
+}
+
+sub z {
+    my ($self) = @_;
+    return $self->{z};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::Style;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -4428,11 +4480,7 @@ sub _read {
     my ($self) = @_;
 
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    $self->{x} = $self->{_io}->read_f8le();
-    $self->{y} = $self->{_io}->read_f8le();
-    if ($self->entity_common()->entity_mode()->entity_elevation_flag() == 1) {
-        $self->{z} = $self->{_io}->read_f8le();
-    }
+    $self->{center_point} = CAD::Format::DWG::AC1006::ArcCenterPoint->new($self->{_io}, $self, $self->{_root});
     $self->{radius} = $self->{_io}->read_f8le();
     $self->{angle_from} = $self->{_io}->read_f8le();
     $self->{angle_to} = $self->{_io}->read_f8le();
@@ -4446,19 +4494,9 @@ sub entity_common {
     return $self->{entity_common};
 }
 
-sub x {
+sub center_point {
     my ($self) = @_;
-    return $self->{x};
-}
-
-sub y {
-    my ($self) = @_;
-    return $self->{y};
-}
-
-sub z {
-    my ($self) = @_;
-    return $self->{z};
+    return $self->{center_point};
 }
 
 sub radius {
