@@ -5307,7 +5307,7 @@ sub _read {
     $self->{x} = $self->{_io}->read_f8le();
     $self->{y} = $self->{_io}->read_f8le();
     if ($self->entity_common()->flag2_8()) {
-        $self->{width} = $self->{_io}->read_f8le();
+        $self->{start_width} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_7()) {
         $self->{unknown1} = $self->{_io}->read_f8le();
@@ -5338,9 +5338,9 @@ sub y {
     return $self->{y};
 }
 
-sub width {
+sub start_width {
     my ($self) = @_;
-    return $self->{width};
+    return $self->{start_width};
 }
 
 sub unknown1 {
