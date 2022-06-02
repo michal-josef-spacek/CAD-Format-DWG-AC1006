@@ -1319,11 +1319,11 @@ types:
         type: polyline_flags
         if: entity_common.flag2_8
         doc: POLYLINE/70
-      - id: x
+      - id: start_width
         type: f8
         if: entity_common.flag2_7
         doc: POLYLINE/40
-      - id: y
+      - id: end_width
         type: f8
         if: entity_common.flag2_6
         doc: POLYLINE/41
