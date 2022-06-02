@@ -5319,7 +5319,7 @@ sub _read {
         $self->{unknown2} = $self->{_io}->read_u1();
     }
     if ($self->entity_common()->flag2_4()) {
-        $self->{unknown_in_radians} = $self->{_io}->read_f8le();
+        $self->{tangent_dir_in_radians} = $self->{_io}->read_f8le();
     }
 }
 
@@ -5358,9 +5358,9 @@ sub unknown2 {
     return $self->{unknown2};
 }
 
-sub unknown_in_radians {
+sub tangent_dir_in_radians {
     my ($self) = @_;
-    return $self->{unknown_in_radians};
+    return $self->{tangent_dir_in_radians};
 }
 
 ########################################################################
