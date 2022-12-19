@@ -937,9 +937,9 @@ types:
         type: generation_flags
         if: entity_common.flag2_3
         doc: ATTDEF/71
-      - id: text_type
+      - id: horiz_alignment
         type: u1
-        enum: text_type
+        enum: horiz_alignment
         if: entity_common.flag2_2
         doc: ATTDEF/72
       - id: end_point
@@ -995,9 +995,9 @@ types:
         type: generation_flags
         if: entity_common.flag2_3
         doc: ATTRIB/71
-      - id: horiz_text_justification_type
+      - id: horiz_alignment
         type: u1
-        enum: text_type
+        enum: horiz_alignment
         if: entity_common.flag2_2
         doc: ATTRIB/72
       - id: aligned_to
@@ -1424,8 +1424,8 @@ types:
         type: generation_flags
         if: entity_common.flag2_4
         doc: TEXT/71
-      - id: type
-        enum: text_type
+      - id: horiz_alignment
+        enum: horiz_alignment
         type: u1
         if: entity_common.flag2_3
         doc: TEXT/72
@@ -1998,7 +1998,7 @@ enums:
     0: left
     1: top
     2: right
-  text_type:
+  horiz_alignment:
     0: left
     1: center
     2: right
