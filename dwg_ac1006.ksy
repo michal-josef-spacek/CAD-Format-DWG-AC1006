@@ -1335,7 +1335,7 @@ types:
         type: b1
       - id: flag3
         type: b1
-      - id: flag4
+      - id: polygon_mesh_3d
         type: b1
       - id: flag5
         type: b1
