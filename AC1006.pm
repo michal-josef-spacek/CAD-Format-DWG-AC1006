@@ -5829,6 +5829,15 @@ sub _read {
     if ($self->entity_common()->flag2_6()) {
         $self->{end_width} = $self->{_io}->read_f8le();
     }
+    if ($self->entity_common()->flag2_5()) {
+        $self->{u1} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    }
+    if ($self->entity_common()->flag2_4()) {
+        $self->{num_m_verts} = $self->{_io}->read_u2le();
+    }
+    if ($self->entity_common()->flag2_3()) {
+        $self->{num_n_verts} = $self->{_io}->read_u2le();
+    }
 }
 
 sub entity_common {
@@ -5849,6 +5858,21 @@ sub start_width {
 sub end_width {
     my ($self) = @_;
     return $self->{end_width};
+}
+
+sub u1 {
+    my ($self) = @_;
+    return $self->{u1};
+}
+
+sub num_m_verts {
+    my ($self) = @_;
+    return $self->{num_m_verts};
+}
+
+sub num_n_verts {
+    my ($self) = @_;
+    return $self->{num_n_verts};
 }
 
 ########################################################################

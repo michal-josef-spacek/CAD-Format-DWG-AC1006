@@ -1327,6 +1327,15 @@ types:
         type: f8
         if: entity_common.flag2_6
         doc: POLYLINE/41
+      - id: u1
+        type: point_3d
+        if: entity_common.flag2_5
+      - id: num_m_verts
+        type: u2
+        if: entity_common.flag2_4
+      - id: num_n_verts
+        type: u2
+        if: entity_common.flag2_3
   polyline_flags:
     seq:
       - id: flag1
