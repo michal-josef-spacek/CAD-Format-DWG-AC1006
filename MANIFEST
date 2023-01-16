@@ -229,6 +229,7 @@ t/data/entity/dim/DIM1.DWG
 t/data/entity/insert/INSERT1.DWG
 t/data/entity/insert/INSERT2.DWG
 t/data/entity/line/LINE1.DWG
+t/data/entity/line/LINE2.DWG
 t/data/entity/point/POINT1.DWG
 t/data/entity/polyline/PL1.DWG
 t/data/entity/polyline2/PL1.DWG

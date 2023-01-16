@@ -3,7 +3,7 @@ use warnings;
 
 use CAD::Format::DWG::AC1006;
 use File::Object;
-use Test::More 'tests' => 10;
+use Test::More 'tests' => 21;
 use Test::NoWarnings;
 
 # Data directory.
@@ -25,4 +25,24 @@ is($line1_data->y1, 0, 'Start point of line y (0).');
 is($line1_data->x2, 1, 'End point of line x (1).');
 is($line1_data->y2, 1, 'End point of line y (1).');
 my $entities = @{$obj->entities->entities};
+is($entities, 1, 'Number of entities (1).');
+
+# Test.
+$obj = CAD::Format::DWG::AC1006->from_file(
+	$data_dir->file('LINE2.DWG')->s,
+);
+$entity1 = $obj->entities->entities->[0];
+isa_ok($entity1, 'CAD::Format::DWG::AC1006::Entity');
+is($entity1->entity_type, 1, 'Get entity type (1).');
+$line1_data = $entity1->data;
+$entity_common = $line1_data->entity_common;
+is($line1_data->entity_layer_index, 0, 'Line layer index (0).');
+is($line1_data->entity_size, 56, 'Entity size (56).');
+is($line1_data->x1, 0, 'Start point of line x (0).');
+is($line1_data->y1, 0, 'Start point of line y (0).');
+is($line1_data->z1, 1, 'Start point of line z (1).');
+is($line1_data->x2, 1, 'End point of line x (1).');
+is($line1_data->y2, 1, 'End point of line y (1).');
+is($line1_data->z2, 1, 'End point of line z (1).');
+$entities = @{$obj->entities->entities};
 is($entities, 1, 'Number of entities (1).');
