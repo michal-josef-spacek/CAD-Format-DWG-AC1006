@@ -1225,24 +1225,15 @@ types:
       - id: handling_id
         size: len_handling_id
         if: entity_mode.entity_handling_flag
-      - id: center_point
-        type: circle_center_point
-        doc: CIRCLE/10|20|30
+      - id: center_point_x
+        type: f8
+        doc: CIRCLE/10
+      - id: center_point_y
+        type: f8
+        doc: CIRCLE/20
       - id: radius
         type: f8
         doc: CIRCLE/40
-  circle_center_point:
-    seq:
-      - id: x
-        type: f8
-        doc: CIRCLE/10
-      - id: y
-        type: f8
-        doc: CIRCLE/20
-      - id: z
-        type: f8
-        doc: CIRCLE/30
-        if: _parent.entity_mode.entity_elevation_flag == true
   entity_dim:
     seq:
       - id: entity_mode
