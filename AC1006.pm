@@ -1712,9 +1712,9 @@ sub _read {
     $self->{flag2} = $self->{_io}->read_bits_int_be(1);
     $self->{flag3} = $self->{_io}->read_bits_int_be(1);
     $self->{polygon_mesh_3d} = $self->{_io}->read_bits_int_be(1);
-    $self->{flag5} = $self->{_io}->read_bits_int_be(1);
-    $self->{flag6} = $self->{_io}->read_bits_int_be(1);
-    $self->{flag7} = $self->{_io}->read_bits_int_be(1);
+    $self->{polyline_3d} = $self->{_io}->read_bits_int_be(1);
+    $self->{spline_fit} = $self->{_io}->read_bits_int_be(1);
+    $self->{curve_fit} = $self->{_io}->read_bits_int_be(1);
     $self->{closed} = $self->{_io}->read_bits_int_be(1);
 }
 
@@ -1738,19 +1738,19 @@ sub polygon_mesh_3d {
     return $self->{polygon_mesh_3d};
 }
 
-sub flag5 {
+sub polyline_3d {
     my ($self) = @_;
-    return $self->{flag5};
+    return $self->{polyline_3d};
 }
 
-sub flag6 {
+sub spline_fit {
     my ($self) = @_;
-    return $self->{flag6};
+    return $self->{spline_fit};
 }
 
-sub flag7 {
+sub curve_fit {
     my ($self) = @_;
-    return $self->{flag7};
+    return $self->{curve_fit};
 }
 
 sub closed {
@@ -2118,6 +2118,86 @@ sub flag7 {
 sub load {
     my ($self) = @_;
     return $self->{load};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::VertexFlags;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag1} = $self->{_io}->read_bits_int_be(1);
+    $self->{polygon_mesh_3d} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag3} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag4} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag5} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag6} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag7} = $self->{_io}->read_bits_int_be(1);
+    $self->{extra_vertex} = $self->{_io}->read_bits_int_be(1);
+}
+
+sub flag1 {
+    my ($self) = @_;
+    return $self->{flag1};
+}
+
+sub polygon_mesh_3d {
+    my ($self) = @_;
+    return $self->{polygon_mesh_3d};
+}
+
+sub flag3 {
+    my ($self) = @_;
+    return $self->{flag3};
+}
+
+sub flag4 {
+    my ($self) = @_;
+    return $self->{flag4};
+}
+
+sub flag5 {
+    my ($self) = @_;
+    return $self->{flag5};
+}
+
+sub flag6 {
+    my ($self) = @_;
+    return $self->{flag6};
+}
+
+sub flag7 {
+    my ($self) = @_;
+    return $self->{flag7};
+}
+
+sub extra_vertex {
+    my ($self) = @_;
+    return $self->{extra_vertex};
 }
 
 ########################################################################
@@ -6218,7 +6298,7 @@ sub _read {
         $self->{bulge} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_5()) {
-        $self->{unknown2} = $self->{_io}->read_u1();
+        $self->{flag} = CAD::Format::DWG::AC1006::VertexFlags->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_4()) {
         $self->{tangent_dir_in_radians} = $self->{_io}->read_f8le();
@@ -6300,9 +6380,9 @@ sub bulge {
     return $self->{bulge};
 }
 
-sub unknown2 {
+sub flag {
     my ($self) = @_;
-    return $self->{unknown2};
+    return $self->{flag};
 }
 
 sub tangent_dir_in_radians {

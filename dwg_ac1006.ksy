@@ -1603,11 +1603,11 @@ types:
         type: b1
       - id: polygon_mesh_3d
         type: b1
-      - id: flag5
+      - id: polyline_3d
         type: b1
-      - id: flag6
+      - id: spline_fit
         type: b1
-      - id: flag7
+      - id: curve_fit
         type: b1
       - id: closed
         type: b1
@@ -1877,13 +1877,32 @@ types:
         type: f8
         if: entity_common.flag2_6
         doc: VERTEX/42
-      - id: unknown2
-        type: u1
+      - id: flag
+        type: vertex_flags
         if: entity_common.flag2_5
+        doc: VERTEX/70
       - id: tangent_dir_in_radians
         type: f8
         if: entity_common.flag2_4
         doc: VERTEX/50
+  vertex_flags:
+    seq:
+      - id: flag1
+        type: b1
+      - id: polygon_mesh_3d
+        type: b1
+      - id: flag3
+        type: b1
+      - id: flag4
+        type: b1
+      - id: flag5
+        type: b1
+      - id: flag6
+        type: b1
+      - id: flag7
+        type: b1
+      - id: extra_vertex
+        type: b1
   attdef_flags:
     seq:
       - id: flag_1
