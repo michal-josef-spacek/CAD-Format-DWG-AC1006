@@ -1453,9 +1453,6 @@ sub _read {
     $self->{block_index} = $self->{_io}->read_s2le();
     $self->{x} = $self->{_io}->read_f8le();
     $self->{y} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 1) {
-        $self->{z} = $self->{_io}->read_f8le();
-    }
     if ($self->entity_common()->flag2_8()) {
         $self->{x_scale} = $self->{_io}->read_f8le();
     }
@@ -1548,11 +1545,6 @@ sub x {
 sub y {
     my ($self) = @_;
     return $self->{y};
-}
-
-sub z {
-    my ($self) = @_;
-    return $self->{z};
 }
 
 sub x_scale {

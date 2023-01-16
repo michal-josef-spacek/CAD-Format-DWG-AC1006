@@ -1157,10 +1157,6 @@ types:
       - id: y
         type: f8
         doc: INSERT/20
-      - id: z
-        type: f8
-        doc: ARC/30
-        if: entity_mode.entity_elevation_flag == true
       - id: x_scale
         type: f8
         if: entity_common.flag2_8
