@@ -16,8 +16,6 @@ yes
 41. Add test for seqend
 42. Sync attdef and attrib with previous version.
 attrib is
-43. elevation in common entity structure is every time instead of point and line
-and 3dface
 44.
 
 Applied
@@ -120,3 +118,7 @@ OK [20220329] skim
 
 38. Identify $BACKZ and $FRONTZ header variables
 OK [20220331] skim
+
+43. elevation in common entity structure is every time instead of point and line
+and 3dface
+OK [20230116] skim
