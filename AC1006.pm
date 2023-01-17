@@ -3913,6 +3913,9 @@ sub _read {
     $self->{block_index} = $self->{_io}->read_s2le();
     $self->{dimension_line_defining_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{default_text_position} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    if ($self->entity_common()->flag2_8()) {
+        $self->{clone_ins_pt} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
+    }
     if ($self->entity_common()->flag2_7()) {
         $self->{dim_type} = CAD::Format::DWG::AC1006::DimType->new($self->{_io}, $self, $self->{_root});
     }
@@ -4005,6 +4008,11 @@ sub dimension_line_defining_point {
 sub default_text_position {
     my ($self) = @_;
     return $self->{default_text_position};
+}
+
+sub clone_ins_pt {
+    my ($self) = @_;
+    return $self->{clone_ins_pt};
 }
 
 sub dim_type {
