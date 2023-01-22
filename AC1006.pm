@@ -4175,9 +4175,14 @@ sub _read {
     $self->{unknown10v} = $self->{_io}->read_u1();
     $self->{elevation} = $self->{_io}->read_f8le();
     $self->{thickness} = $self->{_io}->read_f8le();
-    $self->{view_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown_repeating} = CAD::Format::DWG::AC1006::UnknownRepeating->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown29} = $self->{_io}->read_s2le();
+    $self->{view_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_point_x} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_point_y} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_point_z} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_point_x_alt} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_point_y_alt} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{view_point_z_alt} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+    $self->{flag_3d} = $self->{_io}->read_s2le();
     $self->{blip} = $self->{_io}->read_s2le();
     $self->{dim_suppression_of_zeros} = $self->{_io}->read_s1();
     $self->{dim_rounding} = $self->{_io}->read_f8le();
@@ -4707,19 +4712,44 @@ sub thickness {
     return $self->{thickness};
 }
 
-sub view_point {
+sub view_dir {
     my ($self) = @_;
-    return $self->{view_point};
+    return $self->{view_dir};
 }
 
-sub unknown_repeating {
+sub view_point_x {
     my ($self) = @_;
-    return $self->{unknown_repeating};
+    return $self->{view_point_x};
 }
 
-sub unknown29 {
+sub view_point_y {
     my ($self) = @_;
-    return $self->{unknown29};
+    return $self->{view_point_y};
+}
+
+sub view_point_z {
+    my ($self) = @_;
+    return $self->{view_point_z};
+}
+
+sub view_point_x_alt {
+    my ($self) = @_;
+    return $self->{view_point_x_alt};
+}
+
+sub view_point_y_alt {
+    my ($self) = @_;
+    return $self->{view_point_y_alt};
+}
+
+sub view_point_z_alt {
+    my ($self) = @_;
+    return $self->{view_point_z_alt};
+}
+
+sub flag_3d {
+    my ($self) = @_;
+    return $self->{flag_3d};
 }
 
 sub blip {

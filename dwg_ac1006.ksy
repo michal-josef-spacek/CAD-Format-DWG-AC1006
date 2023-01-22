@@ -402,13 +402,22 @@ types:
       - id: thickness
         type: f8
         doc: 0x0231-0x0238, $THICKNESS
-      - id: view_point
+      - id: view_dir
         type: point_3d
         doc: 0x0239-0x0251, $VIEWDIR/10|20|30
-      - id: unknown_repeating
-        type: unknown_repeating
-        doc: 0x0252-0x02e0
-      - id: unknown29
+      - id: view_point_x
+        type: point_3d
+      - id: view_point_y
+        type: point_3d
+      - id: view_point_z
+        type: point_3d
+      - id: view_point_x_alt
+        type: point_3d
+      - id: view_point_y_alt
+        type: point_3d
+      - id: view_point_z_alt
+        type: point_3d
+      - id: flag_3d
         type: s2
         doc: 0x02e1-0x02e2
       - id: blip
