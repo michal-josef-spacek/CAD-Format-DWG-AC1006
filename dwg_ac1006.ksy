@@ -250,7 +250,7 @@ types:
       - id: unknown7d
         size: 2
         doc: 0x015a-0x015b
-      - id: unknown8
+      - id: aspect_ratio
         type: f8
         doc: 0x015c-0x0163
       - id: linear_units_format
