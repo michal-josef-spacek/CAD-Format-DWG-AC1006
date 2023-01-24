@@ -682,8 +682,9 @@ types:
       - id: ucs_icon
         type: u2
         doc: $UCSICON
-      - id: unknown47
+      - id: ucs_name_index
         type: u2
+        doc: $UCSNAME
       - id: table_appid
         type: table
         doc: 0x0512-0x051c
