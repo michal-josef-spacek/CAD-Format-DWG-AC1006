@@ -4254,7 +4254,7 @@ sub _read {
     $self->{dim_text_vertical_position_size} = $self->{_io}->read_f8le();
     $self->{unknown_string} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes(33), 0, 0));
     $self->{handling} = $self->{_io}->read_u2le();
-    $self->{handseed} = $self->{_io}->read_u8be();
+    $self->{handseed} = $self->{_io}->read_bytes(8);
     $self->{surfu} = $self->{_io}->read_u2le();
     $self->{surfv} = $self->{_io}->read_u2le();
     $self->{surftype} = $self->{_io}->read_u2le();

@@ -652,7 +652,7 @@ types:
         type: u2
         doc: 0x04ec-0x04ed, $HANDLING
       - id: handseed
-        type: u8be
+        size: 8
         doc: 0x04ee-0x04f5, $HANDSEED, in hex
       - id: surfu
         type: u2
