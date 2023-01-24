@@ -16,7 +16,8 @@ yes
 41. Add test for seqend
 42. Sync attdef and attrib with previous version.
 attrib is
-44.
+44. Fix current_color_convert
+45.
 
 Applied
 =======
