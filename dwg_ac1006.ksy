@@ -283,7 +283,7 @@ types:
       - id: att_visibility
         enum: att_visibility
         type: s2
-        doc: 0x0192-0x0193, $ATTMODE
+        doc: 0x0192-0x0193, $ATTMODE/70
       - id: menu
         size: 15
         type: str
@@ -472,103 +472,103 @@ types:
         doc: $TDUSRTIMER/ms
       - id: user_timer
         type: s2
-        doc: 0x033f-0x0340, $USRTIMER
+        doc: 0x033f-0x0340, $USRTIMER/70
       - id: fast_zoom
         type: u2
-        doc: 0x0341-0x0342, $FASTZOOM/70
+        doc: 0x0341-0x0342, $FASTZOOM
       - id: sketch_type
         type: u2
-        doc: 0x0343-0x0344, $SKPOLY
+        doc: 0x0343-0x0344, $SKPOLY/70
       - id: unknown_date
         type: unknown_date
       - id: angle_base
         type: f8
-        doc: 0x0353-0x035a, $ANGBASE
+        doc: 0x0353-0x035a, $ANGBASE/50
       - id: angle_direction
         enum: angle_direction
         type: s2
-        doc: 0x035b-0x035c, $ANGDIR
+        doc: 0x035b-0x035c, $ANGDIR/70
       - id: point_mode
         type: s2
-        doc: 0x035d-0x035e, $PDMODE
+        doc: 0x035d-0x035e, $PDMODE/70
       - id: point_size
         type: f8
-        doc: $PDSIZE
+        doc: $PDSIZE/40
       - id: polyline_width
         type: f8
-        doc: $PLINEWID
+        doc: $PLINEWID/40
       - id: user_integer_1
         type: s2
-        doc: 0x035f-0x0360, $USERI1
+        doc: 0x035f-0x0360, $USERI1/70
       - id: user_integer_2
         type: s2
-        doc: 0x0361-0x0362, $USERI2
+        doc: 0x0361-0x0362, $USERI2/70
       - id: user_integer_3
         type: s2
-        doc: 0x0363-0x0364, $USERI3
+        doc: 0x0363-0x0364, $USERI3/70
       - id: user_integer_4
         type: s2
-        doc: 0x0365-0x0366, $USERI4
+        doc: 0x0365-0x0366, $USERI4/70
       - id: user_integer_5
         type: s2
-        doc: 0x0367-0x0368, $USERI5
+        doc: 0x0367-0x0368, $USERI5/70
       - id: user_real_1
         type: f8
-        doc: $USERR1
+        doc: $USERR1/40
       - id: user_real_2
         type: f8
-        doc: $USERR2
+        doc: $USERR2/40
       - id: user_real_3
         type: f8
-        doc: $USERR3
+        doc: $USERR3/40
       - id: user_real_4
         type: f8
-        doc: $USERR4
+        doc: $USERR4/40
       - id: user_real_5
         type: f8
-        doc: $USERR5
+        doc: $USERR5/40
       - id: dim_alternate_units
         type: s1
-        doc: 0x03a1, $DIMALT
+        doc: 0x03a1, $DIMALT/70
       - id: dim_alternate_units_decimal_places
         type: s1
-        doc: 0x03a2, $DIMALTD
+        doc: 0x03a2, $DIMALTD/70
       - id: dim_associative
         type: s1
-        doc: 0x03a3, $DIMASO
+        doc: 0x03a3, $DIMASO/70
       - id: dim_sho
         type: s1
-        doc: 0x03a4, $DIMSHO
+        doc: 0x03a4, $DIMSHO/70
       - id: dim_measurement_postfix
         size: 16
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: $DIMPOST, TODO And prefix?
+        doc: $DIMPOST/1
       - id: dim_alternate_measurement_postfix
         size: 16
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: $DIMAPOST, TODO And prefix
+        doc: $DIMAPOST/1
       - id: dim_alternate_units_multiplier
         type: f8
-        doc: 0x03c5-0x03cc, $DIMALTF
+        doc: 0x03c5-0x03cc, $DIMALTF/40
       - id: dim_linear_measurements_scale_factor
         type: f8
-        doc: 0x03cd-0x03d4, $DIMLFAC
+        doc: 0x03cd-0x03d4, $DIMLFAC/40
       - id: spline_segs
         type: s2
-        doc: 0x03d5-0x03d6, $SPLINESEGS
+        doc: 0x03d5-0x03d6, $SPLINESEGS/70
       - id: spline_frame
         type: s2
-        doc: 0x03d7-0x03d8, $SPLFRAME
+        doc: 0x03d7-0x03d8, $SPLFRAME/70
       - id: attreq
         type: u2
-        doc: 0x03d9-0x03da, $ATTREQ
+        doc: 0x03d9-0x03da, $ATTREQ/70
       - id: attdia
         type: u2
-        doc: 0x03db-0x03dc, $ATTDIA
+        doc: 0x03db-0x03dc, $ATTDIA/70
       - id: chamfera
         type: f8
         doc: 0x03dd-0x04e4, $CHAMFERA/40
@@ -577,7 +577,7 @@ types:
         doc: 0x04e5-0x04ec, $CHAMFERB/40
       - id: mirror_text
         type: s2
-        doc: 0x03ed-0x03ee, $MIRRTEXT
+        doc: 0x03ed-0x03ee, $MIRRTEXT/70
       - id: table_ucs
         type: table
         doc: 0x03ef-0x03f9
@@ -612,31 +612,31 @@ types:
         doc: $VIEWMODE
       - id: dim_tofl
         type: u1
-        doc: 0x047d, $DIMTOFL
+        doc: 0x047d, $DIMTOFL/70
       - id: dim_arrowhead_block1
         size: 33
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: 0x047e-0x049e, $DIMBLK1
+        doc: 0x047e-0x049e, $DIMBLK1/1
       - id: dim_arrowhead_block2
         size: 33
         type: str
         encoding: ASCII
         terminator: 0x00
-        doc: 0x049f-0x04bf, $DIMBLK2
+        doc: 0x049f-0x04bf, $DIMBLK2/1
       - id: dim_arrowhead_blocks_control
         type: u1
-        doc: 0x04c0, $DIMSAH
+        doc: 0x04c0, $DIMSAH/70
       - id: dim_text_between_ext_lines
         type: u1
-        doc: 0x04c1, $DIMTIX
+        doc: 0x04c1, $DIMTIX/70
       - id: dim_arrowhead_suppress
         type: u1
-        doc: 0x04c2, $DIMSOXD
+        doc: 0x04c2, $DIMSOXD/70
       - id: dim_text_vertical_position_size
         type: f8
-        doc: 0x04c3-0x4ca, $DIMTVP
+        doc: 0x04c3-0x4ca, $DIMTVP/40
       - id: unknown_string
         size: 33
         type: str
@@ -644,25 +644,25 @@ types:
         terminator: 0x00
       - id: handling
         type: u2
-        doc: 0x04ec-0x04ed, $HANDLING
+        doc: 0x04ec-0x04ed, $HANDLING/70
       - id: handseed
         size: 8
-        doc: 0x04ee-0x04f5, $HANDSEED, in hex
+        doc: 0x04ee-0x04f5, $HANDSEED/5, in hex
       - id: surfu
         type: u2
-        doc: 0x04f6-0x04f7, $SURFU
+        doc: 0x04f6-0x04f7, $SURFU/70
       - id: surfv
         type: u2
-        doc: 0x04f8-0x04f9, $SURFV
+        doc: 0x04f8-0x04f9, $SURFV/70
       - id: surftype
         type: u2
-        doc: 0x04fa-0x94fb, $SURFTYPE
+        doc: 0x04fa-0x94fb, $SURFTYPE/70
       - id: surftab1
         type: u2
-        doc: 0x04fc-0x04fd, $SURFTAB1
+        doc: 0x04fc-0x04fd, $SURFTAB1/70
       - id: surftab2
         type: u2
-        doc: 0x04fe-0x04ff, $SURFTAB2
+        doc: 0x04fe-0x04ff, $SURFTAB2/70
       - id: table_vport
         type: table
         doc: 0x0500-0x050a
@@ -672,13 +672,13 @@ types:
       - id: spline_type
         type: u2
         enum: spline_type
-        doc: 0x050c-0x050d, $SPLINETYPE
+        doc: 0x050c-0x050d, $SPLINETYPE/70
       - id: ucs_icon
         type: u2
         doc: $UCSICON
       - id: ucs_name_index
         type: u2
-        doc: $UCSNAME
+        doc: $UCSNAME/2
       - id: table_appid
         type: table
         doc: 0x0512-0x051c
