@@ -999,18 +999,18 @@ types:
       - id: height
         type: f8
         doc: ATTRIB/40
-      - id: value_size
+      - id: len_value
         type: s2
       - id: value
-        size: value_size
+        size: len_value
         type: str
         encoding: ASCII
         terminator: 0x00
         doc: ATTRIB/1
-      - id: tag_size
+      - id: len_tag
         type: s2
       - id: tag
-        size: tag_size
+        size: len_tag
         type: str
         encoding: ASCII
         terminator: 0x00
