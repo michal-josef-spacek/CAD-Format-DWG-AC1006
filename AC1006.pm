@@ -917,6 +917,134 @@ sub extrusion_direction {
 }
 
 ########################################################################
+package CAD::Format::DWG::AC1006::InvisibleEdgeFlags;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{flag1} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag2} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag3} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag4} = $self->{_io}->read_bits_int_be(1);
+    $self->{fourth_edge_is_invisible} = $self->{_io}->read_bits_int_be(1);
+    $self->{third_edge_is_invisible} = $self->{_io}->read_bits_int_be(1);
+    $self->{second_edge_is_invisible} = $self->{_io}->read_bits_int_be(1);
+    $self->{first_edge_is_invisible} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag9} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag10} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag11} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag12} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag13} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag14} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag15} = $self->{_io}->read_bits_int_be(1);
+    $self->{flag16} = $self->{_io}->read_bits_int_be(1);
+}
+
+sub flag1 {
+    my ($self) = @_;
+    return $self->{flag1};
+}
+
+sub flag2 {
+    my ($self) = @_;
+    return $self->{flag2};
+}
+
+sub flag3 {
+    my ($self) = @_;
+    return $self->{flag3};
+}
+
+sub flag4 {
+    my ($self) = @_;
+    return $self->{flag4};
+}
+
+sub fourth_edge_is_invisible {
+    my ($self) = @_;
+    return $self->{fourth_edge_is_invisible};
+}
+
+sub third_edge_is_invisible {
+    my ($self) = @_;
+    return $self->{third_edge_is_invisible};
+}
+
+sub second_edge_is_invisible {
+    my ($self) = @_;
+    return $self->{second_edge_is_invisible};
+}
+
+sub first_edge_is_invisible {
+    my ($self) = @_;
+    return $self->{first_edge_is_invisible};
+}
+
+sub flag9 {
+    my ($self) = @_;
+    return $self->{flag9};
+}
+
+sub flag10 {
+    my ($self) = @_;
+    return $self->{flag10};
+}
+
+sub flag11 {
+    my ($self) = @_;
+    return $self->{flag11};
+}
+
+sub flag12 {
+    my ($self) = @_;
+    return $self->{flag12};
+}
+
+sub flag13 {
+    my ($self) = @_;
+    return $self->{flag13};
+}
+
+sub flag14 {
+    my ($self) = @_;
+    return $self->{flag14};
+}
+
+sub flag15 {
+    my ($self) = @_;
+    return $self->{flag15};
+}
+
+sub flag16 {
+    my ($self) = @_;
+    return $self->{flag16};
+}
+
+########################################################################
 package CAD::Format::DWG::AC1006::Pattern;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -1089,6 +1217,9 @@ sub _read {
     if ($self->entity_mode()->has_elevation() == 0) {
         $self->{fourth_point_z} = $self->{_io}->read_f8le();
     }
+    if ($self->entity_common()->flag2_8()) {
+        $self->{invisible_edge_flags} = CAD::Format::DWG::AC1006::InvisibleEdgeFlags->new($self->{_io}, $self, $self->{_root});
+    }
 }
 
 sub entity_mode {
@@ -1194,6 +1325,11 @@ sub fourth_point_y {
 sub fourth_point_z {
     my ($self) = @_;
     return $self->{fourth_point_z};
+}
+
+sub invisible_edge_flags {
+    my ($self) = @_;
+    return $self->{invisible_edge_flags};
 }
 
 ########################################################################
