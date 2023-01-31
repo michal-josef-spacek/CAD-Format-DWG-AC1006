@@ -245,6 +245,8 @@ t/data/header/dim_arrowhead_suppress/DAS1.DWG
 t/data/header/dim_text_between_ext_lines/DTBEL1.DWG
 t/data/header/dim_text_vertical_position_size/DTVPS1.DWG
 t/data/header/dim_tofl/DIMTOFL1.DWG
+t/data/header/handseed/HS1.DWG
+t/data/header/handseed/HS2.DWG
 t/data/header/surftype/ST1.DWG
 TODO
 xt/CAD-Format-DWG-AC1006/01-pod_coverage.t
