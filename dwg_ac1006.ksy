@@ -2267,12 +2267,11 @@ types:
       - id: vport_78
         type: u2
         doc: VPORT/78
-      - id: u14
+      - id: vport_50
         type: f8
-      - id: u15
-        type: f8
-      - id: u16
-        type: f8
+      - id: vport_13_23
+        type: point_2d
+        doc: VPORT/13|23
       - id: vport_14_24
         type: point_2d
         doc: VPORT/14|24

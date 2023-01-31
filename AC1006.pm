@@ -5851,9 +5851,8 @@ sub _read {
     $self->{vport_76} = $self->{_io}->read_u2le();
     $self->{vport_77} = $self->{_io}->read_u2le();
     $self->{vport_78} = $self->{_io}->read_u2le();
-    $self->{u14} = $self->{_io}->read_f8le();
-    $self->{u15} = $self->{_io}->read_f8le();
-    $self->{u16} = $self->{_io}->read_f8le();
+    $self->{vport_50} = $self->{_io}->read_f8le();
+    $self->{vport_13_23} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     $self->{vport_14_24} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     $self->{vport_15_25} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
 }
@@ -5963,19 +5962,14 @@ sub vport_78 {
     return $self->{vport_78};
 }
 
-sub u14 {
+sub vport_50 {
     my ($self) = @_;
-    return $self->{u14};
+    return $self->{vport_50};
 }
 
-sub u15 {
+sub vport_13_23 {
     my ($self) = @_;
-    return $self->{u15};
-}
-
-sub u16 {
-    my ($self) = @_;
-    return $self->{u16};
+    return $self->{vport_13_23};
 }
 
 sub vport_14_24 {
