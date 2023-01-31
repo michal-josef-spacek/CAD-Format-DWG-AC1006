@@ -2212,7 +2212,7 @@ types:
         doc: VPORT/2
       - id: view_size_vport_10_20
         type: point_2d
-        doc: VPORT/10|20, TODO
+        doc: VPORT/10|20
       - id: view_ctrl_vport_11_21
         type: point_2d
         doc: VPORT/11|21
@@ -2269,6 +2269,7 @@ types:
         doc: VPORT/78
       - id: vport_50
         type: f8
+        doc: VPORT/50
       - id: vport_13_23
         type: point_2d
         doc: VPORT/13|23
