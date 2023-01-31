@@ -287,22 +287,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{point_from} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -802,22 +802,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{x1} = $self->{_io}->read_f8le();
@@ -1054,39 +1054,39 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{first_point_x} = $self->{_io}->read_f8le();
     $self->{first_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{first_point_z} = $self->{_io}->read_f8le();
     }
     $self->{second_point_x} = $self->{_io}->read_f8le();
     $self->{second_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{second_point_z} = $self->{_io}->read_f8le();
     }
     $self->{third_point_x} = $self->{_io}->read_f8le();
     $self->{third_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{third_point_z} = $self->{_io}->read_f8le();
     }
     $self->{fourth_point_x} = $self->{_io}->read_f8le();
     $self->{fourth_point_y} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{fourth_point_z} = $self->{_io}->read_f8le();
     }
 }
@@ -1230,22 +1230,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{from} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -1432,22 +1432,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{block_index} = $self->{_io}->read_s2le();
@@ -2284,22 +2284,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
 }
@@ -2572,24 +2572,24 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{x} = $self->{_io}->read_f8le();
     $self->{y} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{z} = $self->{_io}->read_f8le();
     }
 }
@@ -2848,22 +2848,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{from} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -3242,22 +3242,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{insert_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -3550,22 +3550,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{start_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -3764,22 +3764,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{insert_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
@@ -3874,22 +3874,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{block_index} = $self->{_io}->read_s2le();
@@ -5188,22 +5188,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{center_point_x} = $self->{_io}->read_f8le();
@@ -5437,22 +5437,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{unknown} = $self->{_io}->read_bytes(4);
@@ -6022,22 +6022,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{center_point_x} = $self->{_io}->read_f8le();
@@ -6144,22 +6144,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{x} = $self->{_io}->read_f8le();
@@ -6288,22 +6288,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{x} = $self->{_io}->read_f8le();
@@ -6520,19 +6520,19 @@ sub new {
 sub _read {
     my ($self) = @_;
 
-    $self->{entity_has_attributes_flag} = $self->{_io}->read_bits_int_be(1);
+    $self->{has_attributes} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_mode2} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_handling_flag} = $self->{_io}->read_bits_int_be(1);
+    $self->{has_handling} = $self->{_io}->read_bits_int_be(1);
     $self->{entity_mode4} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_thickness_flag} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_elevation_flag} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_linetype_flag} = $self->{_io}->read_bits_int_be(1);
-    $self->{entity_color_flag} = $self->{_io}->read_bits_int_be(1);
+    $self->{has_thickness} = $self->{_io}->read_bits_int_be(1);
+    $self->{has_elevation} = $self->{_io}->read_bits_int_be(1);
+    $self->{has_linetype} = $self->{_io}->read_bits_int_be(1);
+    $self->{has_color} = $self->{_io}->read_bits_int_be(1);
 }
 
-sub entity_has_attributes_flag {
+sub has_attributes {
     my ($self) = @_;
-    return $self->{entity_has_attributes_flag};
+    return $self->{has_attributes};
 }
 
 sub entity_mode2 {
@@ -6540,9 +6540,9 @@ sub entity_mode2 {
     return $self->{entity_mode2};
 }
 
-sub entity_handling_flag {
+sub has_handling {
     my ($self) = @_;
-    return $self->{entity_handling_flag};
+    return $self->{has_handling};
 }
 
 sub entity_mode4 {
@@ -6550,24 +6550,24 @@ sub entity_mode4 {
     return $self->{entity_mode4};
 }
 
-sub entity_thickness_flag {
+sub has_thickness {
     my ($self) = @_;
-    return $self->{entity_thickness_flag};
+    return $self->{has_thickness};
 }
 
-sub entity_elevation_flag {
+sub has_elevation {
     my ($self) = @_;
-    return $self->{entity_elevation_flag};
+    return $self->{has_elevation};
 }
 
-sub entity_linetype_flag {
+sub has_linetype {
     my ($self) = @_;
-    return $self->{entity_linetype_flag};
+    return $self->{has_linetype};
 }
 
-sub entity_color_flag {
+sub has_color {
     my ($self) = @_;
-    return $self->{entity_color_flag};
+    return $self->{has_color};
 }
 
 ########################################################################
@@ -6604,29 +6604,29 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     $self->{x1} = $self->{_io}->read_f8le();
     $self->{y1} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{z1} = $self->{_io}->read_f8le();
     }
     $self->{x2} = $self->{_io}->read_f8le();
     $self->{y2} = $self->{_io}->read_f8le();
-    if ($self->entity_mode()->entity_elevation_flag() == 0) {
+    if ($self->entity_mode()->has_elevation() == 0) {
         $self->{z2} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_8()) {
@@ -6928,22 +6928,22 @@ sub _read {
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{entity_layer_index} = $self->{_io}->read_s2le();
     $self->{entity_common} = CAD::Format::DWG::AC1006::EntityCommon->new($self->{_io}, $self, $self->{_root});
-    if ($self->entity_mode()->entity_color_flag()) {
+    if ($self->entity_mode()->has_color()) {
         $self->{entity_color} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_linetype_flag()) {
+    if ($self->entity_mode()->has_linetype()) {
         $self->{entity_linetype_index} = $self->{_io}->read_s1();
     }
-    if ($self->entity_mode()->entity_elevation_flag()) {
+    if ($self->entity_mode()->has_elevation()) {
         $self->{entity_elevation} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_thickness_flag()) {
+    if ($self->entity_mode()->has_thickness()) {
         $self->{entity_thickness} = $self->{_io}->read_f8le();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{len_handling_id} = $self->{_io}->read_u1();
     }
-    if ($self->entity_mode()->entity_handling_flag()) {
+    if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
     if ($self->entity_common()->flag2_8()) {
