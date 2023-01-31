@@ -909,26 +909,26 @@ types:
       - id: height
         type: f8
         doc: ATTDEF/40
-      - id: default_size
+      - id: len_default
         type: s2
       - id: default
-        size: default_size
+        size: len_default
         type: str
         encoding: ASCII
         terminator: 0x00
         doc: ATTDEF/1
-      - id: prompt_size
+      - id: len_prompt
         type: s2
       - id: prompt
-        size: prompt_size
+        size: len_prompt
         type: str
         encoding: ASCII
         terminator: 0x00
         doc: ATTDEF/3
-      - id: tag_size
+      - id: len_tag
         type: s2
       - id: tag
-        size: tag_size
+        size: len_tag
         type: str
         encoding: ASCII
         terminator: 0x00
@@ -1278,12 +1278,12 @@ types:
         type: dim_type
         if: entity_common.flag2_7
         doc: DIMENSION/70
-      - id: text_size
+      - id: len_text
         type: s2
         if: entity_common.flag2_6
       - id: text
         type: str
-        size: text_size
+        size: len_text
         encoding: ASCII
         terminator: 0x00
         if: entity_common.flag2_6

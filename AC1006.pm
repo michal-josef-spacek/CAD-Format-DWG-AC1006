@@ -3570,12 +3570,12 @@ sub _read {
     }
     $self->{start_point} = CAD::Format::DWG::AC1006::Point2d->new($self->{_io}, $self, $self->{_root});
     $self->{height} = $self->{_io}->read_f8le();
-    $self->{default_size} = $self->{_io}->read_s2le();
-    $self->{default} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->default_size()), 0, 0));
-    $self->{prompt_size} = $self->{_io}->read_s2le();
-    $self->{prompt} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->prompt_size()), 0, 0));
-    $self->{tag_size} = $self->{_io}->read_s2le();
-    $self->{tag} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->tag_size()), 0, 0));
+    $self->{len_default} = $self->{_io}->read_s2le();
+    $self->{default} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->len_default()), 0, 0));
+    $self->{len_prompt} = $self->{_io}->read_s2le();
+    $self->{prompt} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->len_prompt()), 0, 0));
+    $self->{len_tag} = $self->{_io}->read_s2le();
+    $self->{tag} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->len_tag()), 0, 0));
     $self->{flags} = CAD::Format::DWG::AC1006::AttdefFlags->new($self->{_io}, $self, $self->{_root});
     if ($self->entity_common()->flag2_7()) {
         $self->{rotation_angle_in_radians} = $self->{_io}->read_f8le();
@@ -3660,9 +3660,9 @@ sub height {
     return $self->{height};
 }
 
-sub default_size {
+sub len_default {
     my ($self) = @_;
-    return $self->{default_size};
+    return $self->{len_default};
 }
 
 sub default {
@@ -3670,9 +3670,9 @@ sub default {
     return $self->{default};
 }
 
-sub prompt_size {
+sub len_prompt {
     my ($self) = @_;
-    return $self->{prompt_size};
+    return $self->{len_prompt};
 }
 
 sub prompt {
@@ -3680,9 +3680,9 @@ sub prompt {
     return $self->{prompt};
 }
 
-sub tag_size {
+sub len_tag {
     my ($self) = @_;
-    return $self->{tag_size};
+    return $self->{len_tag};
 }
 
 sub tag {
@@ -3902,10 +3902,10 @@ sub _read {
         $self->{dim_type} = CAD::Format::DWG::AC1006::DimType->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_6()) {
-        $self->{text_size} = $self->{_io}->read_s2le();
+        $self->{len_text} = $self->{_io}->read_s2le();
     }
     if ($self->entity_common()->flag2_6()) {
-        $self->{text} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->text_size()), 0, 0));
+        $self->{text} = Encode::decode("ASCII", IO::KaitaiStruct::Stream::bytes_terminate($self->{_io}->read_bytes($self->len_text()), 0, 0));
     }
     if ($self->entity_common()->flag2_5()) {
         $self->{extension_defining_point1} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
@@ -4002,9 +4002,9 @@ sub dim_type {
     return $self->{dim_type};
 }
 
-sub text_size {
+sub len_text {
     my ($self) = @_;
-    return $self->{text_size};
+    return $self->{len_text};
 }
 
 sub text {
