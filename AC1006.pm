@@ -7086,7 +7086,7 @@ sub _read {
         $self->{end_width} = $self->{_io}->read_f8le();
     }
     if ($self->entity_common()->flag2_5()) {
-        $self->{u1} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
+        $self->{extrusion} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->entity_common()->flag2_4()) {
         $self->{num_m_verts} = $self->{_io}->read_u2le();
@@ -7161,9 +7161,9 @@ sub end_width {
     return $self->{end_width};
 }
 
-sub u1 {
+sub extrusion {
     my ($self) = @_;
-    return $self->{u1};
+    return $self->{extrusion};
 }
 
 sub num_m_verts {

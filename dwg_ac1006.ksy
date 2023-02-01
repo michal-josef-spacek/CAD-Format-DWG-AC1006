@@ -1630,7 +1630,7 @@ types:
         type: f8
         if: entity_common.flag2_6
         doc: POLYLINE/41
-      - id: u1
+      - id: extrusion
         type: point_3d
         if: entity_common.flag2_5
       - id: num_m_verts
