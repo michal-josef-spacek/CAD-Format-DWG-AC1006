@@ -97,7 +97,7 @@ types:
     seq:
       - id: magic
         contents: [0x41, 0x43, 0x31, 0x30, 0x30, 0x36]
-        doc: 0x0000-0x0005, $ACADVER
+        doc: 0x0000-0x0005, $ACADVER/1
       - id: zeros
         size: 6
       - id: zero_one_or_three
@@ -475,7 +475,7 @@ types:
         doc: 0x033f-0x0340, $USRTIMER/70
       - id: fast_zoom
         type: u2
-        doc: 0x0341-0x0342, $FASTZOOM
+        doc: 0x0341-0x0342, $FASTZOOM/70
       - id: sketch_type
         type: u2
         doc: 0x0343-0x0344, $SKPOLY/70
