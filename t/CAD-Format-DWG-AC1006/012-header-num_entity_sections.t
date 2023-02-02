@@ -13,4 +13,4 @@ my $data_dir = File::Object->new->up->dir('data/blank')->set;
 my $obj = CAD::Format::DWG::AC1006->from_file(
 	$data_dir->file('BLANK.DWG')->s,
 );
-is($obj->header->unknown_3, 3, 'Unknown variable (3 - default).');
+is($obj->header->num_entity_sections, 3, 'Number of entity sections (3 - default).');

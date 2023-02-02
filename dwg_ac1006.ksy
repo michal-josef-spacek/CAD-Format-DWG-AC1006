@@ -102,7 +102,7 @@ types:
         size: 6
       - id: zero_one_or_three
         type: s1
-      - id: unknown_3
+      - id: num_entity_sections
         type: s2
       - id: num_sections
         type: s2
