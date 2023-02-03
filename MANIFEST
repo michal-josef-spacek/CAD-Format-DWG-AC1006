@@ -169,8 +169,8 @@ t/CAD-Format-DWG-AC1006/148-header-variables-table_vport-items.t
 t/CAD-Format-DWG-AC1006/149-header-variables-text_size.t
 t/CAD-Format-DWG-AC1006/150-header-variables-text_style_index.t
 t/CAD-Format-DWG-AC1006/151-header-variables-thickness.t
-t/CAD-Format-DWG-AC1006/152-header-vairables-total_editing_time_days.t
-t/CAD-Format-DWG-AC1006/153-header-vairables-total_editing_time_ms.t
+t/CAD-Format-DWG-AC1006/152-header-variables-total_editing_time_days.t
+t/CAD-Format-DWG-AC1006/153-header-variables-total_editing_time_ms.t
 t/CAD-Format-DWG-AC1006/154-header-variables-trace_width.t
 t/CAD-Format-DWG-AC1006/155-header-variables-ucs_origin_point_x.t
 t/CAD-Format-DWG-AC1006/156-header-variables-ucs_origin_point_y.t
@@ -182,11 +182,11 @@ t/CAD-Format-DWG-AC1006/161-header-variables-ucs_y_dir_x.t
 t/CAD-Format-DWG-AC1006/162-header-variables-ucs_y_dir_y.t
 t/CAD-Format-DWG-AC1006/163-header-variables-ucs_y_dir_z.t
 t/CAD-Format-DWG-AC1006/164-header-variables-units_for_angles.t
-t/CAD-Format-DWG-AC1006/165-header-vairables-update_date.t
-t/CAD-Format-DWG-AC1006/166-header-vairables-update_date_days.t
-t/CAD-Format-DWG-AC1006/167-header-vairables-update_date_ms.t
-t/CAD-Format-DWG-AC1006/168-header-vairables-user_elapsed_timer_days.t
-t/CAD-Format-DWG-AC1006/169-header-vairables-user_elapsed_timer_ms.t
+t/CAD-Format-DWG-AC1006/165-header-variables-update_date.t
+t/CAD-Format-DWG-AC1006/166-header-variables-update_date_days.t
+t/CAD-Format-DWG-AC1006/167-header-variables-update_date_ms.t
+t/CAD-Format-DWG-AC1006/168-header-variables-user_elapsed_timer_days.t
+t/CAD-Format-DWG-AC1006/169-header-variables-user_elapsed_timer_ms.t
 t/CAD-Format-DWG-AC1006/170-header-variables-user_integer_1.t
 t/CAD-Format-DWG-AC1006/171-header-variables-user_integer_2.t
 t/CAD-Format-DWG-AC1006/172-header-variables-user_integer_3.t
