@@ -13,4 +13,5 @@ my $data_dir = File::Object->new->up->dir('data/blank')->set;
 my $obj = CAD::Format::DWG::AC1006->from_file(
 	$data_dir->file('BLANK.DWG')->s,
 );
-is($obj->header->blocks_size, 0, 'Size of blocks section (0).');
+is($obj->header->block_entities_size_unknown, 0x40,
+	'Size of block entities section - unknown part - word (0x40).');
