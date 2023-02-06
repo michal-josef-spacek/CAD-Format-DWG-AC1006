@@ -4346,7 +4346,7 @@ sub _read {
     $self->{chamfera} = $self->{_io}->read_f8le();
     $self->{chamferb} = $self->{_io}->read_f8le();
     $self->{mirror_text} = $self->{_io}->read_s2le();
-    $self->{table_ucs} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_ucs} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
     $self->{unknown37} = $self->{_io}->read_bytes(2);
     $self->{ucs_origin_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_x_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
@@ -4372,13 +4372,13 @@ sub _read {
     $self->{surftype} = $self->{_io}->read_u2le();
     $self->{surftab1} = $self->{_io}->read_u2le();
     $self->{surftab2} = $self->{_io}->read_u2le();
-    $self->{table_vport} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_vport} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
     $self->{flatland} = $self->{_io}->read_u2le();
     $self->{spline_type} = $self->{_io}->read_u2le();
     $self->{ucs_icon} = $self->{_io}->read_u2le();
     $self->{ucs_name_index} = $self->{_io}->read_u2le();
     if ($self->_parent()->num_header_vars() == 160) {
-        $self->{table_appid} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+        $self->{table_appid} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->_parent()->num_header_vars() == 160) {
         $self->{world_view} = $self->{_io}->read_u2le();
@@ -5581,11 +5581,11 @@ sub _read {
     $self->{block_entities_size_raw} = $self->{_io}->read_u4le();
     $self->{extra_entities_start} = $self->{_io}->read_s4le();
     $self->{extra_entities_size_raw} = $self->{_io}->read_u4le();
-    $self->{table_block} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
-    $self->{table_layer} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
-    $self->{table_style} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
-    $self->{table_linetype} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
-    $self->{table_view} = CAD::Format::DWG::AC1006::Table->new($self->{_io}, $self, $self->{_root});
+    $self->{table_block} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
+    $self->{table_layer} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
+    $self->{table_style} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
+    $self->{table_linetype} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
+    $self->{table_view} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
     $self->{variables} = CAD::Format::DWG::AC1006::HeaderVariables->new($self->{_io}, $self, $self->{_root});
 }
 
@@ -6873,62 +6873,6 @@ sub ucs_y_dir {
 }
 
 ########################################################################
-package CAD::Format::DWG::AC1006::Table;
-
-our @ISA = 'IO::KaitaiStruct::Struct';
-
-sub from_file {
-    my ($class, $filename) = @_;
-    my $fd;
-
-    open($fd, '<', $filename) or return undef;
-    binmode($fd);
-    return new($class, IO::KaitaiStruct::Stream->new($fd));
-}
-
-sub new {
-    my ($class, $_io, $_parent, $_root) = @_;
-    my $self = IO::KaitaiStruct::Struct->new($_io);
-
-    bless $self, $class;
-    $self->{_parent} = $_parent;
-    $self->{_root} = $_root || $self;;
-
-    $self->_read();
-
-    return $self;
-}
-
-sub _read {
-    my ($self) = @_;
-
-    $self->{item_size} = $self->{_io}->read_u2le();
-    $self->{items} = $self->{_io}->read_u2le();
-    $self->{unknown} = $self->{_io}->read_bytes(2);
-    $self->{begin} = $self->{_io}->read_u4le();
-}
-
-sub item_size {
-    my ($self) = @_;
-    return $self->{item_size};
-}
-
-sub items {
-    my ($self) = @_;
-    return $self->{items};
-}
-
-sub unknown {
-    my ($self) = @_;
-    return $self->{unknown};
-}
-
-sub begin {
-    my ($self) = @_;
-    return $self->{begin};
-}
-
-########################################################################
 package CAD::Format::DWG::AC1006::EntityPolyline;
 
 our @ISA = 'IO::KaitaiStruct::Struct';
@@ -7238,6 +7182,62 @@ sub flag_3d {
 sub u4 {
     my ($self) = @_;
     return $self->{u4};
+}
+
+########################################################################
+package CAD::Format::DWG::AC1006::HeaderTable;
+
+our @ISA = 'IO::KaitaiStruct::Struct';
+
+sub from_file {
+    my ($class, $filename) = @_;
+    my $fd;
+
+    open($fd, '<', $filename) or return undef;
+    binmode($fd);
+    return new($class, IO::KaitaiStruct::Stream->new($fd));
+}
+
+sub new {
+    my ($class, $_io, $_parent, $_root) = @_;
+    my $self = IO::KaitaiStruct::Struct->new($_io);
+
+    bless $self, $class;
+    $self->{_parent} = $_parent;
+    $self->{_root} = $_root || $self;;
+
+    $self->_read();
+
+    return $self;
+}
+
+sub _read {
+    my ($self) = @_;
+
+    $self->{item_size} = $self->{_io}->read_u2le();
+    $self->{items} = $self->{_io}->read_u2le();
+    $self->{unknown} = $self->{_io}->read_bytes(2);
+    $self->{begin} = $self->{_io}->read_u4le();
+}
+
+sub item_size {
+    my ($self) = @_;
+    return $self->{item_size};
+}
+
+sub items {
+    my ($self) = @_;
+    return $self->{items};
+}
+
+sub unknown {
+    my ($self) = @_;
+    return $self->{unknown};
+}
+
+sub begin {
+    my ($self) = @_;
+    return $self->{begin};
 }
 
 1;
