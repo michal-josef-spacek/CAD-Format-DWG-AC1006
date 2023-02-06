@@ -57,6 +57,9 @@ seq:
   - id: block_entities
     type: real_entities
     size: header.block_entities_size
+  - id: entities_extra
+    type: real_entities
+    size: header.extra_entities_size
   - id: todo
     size-eos: true
     repeat: eos
