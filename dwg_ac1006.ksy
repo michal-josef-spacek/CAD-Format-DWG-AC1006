@@ -59,6 +59,7 @@ seq:
   - id: entities_extra
     type: real_entities
     size: header.extra_entities_size
+    if: header.extra_entities_start > 0
   - id: todo
     size-eos: true
     repeat: eos

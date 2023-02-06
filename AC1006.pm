@@ -175,9 +175,11 @@ sub _read {
     $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->block_entities_size());
     my $io__raw_block_entities = IO::KaitaiStruct::Stream->new($self->{_raw_block_entities});
     $self->{block_entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_block_entities, $self, $self->{_root});
-    $self->{_raw_entities_extra} = $self->{_io}->read_bytes($self->header()->extra_entities_size());
-    my $io__raw_entities_extra = IO::KaitaiStruct::Stream->new($self->{_raw_entities_extra});
-    $self->{entities_extra} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_entities_extra, $self, $self->{_root});
+    if ($self->header()->extra_entities_start() > 0) {
+        $self->{_raw_entities_extra} = $self->{_io}->read_bytes($self->header()->extra_entities_size());
+        my $io__raw_entities_extra = IO::KaitaiStruct::Stream->new($self->{_raw_entities_extra});
+        $self->{entities_extra} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_entities_extra, $self, $self->{_root});
+    }
     if (!($self->_io()->is_eof())) {
         $self->{todo} = ();
         while (!$self->{_io}->is_eof()) {
