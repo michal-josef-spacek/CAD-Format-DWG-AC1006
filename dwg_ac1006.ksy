@@ -40,7 +40,6 @@ seq:
     type: view
     repeat: expr
     repeat-expr: header.table_view.items
-  # TODO Je tady nejaka chyba (AC1006/from_autocad_r10/TUTORIAL.DWG)
   - id: table_ucss
     type: ucs
     repeat: expr
