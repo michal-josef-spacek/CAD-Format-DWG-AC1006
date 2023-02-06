@@ -53,7 +53,7 @@ seq:
     repeat: expr
     repeat-expr: header.variables.table_appid.items
     if: header.num_header_vars == 160
-  - id: block_entities
+  - id: entities_block
     type: real_entities
     size: header.block_entities_size
   - id: entities_extra

@@ -172,9 +172,9 @@ sub _read {
             push @{$self->{table_appids}}, CAD::Format::DWG::AC1006::Appid->new($self->{_io}, $self, $self->{_root});
         }
     }
-    $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->block_entities_size());
-    my $io__raw_block_entities = IO::KaitaiStruct::Stream->new($self->{_raw_block_entities});
-    $self->{block_entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_block_entities, $self, $self->{_root});
+    $self->{_raw_entities_block} = $self->{_io}->read_bytes($self->header()->block_entities_size());
+    my $io__raw_entities_block = IO::KaitaiStruct::Stream->new($self->{_raw_entities_block});
+    $self->{entities_block} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_entities_block, $self, $self->{_root});
     if ($self->header()->extra_entities_start() > 0) {
         $self->{_raw_entities_extra} = $self->{_io}->read_bytes($self->header()->extra_entities_size());
         my $io__raw_entities_extra = IO::KaitaiStruct::Stream->new($self->{_raw_entities_extra});
@@ -238,9 +238,9 @@ sub table_appids {
     return $self->{table_appids};
 }
 
-sub block_entities {
+sub entities_block {
     my ($self) = @_;
-    return $self->{block_entities};
+    return $self->{entities_block};
 }
 
 sub entities_extra {
@@ -258,9 +258,9 @@ sub _raw_entities {
     return $self->{_raw_entities};
 }
 
-sub _raw_block_entities {
+sub _raw_entities_block {
     my ($self) = @_;
-    return $self->{_raw_block_entities};
+    return $self->{_raw_entities_block};
 }
 
 sub _raw_entities_extra {
