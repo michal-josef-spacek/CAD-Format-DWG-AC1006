@@ -130,46 +130,46 @@ sub _read {
     $self->{_raw_entities} = $self->{_io}->read_bytes(($self->header()->entities_end() - $self->header()->entities_start()));
     my $io__raw_entities = IO::KaitaiStruct::Stream->new($self->{_raw_entities});
     $self->{entities} = CAD::Format::DWG::AC1006::RealEntities->new($io__raw_entities, $self, $self->{_root});
-    $self->{blocks} = ();
-    my $n_blocks = $self->header()->table_block()->items();
-    for (my $i = 0; $i < $n_blocks; $i++) {
-        push @{$self->{blocks}}, CAD::Format::DWG::AC1006::Block->new($self->{_io}, $self, $self->{_root});
+    $self->{table_blocks} = ();
+    my $n_table_blocks = $self->header()->table_block()->items();
+    for (my $i = 0; $i < $n_table_blocks; $i++) {
+        push @{$self->{table_blocks}}, CAD::Format::DWG::AC1006::Block->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{layers} = ();
-    my $n_layers = $self->header()->table_layer()->items();
-    for (my $i = 0; $i < $n_layers; $i++) {
-        push @{$self->{layers}}, CAD::Format::DWG::AC1006::Layer->new($self->{_io}, $self, $self->{_root});
+    $self->{table_layers} = ();
+    my $n_table_layers = $self->header()->table_layer()->items();
+    for (my $i = 0; $i < $n_table_layers; $i++) {
+        push @{$self->{table_layers}}, CAD::Format::DWG::AC1006::Layer->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{styles} = ();
-    my $n_styles = $self->header()->table_style()->items();
-    for (my $i = 0; $i < $n_styles; $i++) {
-        push @{$self->{styles}}, CAD::Format::DWG::AC1006::Style->new($self->{_io}, $self, $self->{_root});
+    $self->{table_styles} = ();
+    my $n_table_styles = $self->header()->table_style()->items();
+    for (my $i = 0; $i < $n_table_styles; $i++) {
+        push @{$self->{table_styles}}, CAD::Format::DWG::AC1006::Style->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{linetypes} = ();
-    my $n_linetypes = $self->header()->table_linetype()->items();
-    for (my $i = 0; $i < $n_linetypes; $i++) {
-        push @{$self->{linetypes}}, CAD::Format::DWG::AC1006::Linetype->new($self->{_io}, $self, $self->{_root});
+    $self->{table_linetypes} = ();
+    my $n_table_linetypes = $self->header()->table_linetype()->items();
+    for (my $i = 0; $i < $n_table_linetypes; $i++) {
+        push @{$self->{table_linetypes}}, CAD::Format::DWG::AC1006::Linetype->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{views} = ();
-    my $n_views = $self->header()->table_view()->items();
-    for (my $i = 0; $i < $n_views; $i++) {
-        push @{$self->{views}}, CAD::Format::DWG::AC1006::View->new($self->{_io}, $self, $self->{_root});
+    $self->{table_views} = ();
+    my $n_table_views = $self->header()->table_view()->items();
+    for (my $i = 0; $i < $n_table_views; $i++) {
+        push @{$self->{table_views}}, CAD::Format::DWG::AC1006::View->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{ucss} = ();
-    my $n_ucss = $self->header()->variables()->table_ucs()->items();
-    for (my $i = 0; $i < $n_ucss; $i++) {
-        push @{$self->{ucss}}, CAD::Format::DWG::AC1006::Ucs->new($self->{_io}, $self, $self->{_root});
+    $self->{table_ucss} = ();
+    my $n_table_ucss = $self->header()->variables()->table_ucs()->items();
+    for (my $i = 0; $i < $n_table_ucss; $i++) {
+        push @{$self->{table_ucss}}, CAD::Format::DWG::AC1006::Ucs->new($self->{_io}, $self, $self->{_root});
     }
-    $self->{vports} = ();
-    my $n_vports = $self->header()->variables()->table_vport()->items();
-    for (my $i = 0; $i < $n_vports; $i++) {
-        push @{$self->{vports}}, CAD::Format::DWG::AC1006::Vport->new($self->{_io}, $self, $self->{_root});
+    $self->{table_vports} = ();
+    my $n_table_vports = $self->header()->variables()->table_vport()->items();
+    for (my $i = 0; $i < $n_table_vports; $i++) {
+        push @{$self->{table_vports}}, CAD::Format::DWG::AC1006::Vport->new($self->{_io}, $self, $self->{_root});
     }
     if ($self->header()->num_header_vars() == 160) {
-        $self->{appids} = ();
-        my $n_appids = $self->header()->variables()->table_appid()->items();
-        for (my $i = 0; $i < $n_appids; $i++) {
-            push @{$self->{appids}}, CAD::Format::DWG::AC1006::Appid->new($self->{_io}, $self, $self->{_root});
+        $self->{table_appids} = ();
+        my $n_table_appids = $self->header()->variables()->table_appid()->items();
+        for (my $i = 0; $i < $n_table_appids; $i++) {
+            push @{$self->{table_appids}}, CAD::Format::DWG::AC1006::Appid->new($self->{_io}, $self, $self->{_root});
         }
     }
     $self->{_raw_block_entities} = $self->{_io}->read_bytes($self->header()->block_entities_size());
@@ -196,44 +196,44 @@ sub entities {
     return $self->{entities};
 }
 
-sub blocks {
+sub table_blocks {
     my ($self) = @_;
-    return $self->{blocks};
+    return $self->{table_blocks};
 }
 
-sub layers {
+sub table_layers {
     my ($self) = @_;
-    return $self->{layers};
+    return $self->{table_layers};
 }
 
-sub styles {
+sub table_styles {
     my ($self) = @_;
-    return $self->{styles};
+    return $self->{table_styles};
 }
 
-sub linetypes {
+sub table_linetypes {
     my ($self) = @_;
-    return $self->{linetypes};
+    return $self->{table_linetypes};
 }
 
-sub views {
+sub table_views {
     my ($self) = @_;
-    return $self->{views};
+    return $self->{table_views};
 }
 
-sub ucss {
+sub table_ucss {
     my ($self) = @_;
-    return $self->{ucss};
+    return $self->{table_ucss};
 }
 
-sub vports {
+sub table_vports {
     my ($self) = @_;
-    return $self->{vports};
+    return $self->{table_vports};
 }
 
-sub appids {
+sub table_appids {
     my ($self) = @_;
-    return $self->{appids};
+    return $self->{table_appids};
 }
 
 sub block_entities {

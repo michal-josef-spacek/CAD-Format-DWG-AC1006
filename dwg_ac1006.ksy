@@ -20,36 +20,36 @@ seq:
   - id: entities
     type: real_entities
     size: header.entities_end - header.entities_start
-  - id: blocks
+  - id: table_blocks
     type: block
     repeat: expr
     repeat-expr: header.table_block.items
-  - id: layers
+  - id: table_layers
     type: layer
     repeat: expr
     repeat-expr: header.table_layer.items
-  - id: styles
+  - id: table_styles
     type: style
     repeat: expr
     repeat-expr: header.table_style.items
-  - id: linetypes
+  - id: table_linetypes
     type: linetype
     repeat: expr
     repeat-expr: header.table_linetype.items
-  - id: views
+  - id: table_views
     type: view
     repeat: expr
     repeat-expr: header.table_view.items
   # TODO Je tady nejaka chyba (AC1006/from_autocad_r10/TUTORIAL.DWG)
-  - id: ucss
+  - id: table_ucss
     type: ucs
     repeat: expr
     repeat-expr: header.variables.table_ucs.items
-  - id: vports
+  - id: table_vports
     type: vport
     repeat: expr
     repeat-expr: header.variables.table_vport.items
-  - id: appids
+  - id: table_appids
     type: appid
     repeat: expr
     repeat-expr: header.variables.table_appid.items
