@@ -1391,8 +1391,8 @@ types:
       - id: address_raw
         type: u4
       - id: unknown_data
-        size: entity_size - 10
-        if: entity_size > 10
+        size: entity_size - 8
+        if: entity_size > 8
     instances:
       address_flag:
          value: (address_raw & 0xff000000) >> 24

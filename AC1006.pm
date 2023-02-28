@@ -3576,8 +3576,8 @@ sub _read {
     $self->{entity_mode} = CAD::Format::DWG::AC1006::EntityMode->new($self->{_io}, $self, $self->{_root});
     $self->{entity_size} = $self->{_io}->read_s2le();
     $self->{address_raw} = $self->{_io}->read_u4le();
-    if ($self->entity_size() > 10) {
-        $self->{unknown_data} = $self->{_io}->read_bytes(($self->entity_size() - 10));
+    if ($self->entity_size() > 8) {
+        $self->{unknown_data} = $self->{_io}->read_bytes(($self->entity_size() - 8));
     }
 }
 
