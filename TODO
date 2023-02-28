@@ -17,7 +17,8 @@ yes
 42. Sync attdef and attrib with previous version.
 attrib is
 44. Fix current_color_convert
-45.
+45. Add tests for jump entity in extra entity section
+46.
 
 Applied
 =======
