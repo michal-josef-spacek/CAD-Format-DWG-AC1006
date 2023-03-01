@@ -4,7 +4,6 @@ meta:
   application: AutoCAD
   file-extension:
     - dwg
-  license: CC0-1.0
   xref:
     justsolve: DWG
     pronom:
@@ -13,6 +12,7 @@ meta:
       - application/x-dwg
       - image/vnd.dwg
     wikidata: Q27863123
+  license: CC0-1.0
   endian: le
 seq:
   - id: header
