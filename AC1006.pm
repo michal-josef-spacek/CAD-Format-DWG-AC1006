@@ -47,6 +47,52 @@ our $ENTITIES_LINE3D = 21;
 our $ENTITIES_FACE3D = 22;
 our $ENTITIES_DIM = 23;
 
+our $DWGCODEPAGE_ANSI_1252 = 0;
+our $DWGCODEPAGE_US_ASCII = 1;
+our $DWGCODEPAGE_ISO_8859_1 = 2;
+our $DWGCODEPAGE_ISO_8859_2 = 3;
+our $DWGCODEPAGE_ISO_8859_3 = 4;
+our $DWGCODEPAGE_ISO_8859_4 = 5;
+our $DWGCODEPAGE_ISO_8859_5 = 6;
+our $DWGCODEPAGE_ISO_8859_6 = 7;
+our $DWGCODEPAGE_ISO_8859_7 = 8;
+our $DWGCODEPAGE_ISO_8859_8 = 9;
+our $DWGCODEPAGE_ISO_8859_9 = 10;
+our $DWGCODEPAGE_CP437 = 11;
+our $DWGCODEPAGE_CP850 = 12;
+our $DWGCODEPAGE_CP852 = 13;
+our $DWGCODEPAGE_CP855 = 14;
+our $DWGCODEPAGE_CP857 = 15;
+our $DWGCODEPAGE_CP860 = 16;
+our $DWGCODEPAGE_CP861 = 17;
+our $DWGCODEPAGE_CP863 = 18;
+our $DWGCODEPAGE_CP864 = 19;
+our $DWGCODEPAGE_CP865 = 20;
+our $DWGCODEPAGE_CP869 = 21;
+our $DWGCODEPAGE_CP932 = 22;
+our $DWGCODEPAGE_MACINTOSH = 23;
+our $DWGCODEPAGE_BIG5 = 24;
+our $DWGCODEPAGE_CP949 = 25;
+our $DWGCODEPAGE_JOHAB = 26;
+our $DWGCODEPAGE_CP866 = 27;
+our $DWGCODEPAGE_ANSI_1250 = 28;
+our $DWGCODEPAGE_ANSI_1251 = 29;
+our $DWGCODEPAGE_UTF_8 = 30;
+our $DWGCODEPAGE_GB2312 = 31;
+our $DWGCODEPAGE_ANSI_1253 = 32;
+our $DWGCODEPAGE_ANSI_1254 = 33;
+our $DWGCODEPAGE_ANSI_1255 = 34;
+our $DWGCODEPAGE_ANSI_1256 = 35;
+our $DWGCODEPAGE_ANSI_1257 = 36;
+our $DWGCODEPAGE_ANSI_874 = 37;
+our $DWGCODEPAGE_ANSI_932 = 38;
+our $DWGCODEPAGE_ANSI_936 = 39;
+our $DWGCODEPAGE_ANSI_949 = 40;
+our $DWGCODEPAGE_ANSI_950 = 41;
+our $DWGCODEPAGE_ANSI_1361 = 42;
+our $DWGCODEPAGE_UTF_16 = 43;
+our $DWGCODEPAGE_ANSI_1258 = 44;
+
 our $ISO_PLANE_LEFT = 0;
 our $ISO_PLANE_TOP = 1;
 our $ISO_PLANE_RIGHT = 2;
@@ -4419,7 +4465,7 @@ sub _read {
     $self->{chamferb} = $self->{_io}->read_f8le();
     $self->{mirror_text} = $self->{_io}->read_s2le();
     $self->{table_ucs} = CAD::Format::DWG::AC1006::HeaderTable->new($self->{_io}, $self, $self->{_root});
-    $self->{unknown37} = $self->{_io}->read_bytes(2);
+    $self->{dwgcodepage} = $self->{_io}->read_u2le();
     $self->{ucs_origin_point} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_x_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
     $self->{ucs_y_dir} = CAD::Format::DWG::AC1006::Point3d->new($self->{_io}, $self, $self->{_root});
@@ -5091,9 +5137,9 @@ sub table_ucs {
     return $self->{table_ucs};
 }
 
-sub unknown37 {
+sub dwgcodepage {
     my ($self) = @_;
-    return $self->{unknown37};
+    return $self->{dwgcodepage};
 }
 
 sub ucs_origin_point {

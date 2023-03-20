@@ -549,8 +549,9 @@ types:
       - id: table_ucs
         type: header_table
         doc: 0x03ef-0x03f9
-      - id: unknown37
-        size: 2
+      - id: dwgcodepage
+        type: u2
+        enum: dwgcodepage
       - id: ucs_origin_point
         type: point_3d
         doc: $UCSORG/10|20|30
@@ -2475,3 +2476,49 @@ enums:
   spline_type:
     5: quadratic_b_spline
     6: cubic_b_spline
+  dwgcodepage:
+    0: ansi_1252
+    1: us_ascii
+    2: iso_8859_1
+    3: iso_8859_2
+    4: iso_8859_3
+    5: iso_8859_4
+    6: iso_8859_5
+    7: iso_8859_6
+    8: iso_8859_7
+    9: iso_8859_8
+    10: iso_8859_9
+    11: cp437
+    12: cp850
+    13: cp852
+    14: cp855
+    15: cp857
+    16: cp860
+    17: cp861
+    18: cp863
+    19: cp864
+    20: cp865
+    21: cp869
+    22: cp932
+    23: macintosh
+    24: big5
+    25: cp949
+    26: johab
+    27: cp866
+    28: ansi_1250
+    29: ansi_1251
+    30: utf_8
+    31: gb2312
+    32: ansi_1253
+    33: ansi_1254
+    34: ansi_1255
+    35: ansi_1256
+    36: ansi_1257
+    37: ansi_874
+    38: ansi_932
+    39: ansi_936
+    40: ansi_949
+    41: ansi_950
+    42: ansi_1361
+    43: utf_16
+    44: ansi_1258
