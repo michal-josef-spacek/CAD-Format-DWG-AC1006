@@ -5598,7 +5598,7 @@ sub _read {
     if ($self->entity_mode()->has_handling()) {
         $self->{handling_id} = $self->{_io}->read_bytes($self->len_handling_id());
     }
-    $self->{unknown} = $self->{_io}->read_bytes(4);
+    $self->{begin_addr} = $self->{_io}->read_s4le();
 }
 
 sub entity_mode {
@@ -5651,9 +5651,9 @@ sub handling_id {
     return $self->{handling_id};
 }
 
-sub unknown {
+sub begin_addr {
     my ($self) = @_;
-    return $self->{unknown};
+    return $self->{begin_addr};
 }
 
 ########################################################################
