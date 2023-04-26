@@ -1632,7 +1632,7 @@ types:
         type: b1
       - id: flag3
         type: b1
-      - id: polygon_mesh_3d
+      - id: mesh
         type: b1
       - id: polyline_3d
         type: b1
