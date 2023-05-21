@@ -412,6 +412,7 @@ types:
         type: s2
         doc: 256d - bylayer, 0d - byblock, other index (1-255), $CECOLOR
       - id: current_linetype
+        enum: current_linetype
         type: s2
         doc: 256d - bylayer, 255d - byblock, other index, $CELTYPE
       - id: create_date_days
@@ -2453,6 +2454,9 @@ enums:
     5: blue
     6: magenta
     7: white
+    256: bylayer
+  current_linetype:
+    255: byblock
     256: bylayer
   iso_plane:
     0: left
