@@ -236,10 +236,13 @@ types:
       - id: current_layer_index
         type: s2
         doc: 0x014a-0x014b, $CLAYER
-      - id: current_color_convert
-        type: f8
-        doc: 0x014c-0x0153
-      - id: unknown6
+      - id: current_color_convert_lo
+        type: s4
+        doc: 0x014c-0x014f
+      - id: current_color_convert_hi
+        type: s4
+        doc: 0x0150-0x0153
+      - id: unknown1
         type: u2
         doc: 0x0154-0x0155
       - id: psltscale

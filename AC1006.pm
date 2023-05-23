@@ -4369,8 +4369,9 @@ sub _read {
     $self->{text_size} = $self->{_io}->read_f8le();
     $self->{trace_width} = $self->{_io}->read_f8le();
     $self->{current_layer_index} = $self->{_io}->read_s2le();
-    $self->{current_color_convert} = $self->{_io}->read_f8le();
-    $self->{unknown6} = $self->{_io}->read_u2le();
+    $self->{current_color_convert_lo} = $self->{_io}->read_s4le();
+    $self->{current_color_convert_hi} = $self->{_io}->read_s4le();
+    $self->{unknown1} = $self->{_io}->read_u2le();
     $self->{psltscale} = $self->{_io}->read_u2le();
     $self->{unknown7c} = $self->{_io}->read_bytes(2);
     $self->{unknown7d} = $self->{_io}->read_bytes(2);
@@ -4645,14 +4646,19 @@ sub current_layer_index {
     return $self->{current_layer_index};
 }
 
-sub current_color_convert {
+sub current_color_convert_lo {
     my ($self) = @_;
-    return $self->{current_color_convert};
+    return $self->{current_color_convert_lo};
 }
 
-sub unknown6 {
+sub current_color_convert_hi {
     my ($self) = @_;
-    return $self->{unknown6};
+    return $self->{current_color_convert_hi};
+}
+
+sub unknown1 {
+    my ($self) = @_;
+    return $self->{unknown1};
 }
 
 sub psltscale {
