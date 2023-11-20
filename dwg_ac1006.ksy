@@ -99,10 +99,11 @@ types:
   header:
     seq:
       - id: magic
-        contents: [0x41, 0x43, 0x31, 0x30, 0x30, 0x36]
-        doc: 0x0000-0x0005, $ACADVER/1
-      - id: zeros
-        size: 6
+        size: 12
+        type: str
+        encoding: ASCII
+        terminator: 0x00
+        doc: 0x0000-0x000b, $ACADVER/1
       - id: zero_one_or_three
         type: s1
       - id: num_entity_sections
