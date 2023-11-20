@@ -254,6 +254,5 @@ t/data/header/dim_tofl/DIMTOFL1.DWG
 t/data/header/handseed/HS1.DWG
 t/data/header/handseed/HS2.DWG
 t/data/header/surftype/ST1.DWG
-TODO
 xt/CAD-Format-DWG-AC1006/01-pod_coverage.t
 xt/CAD-Format-DWG-AC1006/02-pod.t
